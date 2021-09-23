@@ -9,10 +9,11 @@
         tools:context=".ui.story.StoryFragment">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/writeLetterTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textColor="@color/black"
             android:text="@string/write_letter"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +35,7 @@
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView" />
+            app:layout_constraintTop_toBottomOf="@id/writeLetterTitle" />
 
         <Button
             android:id="@+id/changeFlower"

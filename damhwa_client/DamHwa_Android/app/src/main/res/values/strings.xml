@@ -9,4 +9,7 @@
     <string name="write_feeling">기분</string>
     <string name="write_letter_ph">서신을 작성하시오</string>
     <string name="recommend_flower">꽃으로 전하기</string>
+    <string name="write_letter_guide">오늘 기분이 어떤지 적어보세요. \n예쁜 꽃을 추천해드릴게요.</string>
+    <string name="write_feeling_ph">추천은 하루 한 번 가능하니, 예쁘게 적어주세요!</string>
+    <string name="recommend_flower_feeling">추천받기</string>
 </resources>
