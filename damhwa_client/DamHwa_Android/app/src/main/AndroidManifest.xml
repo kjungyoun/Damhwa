@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DamHwa_Android">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
