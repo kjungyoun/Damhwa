@@ -7,33 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */; };
-		38E1321126FC46060089F6FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321026FC46060089F6FF /* ContentView.swift */; };
-		38E1321326FC46090089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321226FC46090089F6FF /* Assets.xcassets */; };
-		38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321526FC46090089F6FF /* Preview Assets.xcassets */; };
-		38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */; };
-		38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321F26FC60BF0089F6FF /* FeelingView.swift */; };
-		38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */; };
-		38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322326FC61200089F6FF /* FlowerCalendar.swift */; };
-		38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322526FC659C0089F6FF /* StoryTextView.swift */; };
+		38E131F426FC1EA20089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E131F326FC1EA20089F6FF /* DamHwa_IosApp.swift */; };
+		38E131F626FC1EA20089F6FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E131F526FC1EA20089F6FF /* ContentView.swift */; };
+		38E131F826FC1EA60089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E131F726FC1EA60089F6FF /* Assets.xcassets */; };
+		38E131FB26FC1EA60089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E131FA26FC1EA60089F6FF /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		38E1320B26FC46060089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamHwa_IosApp.swift; sourceTree = "<group>"; };
-		38E1321026FC46060089F6FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		38E1321226FC46090089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		38E1321526FC46090089F6FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		38E1321726FC46090089F6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecommend.swift; sourceTree = "<group>"; };
-		38E1321F26FC60BF0089F6FF /* FeelingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingView.swift; sourceTree = "<group>"; };
-		38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingRecommend.swift; sourceTree = "<group>"; };
-		38E1322326FC61200089F6FF /* FlowerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerCalendar.swift; sourceTree = "<group>"; };
-		38E1322526FC659C0089F6FF /* StoryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTextView.swift; sourceTree = "<group>"; };
+		38E131F026FC1EA20089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38E131F326FC1EA20089F6FF /* DamHwa_IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamHwa_IosApp.swift; sourceTree = "<group>"; };
+		38E131F526FC1EA20089F6FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		38E131F726FC1EA60089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		38E131FA26FC1EA60089F6FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		38E131FC26FC1EA60089F6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		38E1320826FC46060089F6FF /* Frameworks */ = {
+		38E131ED26FC1EA20089F6FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,43 +33,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		38E1320226FC46060089F6FF = {
+		38E131E726FC1EA20089F6FF = {
 			isa = PBXGroup;
 			children = (
-				38E1320D26FC46060089F6FF /* DamHwa_Ios */,
-				38E1320C26FC46060089F6FF /* Products */,
+				38E131F226FC1EA20089F6FF /* DamHwa_Ios */,
+				38E131F126FC1EA20089F6FF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		38E1320C26FC46060089F6FF /* Products */ = {
+		38E131F126FC1EA20089F6FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38E1320B26FC46060089F6FF /* DamHwa_Ios.app */,
+				38E131F026FC1EA20089F6FF /* DamHwa_Ios.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		38E1320D26FC46060089F6FF /* DamHwa_Ios */ = {
+		38E131F226FC1EA20089F6FF /* DamHwa_Ios */ = {
 			isa = PBXGroup;
 			children = (
-				38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */,
-				38E1321F26FC60BF0089F6FF /* FeelingView.swift */,
-				38E1321026FC46060089F6FF /* ContentView.swift */,
-				38E1322526FC659C0089F6FF /* StoryTextView.swift */,
-				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
-				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
-				38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */,
-				38E1321226FC46090089F6FF /* Assets.xcassets */,
-				38E1321726FC46090089F6FF /* Info.plist */,
-				38E1321426FC46090089F6FF /* Preview Content */,
+				38E131F326FC1EA20089F6FF /* DamHwa_IosApp.swift */,
+				38E131F526FC1EA20089F6FF /* ContentView.swift */,
+				38E131F726FC1EA60089F6FF /* Assets.xcassets */,
+				38E131FC26FC1EA60089F6FF /* Info.plist */,
+				38E131F926FC1EA60089F6FF /* Preview Content */,
 			);
 			path = DamHwa_Ios;
 			sourceTree = "<group>";
 		};
-		38E1321426FC46090089F6FF /* Preview Content */ = {
+		38E131F926FC1EA60089F6FF /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				38E1321526FC46090089F6FF /* Preview Assets.xcassets */,
+				38E131FA26FC1EA60089F6FF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -87,13 +72,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		38E1320A26FC46060089F6FF /* DamHwa_Ios */ = {
+		38E131EF26FC1EA20089F6FF /* DamHwa_Ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 38E1321A26FC46090089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */;
+			buildConfigurationList = 38E131FF26FC1EA60089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */;
 			buildPhases = (
-				38E1320726FC46060089F6FF /* Sources */,
-				38E1320826FC46060089F6FF /* Frameworks */,
-				38E1320926FC46060089F6FF /* Resources */,
+				38E131EC26FC1EA20089F6FF /* Sources */,
+				38E131ED26FC1EA20089F6FF /* Frameworks */,
+				38E131EE26FC1EA20089F6FF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -101,24 +86,24 @@
 			);
 			name = DamHwa_Ios;
 			productName = DamHwa_Ios;
-			productReference = 38E1320B26FC46060089F6FF /* DamHwa_Ios.app */;
+			productReference = 38E131F026FC1EA20089F6FF /* DamHwa_Ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		38E1320326FC46060089F6FF /* Project object */ = {
+		38E131E826FC1EA20089F6FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
-					38E1320A26FC46060089F6FF = {
+					38E131EF26FC1EA20089F6FF = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
 			};
-			buildConfigurationList = 38E1320626FC46060089F6FF /* Build configuration list for PBXProject "DamHwa_Ios" */;
+			buildConfigurationList = 38E131EB26FC1EA20089F6FF /* Build configuration list for PBXProject "DamHwa_Ios" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,47 +111,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 38E1320226FC46060089F6FF;
-			productRefGroup = 38E1320C26FC46060089F6FF /* Products */;
+			mainGroup = 38E131E726FC1EA20089F6FF;
+			productRefGroup = 38E131F126FC1EA20089F6FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				38E1320A26FC46060089F6FF /* DamHwa_Ios */,
+				38E131EF26FC1EA20089F6FF /* DamHwa_Ios */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		38E1320926FC46060089F6FF /* Resources */ = {
+		38E131EE26FC1EA20089F6FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */,
-				38E1321326FC46090089F6FF /* Assets.xcassets in Resources */,
+				38E131FB26FC1EA60089F6FF /* Preview Assets.xcassets in Resources */,
+				38E131F826FC1EA60089F6FF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		38E1320726FC46060089F6FF /* Sources */ = {
+		38E131EC26FC1EA20089F6FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
-				38E1321126FC46060089F6FF /* ContentView.swift in Sources */,
-				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
-				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
-				38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */,
-				38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */,
-				38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */,
+				38E131F626FC1EA20089F6FF /* ContentView.swift in Sources */,
+				38E131F426FC1EA20089F6FF /* DamHwa_IosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		38E1321826FC46090089F6FF /* Debug */ = {
+		38E131FD26FC1EA60089F6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -227,7 +207,7 @@
 			};
 			name = Debug;
 		};
-		38E1321926FC46090089F6FF /* Release */ = {
+		38E131FE26FC1EA60089F6FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,7 +262,7 @@
 			};
 			name = Release;
 		};
-		38E1321B26FC46090089F6FF /* Debug */ = {
+		38E1320026FC1EA60089F6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -303,7 +283,7 @@
 			};
 			name = Debug;
 		};
-		38E1321C26FC46090089F6FF /* Release */ = {
+		38E1320126FC1EA60089F6FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -327,25 +307,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		38E1320626FC46060089F6FF /* Build configuration list for PBXProject "DamHwa_Ios" */ = {
+		38E131EB26FC1EA20089F6FF /* Build configuration list for PBXProject "DamHwa_Ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				38E1321826FC46090089F6FF /* Debug */,
-				38E1321926FC46090089F6FF /* Release */,
+				38E131FD26FC1EA60089F6FF /* Debug */,
+				38E131FE26FC1EA60089F6FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		38E1321A26FC46090089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */ = {
+		38E131FF26FC1EA60089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				38E1321B26FC46090089F6FF /* Debug */,
-				38E1321C26FC46090089F6FF /* Release */,
+				38E1320026FC1EA60089F6FF /* Debug */,
+				38E1320126FC1EA60089F6FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 38E1320326FC46060089F6FF /* Project object */;
+	rootObject = 38E131E826FC1EA20089F6FF /* Project object */;
 }
