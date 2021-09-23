@@ -51,18 +51,26 @@ dependencies {
     def retrofitVersion = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
     // OkHttp Logging
     def loggingVersion = "4.9.1"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingVersion"
+
     // Android Architecture Components
     def lifecycleVersion = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+
     // Navigation
     def navigationVersion = "2.3.5"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
     // viewPager2
     def viewPager2Version = "1.0.0"
     implementation "androidx.viewpager2:viewpager2:$viewPager2Version"
+
+    // Fragment
+    def fragmentVersion = "1.4.0-alpha06"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
 
 }
