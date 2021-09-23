@@ -9,8 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        let text = "hello, swiftui5"
+        Text(text)
+            .font(.largeTitle)
+            .fontWeight(/*@START_MENU_TOKEN@*/.heavy/*@END_MENU_TOKEN@*/)
+            .foregroundColor(.blue)
             .padding()
+            
+        Button(action: {
+            print("hello")
+        }) {
+            Text("SwiftUI")
+                .font(.title)
+                .foregroundColor(.blue)
+        }
     }
 }
 
