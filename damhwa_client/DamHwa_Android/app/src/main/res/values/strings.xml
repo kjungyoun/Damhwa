@@ -2,4 +2,7 @@
     <string name="app_name">DamHwa_Android</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="story_title">이야기</string>
+    <string name="feeling_title">감정</string>
+    <string name="calendar_title">꽃 달력</string>
 </resources>
