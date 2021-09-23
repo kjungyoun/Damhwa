@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.example.damhwa_android.CalendarFragment"
+        android:name="com.example.damhwa_android.ui.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/feelingFragment"
-        android:name="com.example.damhwa_android.FeelingFragment"
+        android:name="com.example.damhwa_android.ui.FeelingFragment"
         android:label="fragment_feeling"
         tools:layout="@layout/fragment_feeling" />
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.example.damhwa_android.StoryFragment"
+        android:name="com.example.damhwa_android.ui.StoryFragment"
         android:label="fragment_story"
         tools:layout="@layout/fragment_story" />
 </navigation>

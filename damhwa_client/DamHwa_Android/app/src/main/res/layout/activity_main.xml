@@ -5,26 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_main" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:elevation="10dp"
-        app:menu="@menu/main_bottom_navigation"
-        app:itemBackground="@drawable/bottom_navigation_background"
         android:id="@+id/main_bottom_navigation"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:elevation="10dp"
+        app:itemBackground="@drawable/bottom_navigation_background"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/main_bottom_navigation" />
 
 </LinearLayout>
