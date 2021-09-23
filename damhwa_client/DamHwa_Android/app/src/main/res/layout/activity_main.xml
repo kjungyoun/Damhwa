@@ -17,8 +17,12 @@
         app:navGraph="@navigation/nav_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:elevation="10dp"
         app:menu="@menu/main_bottom_navigation"
+        app:itemBackground="@drawable/bottom_navigation_background"
         android:id="@+id/main_bottom_navigation"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
