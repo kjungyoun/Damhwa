@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StoryTextView: View {
     var body: some View {
         NavigationView{
             VStack {
@@ -19,13 +19,17 @@ struct ContentView: View {
                 }
                 TabView {
                     
-                    Text("담").tabItem {
-                        Image(systemName: "list.dash")
-                        Text("담")
-                    }
-                    Text("화").tabItem {
+                    Text("서신").tabItem {
                         Image(systemName: "square.and.pencil")
-                        Text("화")
+                        Text("서신")
+                    }
+                    Text("감정").tabItem {
+                        Image(systemName: "square.and.pencil")
+                        Text("감정")
+                    }
+                    Text("달력").tabItem {
+                        Image(systemName: "calendar")
+                        Text("달력")
                     }
                 }
             }.navigationBarTitle("서신쓰기",displayMode: .inline)
@@ -35,8 +39,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct StoryTextView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        StoryTextView()
     }
 }
