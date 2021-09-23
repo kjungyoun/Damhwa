@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/storyFragment">
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.damhwa_android.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/feelingFragment"
+        android:name="com.example.damhwa_android.FeelingFragment"
+        android:label="fragment_feeling"
+        tools:layout="@layout/fragment_feeling" />
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.example.damhwa_android.StoryFragment"
+        android:label="fragment_story"
+        tools:layout="@layout/fragment_story" />
+</navigation>
