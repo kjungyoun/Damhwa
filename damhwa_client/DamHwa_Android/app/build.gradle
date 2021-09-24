@@ -80,4 +80,8 @@ dependencies {
     def fragmentVersion = "1.4.0-alpha06"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
 
+    // Carousel
+    def carouselVersion = "1.2.1"
+    implementation "com.github.sparrow007:carouselrecyclerview:$carouselVersion"
+
 }
