@@ -5,6 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.base.BaseViewModel
 
 class StoryFragmentViewModel: BaseViewModel() {
-    val _letterText = MutableLiveData<String>()
+    val letterText = MutableLiveData<String>()
 
 }
