@@ -17,6 +17,7 @@
         tools:layout="@layout/fragment_feeling" >
         <action
             android:id="@+id/action_feelingFragment_to_feelingFlowerDetailFragment"
+            app:restoreState="true"
             app:destination="@id/feelingFlowerDetailFragment" />
     </fragment>
     <fragment
@@ -26,6 +27,7 @@
         tools:layout="@layout/fragment_story" >
         <action
             android:id="@+id/action_storyFragment_to_storyRecFlowerFragment"
+            app:restoreState="true"
             app:destination="@id/storyRecFlowerFragment" />
     </fragment>
     <fragment
@@ -34,14 +36,17 @@
         android:label="FeelingFlowerDetailFragment" >
         <action
             android:id="@+id/action_feelingFlowerDetailFragment_to_feelingFragment"
+            app:restoreState="true"
             app:destination="@id/feelingFragment" />
     </fragment>
     <fragment
         android:id="@+id/storyFlowerDetailFragment"
         android:name="com.example.damhwa_android.ui.story.StoryFlowerDetailFragment"
+        app:restoreState="true"
         android:label="StoryFlowerDetailFragment" >
         <action
             android:id="@+id/action_storyFlowerDetailFragment_to_storyRecFlowerFragment"
+            app:restoreState="true"
             app:destination="@id/storyRecFlowerFragment" />
     </fragment>
     <fragment
@@ -50,9 +55,11 @@
         android:label="StoryRecFlowerFragment" >
         <action
             android:id="@+id/action_storyRecFlowerFragment_to_storyFlowerDetailFragment"
+            app:restoreState="true"
             app:destination="@id/storyFlowerDetailFragment" />
         <action
             android:id="@+id/action_storyRecFlowerFragment_to_storyFragment"
+            app:restoreState="true"
             app:destination="@id/storyFragment" />
     </fragment>
 </navigation>
