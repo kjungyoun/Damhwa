@@ -15,5 +15,6 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         }
     }
 
-    private fun routeToRecFlowerList() = findNavController().navigate(R.id.action_storyFlowerDetailFragment_to_storyRecFlowerFragment)
+    private fun routeToRecFlowerList() =
+        findNavController().navigate(R.id.action_storyFlowerDetailFragment_to_storyRecFlowerFragment)
 }

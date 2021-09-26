@@ -1,6 +1,7 @@
 package com.example.damhwa_android.ui.story
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
@@ -12,9 +13,10 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
 ) {
     override fun init() {
         super.init()
-        val storyViewModel = ViewModelProvider(this).get(StoryFragmentViewModel::class.java)
+        val storyViewModel = ViewModelProvider(requireActivity()).get(StoryFragmentViewModel::class.java)
 
         binding.changeFlower.setOnClickListener {
+            storyViewModel.fetchRecommendedFlowers()
             routeToStoryRecFragment()
         }
         binding.storyViewModel = storyViewModel

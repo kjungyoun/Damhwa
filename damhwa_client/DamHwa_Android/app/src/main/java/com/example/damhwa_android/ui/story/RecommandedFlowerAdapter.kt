@@ -11,8 +11,6 @@ class RecommendedFlowerAdapter():
     var flowers = mutableListOf<RecommendedFlower>()
 
     class RecommendedFlowerViewHolder(val binding: ItemRecommendedFlowerBinding): RecyclerView.ViewHolder(binding.root) {
-//        private val binding: ItemRecommendedFlowerBinding? = DataBindingUtil.bind(itemView)
-
         fun bind(flower: RecommendedFlower) {
             binding.flower = flower
         }
