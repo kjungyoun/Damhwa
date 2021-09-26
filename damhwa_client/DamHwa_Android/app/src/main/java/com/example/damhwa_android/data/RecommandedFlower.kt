@@ -1,7 +1,7 @@
 package com.example.damhwa_android
 
 data class RecommendedFlower(
-    val flowerPicture: String,
-    val flowerName: String,
-    val flowerDescription: String
+    val imageUrl: String,
+    val name: String,
+    val description: String
 )

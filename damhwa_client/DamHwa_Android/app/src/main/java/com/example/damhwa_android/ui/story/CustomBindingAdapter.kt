@@ -1,20 +1,18 @@
 package com.example.damhwa_android.ui.story
 
+import android.util.Log
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
-import androidx.recyclerview.widget.RecyclerView
-import com.example.damhwa_android.RecommendedFlower
+import com.bumptech.glide.Glide
 
 object CustomBindingAdapter {
     @JvmStatic
-    @BindingAdapter("flowers")
-    fun setBindFlowers(view: RecyclerView, flowers: LiveData<ArrayList<RecommendedFlower>>) {
-        view.adapter?.run {
-            if (this is RecommendedFlowerAdapter) {
-                flowers.value?.let { this.flowers = it } ?: { this.flowers = arrayListOf() }()
-                this.notifyDataSetChanged()
-            }
-        }
-
+    @BindingAdapter("flowerUrl")
+    fun setBindFlowerPictureUrl(view: ImageView, flowerPictureUrl: String) {
+        Log.d("로그", flowerPictureUrl)
+        Glide.with(view.context)
+            .load(flowerPictureUrl)
+            .centerCrop()
+            .into(view)
     }
 }
