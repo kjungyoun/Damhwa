@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">DamHwa_Android</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="story_title">이야기</string>
+    <string name="feeling_title">감정</string>
+    <string name="calendar_title">꽃 달력</string>
+    <string name="write_letter">서신 쓰기</string>
+    <string name="write_feeling">기분</string>
+    <string name="write_letter_ph">서신을 작성하시오</string>
+    <string name="recommend_flower">꽃으로 전하기</string>
+    <string name="write_letter_guide">오늘 기분이 어떤지 적어보세요. \n예쁜 꽃을 추천해드릴게요.</string>
+    <string name="write_feeling_ph">추천은 하루 한 번 가능하니, 예쁘게 적어주세요!</string>
+    <string name="recommend_flower_feeling">추천받기</string>
 </resources>
