@@ -15,8 +15,8 @@ public class RestTemplateConfig {
     public RestTemplate restTemplate(){
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
 
-        factory.setReadTimeout(5000); // read timeout
-        factory.setConnectTimeout(3000); // connection timeout
+        factory.setReadTimeout(5000); // read timeout 읽기 시간 초과
+        factory.setConnectTimeout(3000); // connection timeout 연결 시간 초과
 
         // Apache HttpComponents HttpClient
         HttpClient httpClient = HttpClientBuilder.create()
@@ -24,7 +24,7 @@ public class RestTemplateConfig {
                                     .setMaxConnPerRoute(20).build();
                                     // 각 호스트 (IP와 Port의 조합) 당 커넥션 풀에 생성 가능한 커넥션 수
 
-        factory.setHttpClient(httpClient);
+        factory.setHttpClient(httpClient); // 동기실행에 사용될 HttpClient 셋팅
 
         RestTemplate restTemplate = new RestTemplate(factory);
         return restTemplate;
