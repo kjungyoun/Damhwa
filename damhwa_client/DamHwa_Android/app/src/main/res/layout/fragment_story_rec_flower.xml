@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="storyFragmentViewModel"
+            type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,14 +35,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/writeLetterTitle" />
 
-        <Button
-            android:id="@+id/navitest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="navitest"
+        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+            android:id="@+id/carouselRecycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginHorizontal="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/writeLetterTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+    <!--            flowers="@{storyFragmentViewModel.recommendedFlowerList}"-->
