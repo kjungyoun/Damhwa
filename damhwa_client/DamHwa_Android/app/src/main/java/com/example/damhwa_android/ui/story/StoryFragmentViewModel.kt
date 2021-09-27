@@ -45,4 +45,8 @@ class StoryFragmentViewModel : BaseViewModel() {
         return tmpArr
     }
 
+    data class Letter(
+        val letterText: String? = null,
+    )
+
 }
