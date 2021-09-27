@@ -30,7 +30,4 @@ abstract class BaseFragment<B: ViewDataBinding>(
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
 }
