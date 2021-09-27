@@ -11,6 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@Entity
 public class History {
 
     @Id
