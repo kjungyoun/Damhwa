@@ -8,5 +8,5 @@ import retrofit2.http.POST
 
 interface FeelingService {
     @POST("test")
-    fun changeFeelingToFlower(@Body body: RequestBody): Single<FeelingFlower>
+    fun changeFeelingToFlower(@Body text: String): Single<FeelingFlower>
 }
