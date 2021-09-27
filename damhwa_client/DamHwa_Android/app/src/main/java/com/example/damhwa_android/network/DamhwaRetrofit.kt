@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DamhwaRetrofit {
 
-    const val API_END_POINT = "https://1d717421-0beb-4c41-9e24-f1a44c272dcb.mock.pstmn.io/"
+    const val API_END_POINT = "https://1d717421-0beb-4c41-9e24-f1a44c272dcb.mock.pstmn.io"
 
     fun <T> create(
         service: Class<T>,
