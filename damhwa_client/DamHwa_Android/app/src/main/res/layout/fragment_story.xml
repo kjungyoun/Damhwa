@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="storyViewModel"
+            type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,22 +24,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/realtimeTextView"
+            android:text="@{storyViewModel.letterText}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            android:background="@drawable/bg_edittext_transparent"
+            app:layout_constraintBottom_toTopOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/writeLetterTitle" />
+
         <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="20dp"
-            android:textSize="13sp"
             android:background="@drawable/bg_edittext_transparent"
             android:gravity="top"
             android:hint="@string/write_letter_ph"
             android:inputType="textMultiLine"
+            android:text="@={storyViewModel.letterText}"
             android:padding="15dp"
             android:scrollbars="vertical"
+            android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/writeLetterTitle" />
+            app:layout_constraintTop_toBottomOf="@id/realtimeTextView" />
 
         <Button
             android:id="@+id/changeFlower"
