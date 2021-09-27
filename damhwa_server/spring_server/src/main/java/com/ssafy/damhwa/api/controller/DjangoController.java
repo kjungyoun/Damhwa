@@ -18,9 +18,9 @@ public class DjangoController {
     DjangoService djangoService;
 
     @GetMapping("/msg")
-    public ResponseEntity<String> msgRecomm (@RequestParam String msg){
+    public ResponseEntity<Integer[]> msgRecomm (@RequestParam String msg){
 
-        ResponseEntity<String> response = djangoService.getMsgRecommendFlower(msg);
+        ResponseEntity<Integer[]> response = djangoService.getMsgRecommendFlower(msg);
 
         return response;
     }
