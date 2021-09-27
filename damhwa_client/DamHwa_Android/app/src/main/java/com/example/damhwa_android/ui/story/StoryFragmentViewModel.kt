@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.RecommendedFlower
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.RecommendedFlowers
+import com.example.damhwa_android.repository.StoryRepository
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
-class StoryFragmentViewModel : BaseViewModel() {
+class StoryFragmentViewModel(
+    private val storyRepository: StoryRepository
+) : BaseViewModel() {
 
     val letterText = MutableLiveData<String>()
 
