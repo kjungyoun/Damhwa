@@ -1,6 +1,5 @@
 package com.example.damhwa_android.ui.feeling
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
@@ -10,7 +9,6 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
-import java.lang.IllegalArgumentException
 
 class FeelingFragmentViewModel(
     private val repository: FeelingRepository
@@ -36,9 +34,8 @@ class FeelingFragmentViewModel(
 
     private val _recommendedFlowerFromFeelingSubject: BehaviorSubject<FlowerRecommendedByFeeling> =
         BehaviorSubject.createDefault(FlowerRecommendedByFeeling())
-    init {
-
-    }
+    val recommendedFlowerFromFeeling: Observable<FlowerRecommendedByFeeling> =
+        _recommendedFlowerFromFeelingSubject
 
     fun changeTextToFlower() {
         _feelingInputSubject.firstOrError()

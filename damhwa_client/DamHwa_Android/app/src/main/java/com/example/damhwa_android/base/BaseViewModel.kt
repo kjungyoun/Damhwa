@@ -11,10 +11,8 @@ abstract class BaseViewModel: ViewModel() {
 
     fun Disposable.addToDisposable(): Disposable = addTo(disposables)
 
-
     override fun onCleared() {
         disposables.clear()
         super.onCleared()
     }
-
 }
