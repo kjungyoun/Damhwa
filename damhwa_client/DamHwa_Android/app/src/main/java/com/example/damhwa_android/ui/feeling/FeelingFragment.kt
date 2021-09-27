@@ -1,5 +1,6 @@
 package com.example.damhwa_android.ui.feeling
 
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
@@ -13,6 +14,9 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
         binding.changeFlower.setOnClickListener {
             routeToFlowerFeelingDetail()
         }
+        val feelingViewModel =
+            ViewModelProvider(requireActivity()).get(FeelingFragmentViewModel::class.java)
+        binding.feelingViewModel = feelingViewModel
     }
 
     private fun routeToFlowerFeelingDetail() =

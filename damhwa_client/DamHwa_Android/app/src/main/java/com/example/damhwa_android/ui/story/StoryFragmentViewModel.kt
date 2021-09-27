@@ -1,16 +1,14 @@
 package com.example.damhwa_android.ui.story
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.RecommendedFlower
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.RecommendedFlowers
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 
-class StoryFragmentViewModel: BaseViewModel() {
+class StoryFragmentViewModel : BaseViewModel() {
 
     val letterText = MutableLiveData<String>()
 
@@ -24,7 +22,6 @@ class StoryFragmentViewModel: BaseViewModel() {
     fun fetchRecommendedFlowers() {
         _recommendedFlowerList
             .onNext(loadFlowerData())
-
     }
 
     private fun loadFlowerData(): RecommendedFlowers {
@@ -47,6 +44,5 @@ class StoryFragmentViewModel: BaseViewModel() {
         Log.d("로그", tmpArr.toString())
         return tmpArr
     }
-
 
 }
