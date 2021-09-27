@@ -31,13 +31,16 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             }
         }
     }
-    private var feeling: String = "조금 우울한"
-    private var flower: String = "매발톱"
+    private lateinit var feeling: String
+    private lateinit var flower: String
 
     override fun init() {
         super.init()
         binding.backButton.setOnClickListener {
             routeToFeelingPage()
+        }
+        binding.kakaoShare.setOnClickListener {
+            // TODO: 카카오톡 공유하기 구현하기
         }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
