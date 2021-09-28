@@ -5,10 +5,10 @@ server:
       charset: utf-8
       enabled: true
       force: true
-  address: localhost
+  address: 3.38.108.66
 
 spring:
-    datasource:
+    datasource: # url 배포시에 3.38.83.30 로 수정 필요!
       url: jdbc:mysql://localhost:3306/damhwa?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
       driver-class-name : com.mysql.cj.jdbc.Driver
       username : ssafy

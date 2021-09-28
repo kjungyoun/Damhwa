@@ -17,7 +17,7 @@ public class DjangoServiceImpl implements DjangoService {
     @Override
     public ResponseEntity<Integer[]> getMsgRecommendFlower(String msg) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8000/api/recomm/msg";
+        String url = "http://3.38.108.66:8000/api/recomm/msg";
 
         // header 셋팅
         HttpHeaders headers = new HttpHeaders();
