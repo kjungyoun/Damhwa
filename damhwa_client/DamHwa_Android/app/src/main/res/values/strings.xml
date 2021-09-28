@@ -15,4 +15,8 @@
     <string name="rec_flower_title">이야기</string>
     <string name="feeling_guide">%s 당신, </string>
     <string name="flower_guide">오늘은 %s 어때요?</string>
+
+    <string name="kakao_app_key">5d4ceabed4218c89d458e28bfdd4ed60</string>
+
+
 </resources>
