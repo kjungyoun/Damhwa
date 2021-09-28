@@ -3,12 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		385F894726FD6429008D404A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F894626FD6429008D404A /* Home.swift */; };
+		385F894A26FDB53A008D404A /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 385F894926FDB53A008D404A /* ACarousel */; };
+		385F894C26FDB582008D404A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F894B26FDB582008D404A /* ContentView.swift */; };
+		385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */; };
+		385F895226FDFD41008D404A /* StoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F895126FDFD41008D404A /* StoryText.swift */; };
+		3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880BA832702E8E400EBD59E /* AppDelegate.swift */; };
 		38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */; };
-		38E1321126FC46060089F6FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321026FC46060089F6FF /* ContentView.swift */; };
 		38E1321326FC46090089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321226FC46090089F6FF /* Assets.xcassets */; };
 		38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321526FC46090089F6FF /* Preview Assets.xcassets */; };
 		38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */; };
@@ -16,12 +21,19 @@
 		38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */; };
 		38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322326FC61200089F6FF /* FlowerCalendar.swift */; };
 		38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322526FC659C0089F6FF /* StoryTextView.swift */; };
+		B79476A3DCE9F0578AE080F9 /* Pods_DamHwa_Ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03E5DE32E6913849C4AB96E0 /* Pods-DamHwa_Ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DamHwa_Ios.debug.xcconfig"; path = "Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios.debug.xcconfig"; sourceTree = "<group>"; };
+		385F894626FD6429008D404A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		385F894B26FDB582008D404A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSRockRegular_otf.otf; sourceTree = "<group>"; };
+		385F895126FDFD41008D404A /* StoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryText.swift; sourceTree = "<group>"; };
+		3880BA832702E8E400EBD59E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		38D54420270185190029BC47 /* DamHwa_Ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DamHwa_Ios.entitlements; sourceTree = "<group>"; };
 		38E1320B26FC46060089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamHwa_IosApp.swift; sourceTree = "<group>"; };
-		38E1321026FC46060089F6FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		38E1321226FC46090089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38E1321526FC46090089F6FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38E1321726FC46090089F6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +42,8 @@
 		38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingRecommend.swift; sourceTree = "<group>"; };
 		38E1322326FC61200089F6FF /* FlowerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerCalendar.swift; sourceTree = "<group>"; };
 		38E1322526FC659C0089F6FF /* StoryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTextView.swift; sourceTree = "<group>"; };
+		59E7C9AD4EED338FE391E973 /* Pods-DamHwa_Ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DamHwa_Ios.release.xcconfig"; path = "Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios.release.xcconfig"; sourceTree = "<group>"; };
+		FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DamHwa_Ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +51,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385F894A26FDB53A008D404A /* ACarousel in Frameworks */,
+				B79476A3DCE9F0578AE080F9 /* Pods_DamHwa_Ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2799E7AE25B8AEB8494F6084 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03E5DE32E6913849C4AB96E0 /* Pods-DamHwa_Ios.debug.xcconfig */,
+				59E7C9AD4EED338FE391E973 /* Pods-DamHwa_Ios.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		385F894E26FDBA7C008D404A /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		38E1320226FC46060089F6FF = {
 			isa = PBXGroup;
 			children = (
+				385F894E26FDBA7C008D404A /* fonts */,
 				38E1320D26FC46060089F6FF /* DamHwa_Ios */,
 				38E1320C26FC46060089F6FF /* Products */,
+				2799E7AE25B8AEB8494F6084 /* Pods */,
+				AFE0593648A8E66B54E54440 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,13 +98,17 @@
 		38E1320D26FC46060089F6FF /* DamHwa_Ios */ = {
 			isa = PBXGroup;
 			children = (
+				38D54420270185190029BC47 /* DamHwa_Ios.entitlements */,
 				38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */,
 				38E1321F26FC60BF0089F6FF /* FeelingView.swift */,
-				38E1321026FC46060089F6FF /* ContentView.swift */,
 				38E1322526FC659C0089F6FF /* StoryTextView.swift */,
+				385F895126FDFD41008D404A /* StoryText.swift */,
 				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
 				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
+				385F894626FD6429008D404A /* Home.swift */,
+				385F894B26FDB582008D404A /* ContentView.swift */,
 				38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */,
+				3880BA832702E8E400EBD59E /* AppDelegate.swift */,
 				38E1321226FC46090089F6FF /* Assets.xcassets */,
 				38E1321726FC46090089F6FF /* Info.plist */,
 				38E1321426FC46090089F6FF /* Preview Content */,
@@ -84,6 +124,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AFE0593648A8E66B54E54440 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,15 +139,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38E1321A26FC46090089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */;
 			buildPhases = (
+				69C95B0285DD08BE6A6EE35A /* [CP] Check Pods Manifest.lock */,
 				38E1320726FC46060089F6FF /* Sources */,
 				38E1320826FC46060089F6FF /* Frameworks */,
 				38E1320926FC46060089F6FF /* Resources */,
+				782F1867FA660B6C47F11886 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DamHwa_Ios;
+			packageProductDependencies = (
+				385F894926FDB53A008D404A /* ACarousel */,
+			);
 			productName = DamHwa_Ios;
 			productReference = 38E1320B26FC46060089F6FF /* DamHwa_Ios.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +180,9 @@
 				Base,
 			);
 			mainGroup = 38E1320226FC46060089F6FF;
+			packageReferences = (
+				385F894826FDB53A008D404A /* XCRemoteSwiftPackageReference "ACarousel" */,
+			);
 			productRefGroup = 38E1320C26FC46060089F6FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,10 +199,53 @@
 			files = (
 				38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */,
 				38E1321326FC46090089F6FF /* Assets.xcassets in Resources */,
+				385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69C95B0285DD08BE6A6EE35A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DamHwa_Ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		782F1867FA660B6C47F11886 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		38E1320726FC46060089F6FF /* Sources */ = {
@@ -154,12 +253,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
-				38E1321126FC46060089F6FF /* ContentView.swift in Sources */,
 				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
+				385F894C26FDB582008D404A /* ContentView.swift in Sources */,
 				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
 				38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */,
+				385F895226FDFD41008D404A /* StoryText.swift in Sources */,
 				38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */,
 				38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */,
+				3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */,
+				385F894726FD6429008D404A /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,14 +386,17 @@
 		};
 		38E1321B26FC46090089F6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E5DE32E6913849C4AB96E0 /* Pods-DamHwa_Ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DamHwa_Ios/DamHwa_Ios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DamHwa_Ios/Preview Content\"";
+				DEVELOPMENT_TEAM = LAJYRN9PB3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DamHwa_Ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,18 +410,22 @@
 		};
 		38E1321C26FC46090089F6FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59E7C9AD4EED338FE391E973 /* Pods-DamHwa_Ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DamHwa_Ios/DamHwa_Ios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DamHwa_Ios/Preview Content\"";
+				DEVELOPMENT_TEAM = LAJYRN9PB3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DamHwa_Ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.f5.DamHwa-Ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -346,6 +455,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		385F894826FDB53A008D404A /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JWAutumn/ACarousel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		385F894926FDB53A008D404A /* ACarousel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 385F894826FDB53A008D404A /* XCRemoteSwiftPackageReference "ACarousel" */;
+			productName = ACarousel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38E1320326FC46060089F6FF /* Project object */;
 }
