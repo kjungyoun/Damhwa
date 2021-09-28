@@ -26,16 +26,15 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true" >
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="oauth"
-                    android:scheme="kakao@string/kakao_app_key" />
+
+                <data android:host="oauth"
+                    android:scheme="@string/kakao_app_key" />
             </intent-filter>
         </activity>
     </application>

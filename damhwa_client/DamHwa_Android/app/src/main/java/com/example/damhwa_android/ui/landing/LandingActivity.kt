@@ -1,15 +1,14 @@
 package com.example.damhwa_android.ui.landing
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.damhwa_android.databinding.ActivityLandingBinding
 import com.example.damhwa_android.ui.MainActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause.*
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 
 class LandingActivity : AppCompatActivity() {
@@ -21,7 +20,6 @@ class LandingActivity : AppCompatActivity() {
 
         activityLandingBinding = ActivityLandingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Log.d("ERROR:", error.toString())
@@ -44,7 +42,8 @@ class LandingActivity : AppCompatActivity() {
                         Toast.makeText(this, "유효하지 않은 앱", Toast.LENGTH_SHORT).show()
                     }
                     error.toString() == InvalidGrant.toString() -> {
-                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     error.toString() == InvalidRequest.toString() -> {
                         Toast.makeText(this, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
@@ -53,7 +52,8 @@ class LandingActivity : AppCompatActivity() {
                         Toast.makeText(this, "유효하지 않은 scope ID", Toast.LENGTH_SHORT).show()
                     }
                     error.toString() == Misconfigured.toString() -> {
-                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     error.toString() == ServerError.toString() -> {
                         Toast.makeText(this, "서버 내부 에러", Toast.LENGTH_SHORT).show()
@@ -66,10 +66,8 @@ class LandingActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            else if (token != null) {
+            } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -77,9 +75,9 @@ class LandingActivity : AppCompatActivity() {
         }
 
         activityLandingBinding.kakaoLoginButton.setOnClickListener {
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
+            } else {
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
