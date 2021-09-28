@@ -52,3 +52,17 @@ class User(models.Model):
     class Meta:
         managed = False
         db_table = 'user'
+
+class Emotion(models.Model):
+    fno = models.BigIntegerField(primary_key=True)
+    happy = models.FloatField(db_column='Happy', blank=True, null=True)  # Field name made lowercase.
+    unstable = models.FloatField(db_column='Unstable', blank=True, null=True)  # Field name made lowercase.
+    embarrass = models.FloatField(blank=True, null=True)
+    sad = models.FloatField(blank=True, null=True)
+    angry = models.FloatField(blank=True, null=True)
+    hurt = models.FloatField(blank=True, null=True)
+    emotion = models.TextField(db_column='Emotion', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'emotion'
