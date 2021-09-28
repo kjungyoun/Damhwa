@@ -1,5 +1,6 @@
 package com.example.damhwa_android.network
 
+import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +17,11 @@ object DamhwaRetrofit {
     ): T = Retrofit.Builder()
         .baseUrl(API_END_POINT)
         .client(provideOkHTTPClient(provideLoggingIntercepter()))
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(
+            GsonBuilder()
+                .setLenient()
+                .create()
+        ))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
         .create(service)

@@ -7,6 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface StoryService {
-    @POST
+    @POST("/test2")
     fun changeLetterToFlowers(@Body letterText: Letter): Single<StoryFlowers>
 }
