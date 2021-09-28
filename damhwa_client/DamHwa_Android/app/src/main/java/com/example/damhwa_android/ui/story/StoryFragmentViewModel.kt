@@ -3,10 +3,9 @@ package com.example.damhwa_android.ui.story
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
-import com.example.damhwa_android.RecommendedFlower
 import com.example.damhwa_android.base.BaseViewModel
-import com.example.damhwa_android.data.RecommendedFlowers
 import com.example.damhwa_android.data.StoryFlower
+import com.example.damhwa_android.data.StoryFlowers
 import com.example.damhwa_android.repository.StoryRepository
 import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel
 import io.reactivex.Observable
@@ -20,12 +19,6 @@ class StoryFragmentViewModel(
 ) : BaseViewModel() {
 
     val letterText = MutableLiveData<String>()
-
-    private val _recommendedFlowerList: BehaviorSubject<RecommendedFlowers> =
-        BehaviorSubject.create()
-
-    val recommendedFlowerList: Observable<RecommendedFlowers>
-        get() = _recommendedFlowerList
 
     private val _letterInputSubject: BehaviorSubject<Letter> =
         BehaviorSubject.createDefault(Letter())
@@ -44,9 +37,9 @@ class StoryFragmentViewModel(
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
 
-    private val _recommendedFlowerFromStorySubject: BehaviorSubject<FlowersRecommendedByLetter> =
-        BehaviorSubject.createDefault(FlowersRecommendedByLetter())
-    val recommendedFlowerFromFeeling: Observable<FlowersRecommendedByLetter> =
+    private val _recommendedFlowerFromStorySubject: BehaviorSubject<StoryFlowers> =
+        BehaviorSubject.createDefault(StoryFlowers())
+    val recommendedFlowerListFromStory: Observable<StoryFlowers> =
         _recommendedFlowerFromStorySubject
 
 
@@ -78,8 +71,8 @@ class StoryFragmentViewModel(
             .subscribe { response ->
                 if (response != null) {
                     _recommendedFlowerFromStorySubject.onNext(
-                        FlowersRecommendedByLetter(
-                            flowers = response.storyFlowers
+                        StoryFlowers(
+                            response.storyFlowers
                         )
                     )
                 }
@@ -96,9 +89,4 @@ class StoryFragmentViewModel(
     data class Letter(
         val letterText: String? = null,
     )
-
-    data class FlowersRecommendedByLetter (
-        val flowers: ArrayList<StoryFlower>? = null
-    )
-
 }

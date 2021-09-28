@@ -7,7 +7,7 @@
 
         <variable
             name="flower"
-            type="com.example.damhwa_android.RecommendedFlower" />
+            type="com.example.damhwa_android.data.StoryFlower" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
