@@ -18,8 +18,6 @@ class LandingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView( R.layout.activity_landing)
-
 
         activityLandingBinding = ActivityLandingBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,6 +33,7 @@ class LandingActivity : AppCompatActivity() {
                 finish()
             }
         }
+
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 when {
@@ -62,7 +61,7 @@ class LandingActivity : AppCompatActivity() {
                     error.toString() == Unauthorized.toString() -> {
                         Toast.makeText(this, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
                     }
-                    else -> { // Unknown
+                    else -> {
                         Log.d("로그:", error.toString())
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
