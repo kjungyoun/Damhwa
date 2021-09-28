@@ -1,27 +1,22 @@
-package com.example.damhwa_android.ui.story
+package com.example.damhwa_android.ui.feeling
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
-import com.example.damhwa_android.data.StoryFlower
-import com.example.damhwa_android.data.StoryFlowers
-import com.example.damhwa_android.repository.StoryRepository
-import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel
+import com.example.damhwa_android.repository.FeelingRepository
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 
-class StoryFragmentViewModel(
-    private val storyRepository: StoryRepository
+class FeelingFragmentViewModel(
+    private val repository: FeelingRepository
 ) : BaseViewModel() {
+    val feelingText = MutableLiveData<String>()
 
-    val letterText = MutableLiveData<String>()
-
-    private val _letterInputSubject: BehaviorSubject<Letter> =
-        BehaviorSubject.createDefault(Letter())
+    private val _feelingInputSubject: BehaviorSubject<Feeling> =
+        BehaviorSubject.createDefault(Feeling())
 
     private val _isCompletedChangedToFlowerSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
@@ -37,31 +32,23 @@ class StoryFragmentViewModel(
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
 
-    private val _recommendedFlowerFromStorySubject: BehaviorSubject<StoryFlowers> =
-        BehaviorSubject.createDefault(StoryFlowers())
-    val recommendedFlowerListFromStory: Observable<StoryFlowers> =
-        _recommendedFlowerFromStorySubject
-
-
-    fun setLetterText() {
-        _letterInputSubject.onNext(
-            _letterInputSubject.value?.copy(letterText = letterText.value!!)
-                ?: Letter(letterText = letterText.value!!)
-        )
-    }
+    private val _recommendedFlowerFromFeelingSubject: BehaviorSubject<FlowerRecommendedByFeeling> =
+        BehaviorSubject.createDefault(FlowerRecommendedByFeeling())
+    val recommendedFlowerFromFeeling: Observable<FlowerRecommendedByFeeling> =
+        _recommendedFlowerFromFeelingSubject
 
     fun changeTextToFlower() {
-        _letterInputSubject.firstOrError()
+        _feelingInputSubject.firstOrError()
             .subscribeOn(Schedulers.io())
             .doOnSubscribe { _isChangingToFlowerSubject.onNext(true) }
-            .flatMap { letterInput ->
-                if (!letterInput.letterText.isNullOrBlank()) {
-                    storyRepository.changeLetterToFlowers(letterInput)
+            .flatMap { feelingInput ->
+                if (!feelingInput.feelingText.isNullOrBlank()) {
+                    repository.changeFeelingToFlower(feelingInput)
                 } else {
-                    _changeFeelingToFlowerErrorIdSubject.onNext(R.string.void_letter_text)
+                    _changeFeelingToFlowerErrorIdSubject.onNext(R.string.void_feeling_text)
                     Single.error(
                         IllegalArgumentException(
-                            "Failed to change letter to flower: StoryFragmentViewModel: $letterInput"
+                            "Failed to change feeling to flower: FeelingFragmentViewModel: $feelingInput"
                         )
                     )
                 }
@@ -70,23 +57,37 @@ class StoryFragmentViewModel(
             .doOnError { _isChangingToFlowerSubject.onNext(false) }
             .subscribe { response ->
                 if (response != null) {
-                    _recommendedFlowerFromStorySubject.onNext(
-                        StoryFlowers(
-                            response.storyFlowers
+                    _recommendedFlowerFromFeelingSubject.onNext(
+                        FlowerRecommendedByFeeling(
+                            name = response.name,
+                            description = response.description
                         )
                     )
                 }
-                Log.d("로그", response.storyFlowers.toString())
                 navigateToFlowerDetail()
             }
             .addToDisposable()
+
+
     }
 
     fun navigateToFlowerDetail() {
         _isCompletedChangedToFlowerSubject.onNext(true)
     }
 
-    data class Letter(
-        val letterText: String? = null,
+    fun setFeelingText() {
+        _feelingInputSubject.onNext(
+            _feelingInputSubject.value?.copy(feelingText = feelingText.value)
+                ?: Feeling(feelingText = feelingText.value)
+        )
+    }
+
+    data class Feeling(
+        val feelingText: String? = null
+    )
+
+    data class FlowerRecommendedByFeeling(
+        val name: String? = null,
+        val description: String? = null,
     )
 }
