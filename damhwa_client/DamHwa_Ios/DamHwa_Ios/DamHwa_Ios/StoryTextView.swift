@@ -8,36 +8,35 @@
 import SwiftUI
 
 struct StoryTextView: View {
+    
+    @State var story = ""
+    
     var body: some View {
         NavigationView{
-            VStack {
-                Text("Hello, world!")
+            VStack{
+                Spacer().frame(height:50)
+                Text("서신 내용: \(story)")
                     .padding()
-                TextField("Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(""))
-                NavigationLink(destination: TextRecommend()){
+                    .font(.custom("SangSangRockOTF", size: 25))
+                Spacer()
+                TextField("서신을 입력하세요", text: $story)
+                    .keyboardType(/*@START_MENU_TOKEN@*/.default/*@END_MENU_TOKEN@*/)
+                    .padding()
+                Spacer()
+                NavigationLink(destination: ContentView()){
                     Text("꽃으로 전하기")
+                        .padding()
+                        .font(.custom("SangSangRockOTF", size: 30))
                 }
-                TabView {
-                    
-                    Text("서신").tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("서신")
-                    }
-                    Text("감정").tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("감정")
-                    }
-                    Text("달력").tabItem {
-                        Image(systemName: "calendar")
-                        Text("달력")
-                    }
-                }
-            }.navigationBarTitle("서신쓰기",displayMode: .inline)
+                Spacer().frame(height:100)
+            }.navigationBarTitle("서신쓰기", displayMode: .inline)
             
         }
-        
     }
 }
+
+
+
 
 struct StoryTextView_Previews: PreviewProvider {
     static var previews: some View {

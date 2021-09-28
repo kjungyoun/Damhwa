@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DamHwa_IosApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Home()
         }
     }
 }
