@@ -1,5 +1,6 @@
 package com.ssafy.damhwa.api.service;
 
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,7 +15,7 @@ public class DjangoServiceImpl implements DjangoService {
 
 
     @Override
-    public ResponseEntity<String> getMsgRecommendFlower(String msg) {
+    public ResponseEntity<Integer[]> getMsgRecommendFlower(String msg) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8000/api/recomm/msg";
 
@@ -26,12 +27,23 @@ public class DjangoServiceImpl implements DjangoService {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
         map.add("msg",msg);
 
-        // header와 요청 데이터 결합하여 요청 생성
+        // header와 이터요청 데 결합하여 요청 생성
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
         System.out.println("==================== Django call (request) : " + msg + " ======================");
-        ResponseEntity<String> response = restTemplate.postForEntity(url,request,String.class);
-        System.out.println("==================== Django end (response) : " + response + "==========================");
+        ResponseEntity<Integer[]> response = restTemplate.postForEntity(url,request, Integer[].class);
+        Integer[] result = response.getBody(); // 응답 받은 fno 출력
+        System.out.println("==================== Django end ==========================");
+
+        // 응답 확인
+        System.out.print("reponse : ");
+        for (int i=0; i<result.length; i++){
+            System.out.print(" " + result[i]);
+        }
+        System.out.println();
+
+        // 응답 받은 fno로 flower db 조회
+
         return response;
     }
 
