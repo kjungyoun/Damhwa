@@ -11,6 +11,11 @@
 		38E1321126FC46060089F6FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321026FC46060089F6FF /* ContentView.swift */; };
 		38E1321326FC46090089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321226FC46090089F6FF /* Assets.xcassets */; };
 		38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321526FC46090089F6FF /* Preview Assets.xcassets */; };
+		38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */; };
+		38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321F26FC60BF0089F6FF /* FeelingView.swift */; };
+		38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */; };
+		38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322326FC61200089F6FF /* FlowerCalendar.swift */; };
+		38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322526FC659C0089F6FF /* StoryTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		38E1321226FC46090089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38E1321526FC46090089F6FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38E1321726FC46090089F6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecommend.swift; sourceTree = "<group>"; };
+		38E1321F26FC60BF0089F6FF /* FeelingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingView.swift; sourceTree = "<group>"; };
+		38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingRecommend.swift; sourceTree = "<group>"; };
+		38E1322326FC61200089F6FF /* FlowerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerCalendar.swift; sourceTree = "<group>"; };
+		38E1322526FC659C0089F6FF /* StoryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +63,12 @@
 			isa = PBXGroup;
 			children = (
 				38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */,
+				38E1321F26FC60BF0089F6FF /* FeelingView.swift */,
 				38E1321026FC46060089F6FF /* ContentView.swift */,
+				38E1322526FC659C0089F6FF /* StoryTextView.swift */,
+				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
+				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
+				38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */,
 				38E1321226FC46090089F6FF /* Assets.xcassets */,
 				38E1321726FC46090089F6FF /* Info.plist */,
 				38E1321426FC46090089F6FF /* Preview Content */,
@@ -138,8 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
 				38E1321126FC46060089F6FF /* ContentView.swift in Sources */,
+				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
 				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
+				38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */,
+				38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */,
+				38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

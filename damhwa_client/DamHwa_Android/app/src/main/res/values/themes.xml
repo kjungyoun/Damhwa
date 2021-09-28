@@ -12,4 +12,13 @@
         <item name="android:windowBackground">#F2EEE5</item>
         <item name="android:fontFamily">@font/ss_rock_regular</item>
     </style>
+
+    <style name="Theme.DamHwa_Android.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DamHwa_Android.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DamHwa_Android.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
