@@ -96,5 +96,5 @@ dependencies {
     def kakaoLoginVersion = "2.8.1"
     implementation "com.kakao.sdk:v2-user:$kakaoLoginVersion" // 카카오 로그인
     implementation "com.kakao.sdk:v2-link:$kakaoLoginVersion" // 카카오 링크
-
+    implementation "com.kakao.sdk:v2-link-rx:$kakaoLoginVersion"
 }
