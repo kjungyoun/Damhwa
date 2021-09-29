@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/flower_story"
+        android:layout_width="32dp"
+        android:layout_height="397dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="꽃으로 \n 하는 \n 이야기"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="38dp"
+        android:layout_height="201dp"
+        android:gravity="center"
+        android:text="담화"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/flower_story"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="311dp"
+        android:layout_height="261dp"
+
+        android:src="@drawable/child"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
