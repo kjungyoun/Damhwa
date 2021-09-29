@@ -3,6 +3,7 @@ package com.example.damhwa_android.ui.story
 import android.content.ContentValues
 import android.util.Log
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
 import com.example.damhwa_android.data.StoryFlower
@@ -23,21 +24,33 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
     R.layout.fragment_story_flower_detail
 ) {
     private val disposables by lazy { CompositeDisposable() }
-    private lateinit var flower: StoryFlower
+    lateinit var flower: StoryFlower
 
     override fun init() {
         super.init()
-        arguments?.let {
-            flower  = it.getSerializable("flower") as StoryFlower
-            Log.d("꽃", flower.toString())
-        }
+        getFlowerData()
         binding.backButton.setOnClickListener {
             routeToRecFlowerList()
         }
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
+    }
 
+    private fun getFlowerData() {
+        arguments?.let {
+            flower  = it.getSerializable("flower") as StoryFlower
+            setFlowerData()
+        }
+    }
+
+    private fun setFlowerData() {
+        binding.flowerNameText.text = flower.name
+        binding.flowerDescription.text = flower.description
+        Glide.with(requireActivity())
+            .load(flower.imageUrl)
+            .centerCrop()
+            .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
