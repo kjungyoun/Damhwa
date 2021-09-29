@@ -1,6 +1,7 @@
 package com.example.damhwa_android.ui.story
 
 import android.content.ContentValues
+import android.content.Intent
 import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -8,6 +9,7 @@ import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
 import com.example.damhwa_android.data.StoryFlower
 import com.example.damhwa_android.databinding.FragmentStoryFlowerDetailBinding
+import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.rx
 import com.kakao.sdk.template.model.Button
@@ -35,6 +37,14 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
+        binding.findFlower.setOnClickListener {
+            startFindFlowerWebView()
+        }
+    }
+
+    private fun startFindFlowerWebView() {
+        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
+        startActivity(intent)
     }
 
     private fun getFlowerData() {
