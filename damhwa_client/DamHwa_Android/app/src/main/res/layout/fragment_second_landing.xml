@@ -20,7 +20,7 @@
         android:layout_height="397dp"
         android:gravity="center"
         android:text="마음이 \n 담긴 \n 서신을"
-        android:textColor="black"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/send_flower"/>
 
