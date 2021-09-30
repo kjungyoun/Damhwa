@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.LoadingDialogFragment
 import com.example.damhwa_android.databinding.FragmentStoryBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,6 +20,8 @@ import io.reactivex.rxkotlin.addTo
 class StoryFragment : BaseFragment<FragmentStoryBinding>(
     R.layout.fragment_story
 ) {
+    private val loadingDialogFragment by lazy { LoadingDialogFragment() }
+
     private val disposables by lazy { CompositeDisposable() }
     private val storyViewModel by activityViewModels<StoryFragmentViewModel> {
         object : ViewModelProvider.Factory {
@@ -47,6 +50,26 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
         storyViewModel.letterText.observe(this, Observer {
             storyViewModel.setLetterText()
         })
+
+        storyViewModel.isChanging
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({ loading ->
+                when (loading) {
+                    true -> {
+                        if (!loadingDialogFragment.isAdded){
+                            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
+                        }
+                    }
+                    false -> {
+                        if (loadingDialogFragment.isAdded) {
+                            loadingDialogFragment.dismissAllowingStateLoss()
+                        }
+                    }
+                }
+            }, {
+                Log.d("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())
+            })
+            .addToDisposable()
     }
 
     private fun routeToStoryRecFragment() =
