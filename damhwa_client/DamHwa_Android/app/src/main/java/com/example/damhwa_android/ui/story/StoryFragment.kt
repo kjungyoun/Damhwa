@@ -55,23 +55,31 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
 
         storyViewModel.isChanging
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ loading ->
-                when (loading) {
-                    true -> {
-                        if (!loadingDialogFragment.isAdded){
-                            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
-                        }
-                    }
-                    false -> {
-                        if (loadingDialogFragment.isAdded) {
-                            loadingDialogFragment.dismissAllowingStateLoss()
-                        }
-                    }
-                }
+            .subscribe ({ status ->
+                checkLoading(status)
             }, {
                 Log.e("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())
             })
             .addToDisposable()
+    }
+
+    private fun checkLoading(loading: Boolean) {
+        when (loading) {
+            true -> startLoadingSpinner()
+            false -> hideLoadingSpinner()
+        }
+    }
+
+    private fun startLoadingSpinner() {
+        if (!loadingDialogFragment.isAdded){
+            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
+        }
+    }
+
+    private fun hideLoadingSpinner() {
+        if (loadingDialogFragment.isAdded) {
+            loadingDialogFragment.dismissAllowingStateLoss()
+        }
     }
 
     private fun routeToStoryRecFragment() =
