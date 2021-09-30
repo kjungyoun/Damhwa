@@ -1,6 +1,8 @@
 package com.example.damhwa_android.ui.story
 
+import android.content.ActivityNotFoundException
 import android.content.ContentValues
+import android.content.Intent
 import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -8,7 +10,10 @@ import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
 import com.example.damhwa_android.data.StoryFlower
 import com.example.damhwa_android.databinding.FragmentStoryFlowerDetailBinding
+import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
+import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
+import com.kakao.sdk.link.WebSharerClient
 import com.kakao.sdk.link.rx
 import com.kakao.sdk.template.model.Button
 import com.kakao.sdk.template.model.Content
@@ -35,6 +40,14 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
+        binding.findFlower.setOnClickListener {
+            startFindFlowerWebView()
+        }
+    }
+
+    private fun startFindFlowerWebView() {
+        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
+        startActivity(intent)
     }
 
     private fun getFlowerData() {
@@ -73,21 +86,42 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                 )
             )
         )
-        LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ linkResult ->
-                Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
-                startActivity(linkResult.intent)
 
-                // 카카오링크 보내기에 성공했지만 아래 경고 메시지가 존재할 경우 일부 컨텐츠가 정상 동작하지 않을 수 있습니다.
-                Log.w(ContentValues.TAG, "Warning Msg: ${linkResult.warningMsg}")
-                Log.w(ContentValues.TAG, "Argument Msg: ${linkResult.argumentMsg}")
-            }, { error ->
-                Log.e(ContentValues.TAG, "카카오링크 보내기 실패 ", error)
-            })
-            .addToDisposable()
+        checkKakaoTalkExist(defaultFeed)
+    }
 
+    private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
+        if (LinkClient.instance.isKakaoLinkAvailable(requireContext())) {
+            LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ linkResult ->
+                    Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
+                    startActivity(linkResult.intent)
+
+                    Log.w(ContentValues.TAG, "Warning Msg: ${linkResult.warningMsg}")
+                    Log.w(ContentValues.TAG, "Argument Msg: ${linkResult.argumentMsg}")
+                }, { error ->
+                    Log.e(ContentValues.TAG, "카카오링크 보내기 실패 ", error)
+                })
+                .addToDisposable()
+        } else {
+            val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
+
+            // 1. CustomTabs으로 Chrome 브라우저 열기
+            try {
+                KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
+            } catch(e: UnsupportedOperationException) {
+                // Chrome 브라우저가 없을 때 예외처리
+            }
+
+            // 2. CustomTabs으로 디바이스 기본 브라우저 열기
+            try {
+                KakaoCustomTabsClient.open(requireContext(), sharerUrl)
+            } catch (e: ActivityNotFoundException) {
+                // 인터넷 브라우저가 없을 때 예외처리
+            }
+        }
     }
 
     private fun routeToRecFlowerList() =

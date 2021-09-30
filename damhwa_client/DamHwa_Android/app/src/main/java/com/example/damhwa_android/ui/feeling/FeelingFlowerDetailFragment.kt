@@ -1,5 +1,6 @@
 package com.example.damhwa_android.ui.feeling
 
+import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
 import android.graphics.Typeface
 import android.text.Spannable
@@ -8,15 +9,20 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel.FlowerRecommendedByFeeling
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
+import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
+import com.kakao.sdk.link.WebSharerClient
 import com.kakao.sdk.link.rx
 import com.kakao.sdk.template.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,7 +50,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         binding.backButton.setOnClickListener {
             routeToFeelingPage()
         }
-        binding.kakaoShare.setOnClickListener {
+        binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
         feelingViewModel.recommendedFlowerFromFeeling
@@ -53,9 +59,18 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 feeling = flowerInformation.description!!
                 flower = flowerInformation.name!!
                 makeFeelingFlowerGuideText()
+                setInformation(flowerInformation)
+                feelingViewModel.clearData()
             }
             .addToDisposable()
+    }
 
+    private fun setInformation(flowerInformation: FlowerRecommendedByFeeling) {
+        binding.flowerDescription.text = flowerInformation.description
+        binding.flowerName.text = flowerInformation.name
+        Glide.with(requireActivity())
+            .load("https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg")
+            .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
@@ -78,21 +93,42 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 )
             )
         )
-        LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ linkResult ->
-                Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
-                startActivity(linkResult.intent)
+        checkKakaoTalkExist(defaultFeed)
 
-                // 카카오링크 보내기에 성공했지만 아래 경고 메시지가 존재할 경우 일부 컨텐츠가 정상 동작하지 않을 수 있습니다.
-                Log.w(TAG, "Warning Msg: ${linkResult.warningMsg}")
-                Log.w(TAG, "Argument Msg: ${linkResult.argumentMsg}")
-            }, { error ->
-                Log.e(TAG, "카카오링크 보내기 실패 ", error)
-            })
-            .addToDisposable()
+    }
 
+    private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
+        if (LinkClient.instance.isKakaoLinkAvailable(requireContext())) {
+            LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ linkResult ->
+                    Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
+                    startActivity(linkResult.intent)
+
+                    Log.w(TAG, "Warning Msg: ${linkResult.warningMsg}")
+                    Log.w(TAG, "Argument Msg: ${linkResult.argumentMsg}")
+                }, { error ->
+                    Log.e(TAG, "카카오링크 보내기 실패 ", error)
+                })
+                .addToDisposable()
+        } else {
+            val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
+
+            // 1. CustomTabs으로 Chrome 브라우저 열기
+            try {
+                KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
+            } catch(e: UnsupportedOperationException) {
+                // Chrome 브라우저가 없을 때 예외처리
+            }
+
+            // 2. CustomTabs으로 디바이스 기본 브라우저 열기
+            try {
+                KakaoCustomTabsClient.open(requireContext(), sharerUrl)
+            } catch (e: ActivityNotFoundException) {
+                // 인터넷 브라우저가 없을 때 예외처리
+            }
+        }
     }
 
     private fun Disposable.addToDisposable(): Disposable = addTo(disposables)
