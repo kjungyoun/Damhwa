@@ -12,8 +12,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel.FlowerRecommendedByFeeling
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.kakao.sdk.link.LinkClient
@@ -53,9 +55,18 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 feeling = flowerInformation.description!!
                 flower = flowerInformation.name!!
                 makeFeelingFlowerGuideText()
+                setInformation(flowerInformation)
             }
             .addToDisposable()
 
+    }
+
+    private fun setInformation(flowerInformation: FlowerRecommendedByFeeling) {
+        binding.flowerDescription.text = flowerInformation.description
+        binding.flowerName.text = flowerInformation.name
+        Glide.with(requireActivity())
+            .load("https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg")
+            .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
@@ -78,6 +89,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 )
             )
         )
+
         LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
