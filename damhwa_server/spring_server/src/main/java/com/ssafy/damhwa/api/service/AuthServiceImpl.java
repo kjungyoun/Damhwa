@@ -136,19 +136,9 @@ public class AuthServiceImpl implements AuthService{
             user.setUsername(username);
             user.setProfile(profile);
 
-            // Kakao User가 이미 존재하는 회원인지 확인
-            Optional<User> dbUser = userService.findUserByNo(userno);
-            boolean isSuccess;
-
-            if(dbUser.isPresent()) // 이미 존재하는 User
-                isSuccess = userService.updateUser(user); // User 정보 최신화
-            else
-                isSuccess = userService.createUser(user); // User 생성
-
-            if(isSuccess){
-                System.out.println("GetUserInfo : " + user);
-                return user;
-            }
+            // User Db에 저장
+            userService.createOrUpdateUser(user);
+            return user;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

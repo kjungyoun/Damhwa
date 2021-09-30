@@ -1,9 +1,13 @@
 package com.ssafy.damhwa.api.service;
 
+import com.ssafy.damhwa.api.response.FlowerNEmotionRes;
+import com.ssafy.damhwa.db.entity.Flower;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public interface DjangoService {
 
-    ResponseEntity<Integer[]> getMsgRecommendFlower(String msg);
-    ResponseEntity<Long> getStateRecommendFlower (String msg);
+    List<Flower> getMsgRecommendFlower(String msg, String email, String to);
+    FlowerNEmotionRes getStateRecommendFlower (String state, String email);
 }

@@ -1,5 +1,6 @@
 package com.ssafy.damhwa.db.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,17 +18,12 @@ public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long hno;
-    @Column
-    Long fno;
-    @Column
+    int fno;
     Long userno;
-    @Column
     Boolean htype;
-    @Column
     String contents;
-    @Column
-    String to;
-    @Column
+    String receiver;
+    @Builder.Default
     Date regdate = Calendar.getInstance().getTime(); // 현재 시간 Default
 
 //    @ManyToOne

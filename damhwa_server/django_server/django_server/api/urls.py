@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/recomm/msg', views.msg_recomm, name="msg_recomm"),
+    path('api/recomm/state', views.state_recomm, name="state_recomm"),
 ]

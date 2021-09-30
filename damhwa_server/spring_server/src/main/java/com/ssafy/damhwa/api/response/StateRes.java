@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TestRes { // 응답할 객체 생성 (테스트용)
-    String testContents;
+public class StateRes {
+    int fno;
+    String state;
 }

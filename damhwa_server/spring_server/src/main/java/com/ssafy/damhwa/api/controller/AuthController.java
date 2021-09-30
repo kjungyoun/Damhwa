@@ -1,23 +1,29 @@
 package com.ssafy.damhwa.api.controller;
 
 import com.ssafy.damhwa.api.service.AuthService;
+import com.ssafy.damhwa.api.service.UserService;
+import com.ssafy.damhwa.common.response.BaseResponse;
 import com.ssafy.damhwa.db.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 // Kakao Social Login Controller
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth/kakao")
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired
     AuthService authService;
+
+    @Autowired
+    UserService userService;
 
     // kakao 로그인 성공 후 redirect 되는 url -> AuthorizeToken을 넘겨 받음
     @GetMapping("/login")
@@ -33,6 +39,15 @@ public class AuthController {
         mav.addObject("userno", user.getUserno());
         mav.addObject("accessToken", accessToken);
         return mav;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<? extends BaseResponse> loginUser(@RequestBody User user){
+        long userno = user.getUserno();
+
+        userService.createOrUpdateUser(user);
+
+        return ResponseEntity.status(200).body(BaseResponse.of(200,"Save User Success"));
     }
 
 }

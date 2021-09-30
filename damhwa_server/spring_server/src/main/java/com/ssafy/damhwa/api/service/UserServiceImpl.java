@@ -14,33 +14,23 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
 
-    // User 생성
+    // User 생성 또는 Update
     @Override
-    public boolean createUser(User user) {
-        System.out.println("==============유저 생성================ : " + user);
-        if(!userRepository.findByUserno(user.getUserno()).isPresent()){ // 만약 존재하지 않는 User이면
+    public void createOrUpdateUser(User user) {
+        Optional<User> dbUser = userRepository.findByUserno(user.getUserno());
+        if(!dbUser.isPresent()) { // 만약 존재하지 않는 User이면
+            System.out.println("==============유저 생성================ : " + user);
             userRepository.save(user);
-            return true;
+        }else{
+            System.out.println("==============유저 수정================ : " + user);
+           User updateUser =  dbUser.get().update(user.getUsername(), user.getProfile(), user.getEmail());
+           userRepository.save(updateUser);
         }
-        return false;
     }
 
     // User 조회
     @Override
     public Optional<User> findUserByNo(long userno) {
         return userRepository.findByUserno(userno);
-    }
-
-    // User 정보 갱신
-    @Override
-    public boolean updateUser(User user) {
-        Optional<User> dbUser = userRepository.findByUserno(user.getUserno()); // 기존 User정보 조회
-
-        if(!dbUser.isPresent()) return false; // 존재하지 않은 User면
-
-        User updatedUser = dbUser.get().update(user.getUsername(),user.getProfile()); // 기존 User 정보 수정
-        userRepository.save(updatedUser);
-        return true;
-
     }
 }
