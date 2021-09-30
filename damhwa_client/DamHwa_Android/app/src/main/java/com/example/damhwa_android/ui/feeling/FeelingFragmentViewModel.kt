@@ -13,7 +13,7 @@ import io.reactivex.subjects.PublishSubject
 class FeelingFragmentViewModel(
     private val repository: FeelingRepository
 ) : BaseViewModel() {
-    val feelingText = MutableLiveData<String>()
+    var feelingText = MutableLiveData<String>()
 
     private val _feelingInputSubject: BehaviorSubject<Feeling> =
         BehaviorSubject.createDefault(Feeling())
@@ -67,12 +67,16 @@ class FeelingFragmentViewModel(
                 navigateToFlowerDetail()
             }
             .addToDisposable()
-
-
     }
 
     fun navigateToFlowerDetail() {
         _isCompletedChangedToFlowerSubject.onNext(true)
+    }
+
+    fun clearData() {
+        _feelingInputSubject.onNext(Feeling())
+        _isCompletedChangedToFlowerSubject.onNext(false)
+        feelingText = MutableLiveData("")
     }
 
     fun setFeelingText() {

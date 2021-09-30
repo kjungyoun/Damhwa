@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -56,9 +57,9 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 flower = flowerInformation.name!!
                 makeFeelingFlowerGuideText()
                 setInformation(flowerInformation)
+                feelingViewModel.clearData()
             }
             .addToDisposable()
-
     }
 
     private fun setInformation(flowerInformation: FlowerRecommendedByFeeling) {
