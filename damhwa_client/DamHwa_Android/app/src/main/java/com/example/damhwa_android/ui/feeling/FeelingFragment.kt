@@ -1,5 +1,6 @@
 package com.example.damhwa_android.ui.feeling
 
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -38,11 +39,13 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
 
         feelingViewModel.completeTrigger
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { complete ->
+            .subscribe({ complete ->
                 if (complete) {
                     routeToFlowerFeelingDetail()
                 }
-            }
+            }, {
+                Log.e("ErrorLogger - FeelingFragment - feelingViewModel.completeTrigger", it.toString())
+            })
             .addToDisposable()
     }
 
