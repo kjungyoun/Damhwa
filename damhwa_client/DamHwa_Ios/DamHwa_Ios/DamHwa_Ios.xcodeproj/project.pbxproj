@@ -13,6 +13,9 @@
 		385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */; };
 		385F895226FDFD41008D404A /* StoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F895126FDFD41008D404A /* StoryText.swift */; };
 		3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880BA832702E8E400EBD59E /* AppDelegate.swift */; };
+		38D54C6E27055589006469F2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D54C6D27055589006469F2 /* Test.swift */; };
+		38D54C702705A9B6006469F2 /* WebViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D54C6F2705A9B5006469F2 /* WebViewPage.swift */; };
+		38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA19F42704B23D009D06FC /* KakaoLink.swift */; };
 		38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */; };
 		38E1321326FC46090089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321226FC46090089F6FF /* Assets.xcassets */; };
 		38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321526FC46090089F6FF /* Preview Assets.xcassets */; };
@@ -32,6 +35,9 @@
 		385F895126FDFD41008D404A /* StoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryText.swift; sourceTree = "<group>"; };
 		3880BA832702E8E400EBD59E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D54420270185190029BC47 /* DamHwa_Ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DamHwa_Ios.entitlements; sourceTree = "<group>"; };
+		38D54C6D27055589006469F2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		38D54C6F2705A9B5006469F2 /* WebViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPage.swift; sourceTree = "<group>"; };
+		38DA19F42704B23D009D06FC /* KakaoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLink.swift; sourceTree = "<group>"; };
 		38E1320B26FC46060089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamHwa_IosApp.swift; sourceTree = "<group>"; };
 		38E1321226FC46090089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,12 +111,15 @@
 				385F895126FDFD41008D404A /* StoryText.swift */,
 				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
 				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
+				38D54C6D27055589006469F2 /* Test.swift */,
 				385F894626FD6429008D404A /* Home.swift */,
 				385F894B26FDB582008D404A /* ContentView.swift */,
 				38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */,
+				38DA19F42704B23D009D06FC /* KakaoLink.swift */,
 				3880BA832702E8E400EBD59E /* AppDelegate.swift */,
 				38E1321226FC46090089F6FF /* Assets.xcassets */,
 				38E1321726FC46090089F6FF /* Info.plist */,
+				38D54C6F2705A9B5006469F2 /* WebViewPage.swift */,
 				38E1321426FC46090089F6FF /* Preview Content */,
 			);
 			path = DamHwa_Ios;
@@ -253,9 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
+				38D54C702705A9B6006469F2 /* WebViewPage.swift in Sources */,
 				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
 				385F894C26FDB582008D404A /* ContentView.swift in Sources */,
 				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
+				38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */,
+				38D54C6E27055589006469F2 /* Test.swift in Sources */,
 				38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */,
 				385F895226FDFD41008D404A /* StoryText.swift in Sources */,
 				38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */,
