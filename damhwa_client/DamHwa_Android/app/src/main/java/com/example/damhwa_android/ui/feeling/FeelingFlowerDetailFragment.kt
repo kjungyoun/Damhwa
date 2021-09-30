@@ -44,7 +44,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         binding.backButton.setOnClickListener {
             routeToFeelingPage()
         }
-        binding.kakaoShare.setOnClickListener {
+        binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
         feelingViewModel.recommendedFlowerFromFeeling
