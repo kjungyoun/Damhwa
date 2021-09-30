@@ -23,7 +23,7 @@ class LoadingDialogFragment: DialogFragment() {
 
         isCancelable = false
 
-        return  inflater.inflate(R.layout.damhwa_loading_dialog, container, false)
+        return  inflater.inflate(R.layout.dialog_damhwa_loading, container, false)
     }
 
     override fun show(manager: FragmentManager, tag: String?) {
