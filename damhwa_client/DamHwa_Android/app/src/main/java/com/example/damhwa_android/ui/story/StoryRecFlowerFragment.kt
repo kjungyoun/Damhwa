@@ -41,6 +41,7 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
             .subscribe { flowers ->
                 adapter.flowers = flowers
                 adapter.notifyDataSetChanged()
+                storyViewModel.clearData()
             }
             .addToDisposable()
 
