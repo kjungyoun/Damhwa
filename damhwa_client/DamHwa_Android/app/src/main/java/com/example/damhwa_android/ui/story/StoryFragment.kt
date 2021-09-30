@@ -21,8 +21,7 @@ import io.reactivex.rxkotlin.addTo
 class StoryFragment : BaseFragment<FragmentStoryBinding>(
     R.layout.fragment_story
 ) {
-
-
+    private val loadingDialogFragment by lazy { LoadingDialogFragment() }
     private val disposables by lazy { CompositeDisposable() }
     private val storyViewModel by activityViewModels<StoryFragmentViewModel> {
         object : ViewModelProvider.Factory {
@@ -57,14 +56,31 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
         storyViewModel.isChanging
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({ status ->
-                (activity as MainActivity).checkLoading(status)
+                checkLoading(status)
             }, {
                 Log.e("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())
             })
             .addToDisposable()
     }
 
+    fun checkLoading(loading: Boolean) {
+        when (loading) {
+            true -> startLoadingSpinner()
+            false -> hideLoadingSpinner()
+        }
+    }
 
+    private fun startLoadingSpinner() {
+        if (!loadingDialogFragment.isAdded){
+            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
+        }
+    }
+
+    private fun hideLoadingSpinner() {
+        if (loadingDialogFragment.isAdded) {
+            loadingDialogFragment.dismissAllowingStateLoss()
+        }
+    }
 
     private fun routeToStoryRecFragment() =
         findNavController().navigate(R.id.action_storyFragment_to_storyRecFlowerFragment)

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.LoadingDialogFragment
 import com.example.damhwa_android.databinding.FragmentFeelingBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,6 +19,7 @@ import io.reactivex.rxkotlin.addTo
 class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
     R.layout.fragment_feeling
 ) {
+    private val loadingDialogFragment by lazy { LoadingDialogFragment() }
     private val disposables by lazy { CompositeDisposable() }
     private val feelingViewModel by activityViewModels<FeelingFragmentViewModel> {
         object : ViewModelProvider.Factory {
@@ -47,6 +49,34 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
                 Log.e("ErrorLogger - FeelingFragment - feelingViewModel.completeTrigger", it.toString())
             })
             .addToDisposable()
+
+        feelingViewModel.isChanging
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ loading ->
+                checkLoading(loading)
+            }, {
+                Log.e("ErrorLogger - StoryFragment - feelingViewModel.isChanging", it.toString())
+            })
+            .addToDisposable()
+    }
+
+    fun checkLoading(loading: Boolean) {
+        when (loading) {
+            true -> startLoadingSpinner()
+            false -> hideLoadingSpinner()
+        }
+    }
+
+    private fun startLoadingSpinner() {
+        if (!loadingDialogFragment.isAdded){
+            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
+        }
+    }
+
+    private fun hideLoadingSpinner() {
+        if (loadingDialogFragment.isAdded) {
+            loadingDialogFragment.dismissAllowingStateLoss()
+        }
     }
 
     private fun routeToFlowerFeelingDetail() =
