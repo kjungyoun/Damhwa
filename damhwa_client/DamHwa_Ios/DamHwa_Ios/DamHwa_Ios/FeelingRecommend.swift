@@ -19,7 +19,7 @@ struct FeelingRecommend: View {
                         .padding()
                     TextField("기분을 입력하세요", text: $feeling)
                         .keyboardType(/*@START_MENU_TOKEN@*/.default/*@END_MENU_TOKEN@*/)
-                    NavigationLink(destination: TextRecommend()){
+                    NavigationLink(destination: WebViewPage(urlToLoad: "https://www.naver.com")){
                         Text("꽃으로 전하기")
                     }
                 }.navigationBarTitle("감정쓰기",displayMode: .inline)

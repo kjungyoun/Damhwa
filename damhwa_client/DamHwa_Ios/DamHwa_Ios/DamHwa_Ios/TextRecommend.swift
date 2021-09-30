@@ -8,7 +8,9 @@ import AuthenticationServices
 import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
-
+import KakaoSDKLink
+import KakaoSDKTemplate
+import SafariServices
 
 struct AppleUser: Codable {
     let userId: String
@@ -35,6 +37,7 @@ struct AppleUser: Codable {
 
 struct TextRecommend: View {
     @Environment(\.colorScheme) var colorScheme
+    @State var name : String =  "before login"
     
     var body: some View {
         VStack{
@@ -58,10 +61,38 @@ struct TextRecommend: View {
                             print(oauthToken?.accessToken)
                             print(error)
                         }
+                        
                     }
+            UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("accessTokenInfo() success.")
+
+                    //do something
+                    let kakaoToken = accessTokenInfo
+                    print(kakaoToken)
+                }
+            }
+            UserApi.shared.me() {(user, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("me() success.")
+                    
+                    //do something
+                    let userData = user?.kakaoAccount?.email
+                    print(userData)
+                    self.name = userData!
+                }
+            }
+            
                 }){
                     
                     Text("카카오 로그인")
+                    Text(name)
                 }
                 //ios가 버전이 올라감에 따라 sceneDelegate를 더이상 사용하지 않게되었다
                 //그래서 로그인을 한후 리턴값을 인식을 하여야하는데 해당 코드를 적어주지않으면 리턴값을 인식되지않는다
