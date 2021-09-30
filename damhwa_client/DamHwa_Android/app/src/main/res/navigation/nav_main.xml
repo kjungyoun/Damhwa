@@ -47,6 +47,8 @@
         <action
             android:id="@+id/action_storyFlowerDetailFragment_to_storyRecFlowerFragment"
             app:restoreState="true"
+            app:popUpTo="@id/storyRecFlowerFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/storyRecFlowerFragment" />
     </fragment>
     <fragment
@@ -60,6 +62,8 @@
         <action
             android:id="@+id/action_storyRecFlowerFragment_to_storyFragment"
             app:restoreState="true"
+            app:popUpTo="@id/storyFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/storyFragment" />
     </fragment>
 </navigation>

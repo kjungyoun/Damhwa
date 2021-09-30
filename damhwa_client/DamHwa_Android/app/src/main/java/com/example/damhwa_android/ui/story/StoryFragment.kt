@@ -41,11 +41,13 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
 
         storyViewModel.completeTrigger
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { complete ->
+            .subscribe ({ complete ->
                 if (complete) {
                     routeToStoryRecFragment()
                 }
-            }
+            }, {
+                Log.e("ErrorLogger - StoryFragment - storyViewModel.completeTrigger", it.toString())
+            })
             .addToDisposable()
         storyViewModel.letterText.observe(this, Observer {
             storyViewModel.setLetterText()
@@ -67,7 +69,7 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
                     }
                 }
             }, {
-                Log.d("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())
+                Log.e("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())
             })
             .addToDisposable()
     }
