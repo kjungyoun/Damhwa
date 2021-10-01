@@ -60,13 +60,19 @@ export default {
               && selectedDate.getDate() == date.getDate()
     }
 
-    const routeToHistoryDetail = (history) => {
-      console.log(history)
-    }
-
     watch(() => checkDateAndFiltering())
     
-    return { calendarData, routeToHistoryDetail} 
+    return { calendarData} 
   },
+  methods: {
+    routeToHistoryDetail(history) {
+      console.log(this.$router)
+      if (history.htype) {
+        this.$router.push({name: 'LetterDetail', params: { historyId: history.hno }})
+      } else {
+        this.$router.push({name: 'FeelingDetail', params: { historyId: history.hno }})
+      }
+    }
+  }
 }
 </script>

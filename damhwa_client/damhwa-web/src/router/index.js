@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Calendar from '../views/Calendar.vue'
+import FeelingDetail from '../views/FeelingDetail.vue'
+import LetterDetail from '../views/LetterDetail.vue'
 
 const routes = [
   {
@@ -14,6 +16,16 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  }, 
+  {
+    path: '/feelingdetail/:historyId',
+    name: 'FeelingDetail',
+    component: FeelingDetail
+  },
+  {
+    path: '/letterdetail/:historyId',
+    name: 'LetterDetail',
+    component: LetterDetail
   }
 ]
 
