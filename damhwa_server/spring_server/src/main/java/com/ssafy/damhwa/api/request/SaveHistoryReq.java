@@ -5,8 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MsgRecommendReq { // 요청을 받을 객체 생성 (테스트용)
+public class SaveHistoryReq {
     String msg;
+    long userno;
+    int fno;
     String receiver;
-    String email;
+    boolean htype;
 }

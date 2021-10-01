@@ -26,7 +26,7 @@ public class DjangoServiceImpl implements DjangoService {
     HistoryService historyService;
 
     @Override
-    public List<Flower> getMsgRecommendFlower(String msg, String email, String receiver) {
+    public List<Flower> getMsgRecommendFlower(String msg) {
         RestTemplate restTemplate = new RestTemplate();
 //        String url = "http://j5a503.p.ssafy.io:8000/api/recomm/msg";
         String url = "http://localhost:8000/api/recomm/msg";
@@ -57,15 +57,11 @@ public class DjangoServiceImpl implements DjangoService {
         // 응답 받은 fno로 flower db 조회
         List<Flower> flowers = flowerService.getFlowersByfno(result);
 
-        // history에 결과 저장
-        historyService.createMsgHistoryList(result, email, msg, receiver);
-
-
         return flowers;
     }
 
     @Override
-    public FlowerNEmotionRes getStateRecommendFlower(String state, String email) {
+    public FlowerNEmotionRes getStateRecommendFlower(String state) {
         RestTemplate restTemplate = new RestTemplate();
 
         //String url = "http://j5a503.p.ssafy.io:8000/api/recomm/state";
@@ -89,12 +85,8 @@ public class DjangoServiceImpl implements DjangoService {
         int fno = response.getBody().getFno();
         String emotionResult = response.getBody().getState();
 
-
         // Flower DB 조회
         Flower flower = flowerService.getFlowerByfno(fno);
-
-        // History에 검색 결과 저장
-        historyService.createStateHistory(fno, email, state);
 
         FlowerNEmotionRes flowerNEmotionRes = new FlowerNEmotionRes();
         flowerNEmotionRes.setFlower(flower);

@@ -1,7 +1,5 @@
 package com.ssafy.damhwa.api.controller;
 
-import com.ssafy.damhwa.api.request.MsgRecommendReq;
-import com.ssafy.damhwa.api.request.StateRecommendReq;
 import com.ssafy.damhwa.api.response.FlowerNEmotionRes;
 import com.ssafy.damhwa.api.service.DjangoService;
 import com.ssafy.damhwa.db.entity.Flower;
@@ -22,23 +20,17 @@ public class DjangoController {
     DjangoService djangoService;
 
     // 메세지 기반 추천
-    @GetMapping("/msg")
-    public ResponseEntity<List<Flower>> msgRecomm (MsgRecommendReq msgRecommendReq){
-        String msg = msgRecommendReq.getMsg();
-        String email = msgRecommendReq.getEmail();
-        String receiver = msgRecommendReq.getReceiver();
-        List<Flower> result = djangoService.getMsgRecommendFlower(msg, email, receiver);
+    @PostMapping("/msg")
+    public ResponseEntity<List<Flower>> msgRecomm (@RequestBody String msg){
+        List<Flower> result = djangoService.getMsgRecommendFlower(msg);
 
         return new ResponseEntity<List<Flower>>(result,HttpStatus.OK);
     }
 
     // 기분 기반 추천
-    @GetMapping("/state")
-    public ResponseEntity<FlowerNEmotionRes> stateRecomm (StateRecommendReq stateRecommendReq){
-        String state = stateRecommendReq.getState();
-        String email = stateRecommendReq.getEmail();
-
-        FlowerNEmotionRes response = djangoService.getStateRecommendFlower(state, email);
+    @PostMapping("/state")
+    public ResponseEntity<FlowerNEmotionRes> stateRecomm (@RequestBody String state){
+        FlowerNEmotionRes response = djangoService.getStateRecommendFlower(state);
 
         return new ResponseEntity<FlowerNEmotionRes>(response, HttpStatus.OK);
     }

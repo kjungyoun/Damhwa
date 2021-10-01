@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
         if(!dbUser.isPresent()) { // 만약 존재하지 않는 User이면
             System.out.println("==============유저 생성================ : " + user);
             userRepository.save(user);
-        }else{
+        }else{ // 존재하는 User이면
             System.out.println("==============유저 수정================ : " + user);
            User updateUser =  dbUser.get().update(user.getUsername(), user.getProfile(), user.getEmail());
            userRepository.save(updateUser);

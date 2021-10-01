@@ -23,29 +23,20 @@ public class HistoryServiceImpl implements HistoryService{
 
 
     @Override
-    public void createMsgHistoryList(int[] fnos, String email, String msg, String receiver) {
-        int size = fnos.length;
-        long userno = userRepositorySupport.findUsernoByEmail(email);
-
-
+    public void createMsgHistoryList(int fno, long userno, String msg, String receiver) {
         // history에 저장
-        for (int i=0; i<size; i++){
             History history = new History();
             history.setContents(msg);
             history.setUserno(userno);
             history.setHtype(true);
             history.setReceiver(receiver);
-            history.setFno(fnos[i]);
-            System.out.println(history);
+            history.setFno(fno);
 
             historyRepository.save(history);
-        }
     }
 
     @Override
-    public void createStateHistory(int fno, String email, String state) {
-        long userno = userRepositorySupport.findUsernoByEmail(email);
-
+    public void createStateHistory(int fno, long userno, String state) {
         History history = historyRepositorySupport.getHistoryByUserno(userno);
         if(history == null){
             history = new History();

@@ -41,6 +41,7 @@ public class AuthController {
         return mav;
     }
 
+    // 앱에서 로그인한 카카오 계정 정보 저장
     @PostMapping("/login")
     public ResponseEntity<? extends BaseResponse> loginUser(@RequestBody User user){
         long userno = user.getUserno();

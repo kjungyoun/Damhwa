@@ -120,7 +120,7 @@ public class AuthServiceImpl implements AuthService{
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
             // kakao Info에서 필요한 정보 추출
-            long userno = element.getAsJsonObject().get("id").getAsLong();
+            long userno = element.getAsJsonObject().get("id").getAsLong(); // long user id
             String username = properties.getAsJsonObject().get("nickname").getAsString();
             String profile = properties.getAsJsonObject().get("profile_image").getAsString();
             boolean hasEmail = kakao_account.getAsJsonObject().get("has_email").getAsBoolean();

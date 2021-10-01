@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DjangoService {
 
-    List<Flower> getMsgRecommendFlower(String msg, String email, String to);
-    FlowerNEmotionRes getStateRecommendFlower (String state, String email);
+    List<Flower> getMsgRecommendFlower(String msg);
+    FlowerNEmotionRes getStateRecommendFlower (String state);
 }
