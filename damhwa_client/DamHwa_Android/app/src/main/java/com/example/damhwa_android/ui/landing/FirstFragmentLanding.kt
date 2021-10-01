@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.databinding.FragmentFirstLandingBinding
 
-class FirstFragmentLanding : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        val view: View = inflater.inflate(R.layout.fragment_first_landing, container, false)
-        return view
+class FirstFragmentLanding : BaseFragment<FragmentFirstLandingBinding>(R.layout.fragment_first_landing) {
+    override fun init() {
+        super.init()
+
+        // 이미지 뷰에 바인드해주는 라이브러리
+        Glide.with(requireContext())
+            .load(R.drawable.black_line)
+            .fitCenter()
+            .into(binding.bookBlackLine)
     }
 }

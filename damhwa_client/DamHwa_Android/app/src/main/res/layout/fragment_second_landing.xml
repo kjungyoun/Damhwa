@@ -6,23 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/send_flower"
-        android:layout_width="32dp"
-        android:layout_height="397dp"
+        android:id="@+id/sendFlower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="꽃으로 \n 전하시오"
+        android:textColor="@color/black"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="56dp"
+        android:text="꽃\n으\n로\n\n전\n하\n시\n오"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="32dp"
-        android:layout_height="397dp"
+        android:id="@+id/damHwa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:gravity="center"
-        android:text="마음이 \n 담긴 \n 서신을"
+        android:layout_marginTop="20dp"
+        android:text="마\n음\n이\n\n담\n긴\n\n서\n신\n을"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/send_flower"/>
+        app:layout_constraintStart_toEndOf="@+id/sendFlower"
+        app:layout_constraintTop_toTopOf="@+id/sendFlower"/>
 
 
     <ImageView
