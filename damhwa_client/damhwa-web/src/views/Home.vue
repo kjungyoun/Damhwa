@@ -5,6 +5,11 @@
         v-model="calendarData.date" 
       />
   </div>  
+  <div>
+    <div v-for="(data, idx) in calendarData.filteredData" :key="idx">
+      {{ data }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -13,7 +18,6 @@ import { reactive, watch } from 'vue'
 export default {
   name: 'Home',
   setup() {
-    var filteredData = []
     const dateData = dumpData.map(data => {
       const tmpDateObj =  new Date(data.regdate)
       return new Date(tmpDateObj.getFullYear(), tmpDateObj.getMonth(), tmpDateObj.getDate())
@@ -30,11 +34,12 @@ export default {
             dot: 'blue',
             dates: dateData,
           }
-        ]
+        ],
+      filteredData: []
       })
 
     const checkDateAndFiltering = () => {
-        filteredData = dumpData.filter((date) => {
+        calendarData.filteredData = dumpData.filter((date) => {
           const dateObj =  new Date(date.regdate)
           const selectedDateObj = new Date(calendarData.date)
 
@@ -42,7 +47,7 @@ export default {
             return dateObj
           }
         })
-        console.log(filteredData)
+        console.log(calendarData.filteredData)
     }
     
     const isMatched = (selectedDate, date) => {
