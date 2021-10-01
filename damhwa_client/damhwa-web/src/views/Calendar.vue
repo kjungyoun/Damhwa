@@ -51,7 +51,6 @@ export default {
             return dateObj
           }
         })
-        console.log(calendarData.filteredHistories)
     }
     
     const isMatched = (selectedDate, date) => {
@@ -66,7 +65,6 @@ export default {
   },
   methods: {
     routeToHistoryDetail(history) {
-      console.log(this.$router)
       if (history.htype) {
         this.$router.push({name: 'LetterDetail', params: { historyId: history.hno }})
       } else {
