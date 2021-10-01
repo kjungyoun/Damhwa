@@ -1,24 +1,24 @@
 <template>
-  <div class="home">
+  <div>
       <v-date-picker 
         :attributes='calendarData.attributes'
         v-model="calendarData.date" 
       />
   </div>  
   <div>
-    <div v-for="(data, idx) in calendarData.filteredData" :key="idx">
+    <div v-for="(data, idx) in calendarData.filteredHistories" :key="idx">
       {{ data }}
     </div>
   </div>
 </template>
 
 <script>
-import dumpData from '../constants/dumpData.json'
+import histories from '../data/dumpData.json'
 import { reactive, watch } from 'vue'
 export default {
-  name: 'Home',
+  name: 'Calendar',
   setup() {
-    const dateData = dumpData.map(data => {
+    const historyDates = histories.map(data => {
       const tmpDateObj =  new Date(data.regdate)
       return new Date(tmpDateObj.getFullYear(), tmpDateObj.getMonth(), tmpDateObj.getDate())
     })
@@ -28,26 +28,26 @@ export default {
       attributes: [
           {
             dot: 'red',
-            dates: dateData,
+            dates: historyDates,
           },
           {
             dot: 'blue',
-            dates: dateData,
+            dates: historyDates,
           }
         ],
-      filteredData: []
+      filteredHistories: []
       })
 
     const checkDateAndFiltering = () => {
-        calendarData.filteredData = dumpData.filter((date) => {
-          const dateObj =  new Date(date.regdate)
+        calendarData.filteredHistories = histories.filter(history => {
+          const dateObj =  new Date(history.regdate)
           const selectedDateObj = new Date(calendarData.date)
 
           if (isMatched(selectedDateObj, dateObj)) {
             return dateObj
           }
         })
-        console.log(calendarData.filteredData)
+        console.log(calendarData.filteredHistories)
     }
     
     const isMatched = (selectedDate, date) => {
@@ -58,7 +58,7 @@ export default {
 
     watch(() => checkDateAndFiltering())
     
-    return { checkDateAndFiltering, calendarData } 
+    return { calendarData } 
   },
 }
 </script>
