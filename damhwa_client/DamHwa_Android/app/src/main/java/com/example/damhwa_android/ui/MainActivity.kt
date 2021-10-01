@@ -2,12 +2,15 @@ package com.example.damhwa_android.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.damhwa_android.R
+import com.example.damhwa_android.custom.LoadingDialogFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,5 +19,4 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.main_bottom_navigation).setupWithNavController(navController)
     }
-
 }

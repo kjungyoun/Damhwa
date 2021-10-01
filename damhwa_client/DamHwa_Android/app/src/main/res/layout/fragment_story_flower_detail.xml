@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,22 +14,64 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
-            android:text="매발톱"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="매발톱" />
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="15dp"
             android:layout_height="20dp"
             android:layout_marginStart="25dp"
-            android:scaleType="center"
             android:background="@drawable/ic_back"
+            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="@id/flowerNameText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/flowerNameText" />
 
+        <ImageView
+            android:id="@+id/flowerPic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="30dp"
+            app:layout_constraintBottom_toTopOf="@id/flowerDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flowerNameText" />
+
+        <TextView
+            android:id="@+id/flowerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="30dp"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintBottom_toTopOf="@id/shareKakao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="독립의 뜻을 가지고 있습니다. 테스트 입니다.  테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트입니다." />
+
+
+        <Button
+            android:id="@+id/shareKakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카카오톡 공유하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/findFlower"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/findFlower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내담화 내곁에"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/shareKakao" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

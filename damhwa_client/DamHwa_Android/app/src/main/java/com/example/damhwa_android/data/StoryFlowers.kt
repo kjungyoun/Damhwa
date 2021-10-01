@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class StoryFlowers(
     @SerializedName("flowers")
-    val storyFlowers: ArrayList<StoryFlower>? = null
+    val storyFlowers: List<StoryFlower> = emptyList()
 )

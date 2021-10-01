@@ -9,7 +9,6 @@ object CustomBindingAdapter {
     @JvmStatic
     @BindingAdapter("flowerUrl")
     fun setBindFlowerPictureUrl(view: ImageView, flowerPictureUrl: String) {
-        Log.d("로그", flowerPictureUrl)
         Glide.with(view.context)
             .load(flowerPictureUrl)
             .centerCrop()

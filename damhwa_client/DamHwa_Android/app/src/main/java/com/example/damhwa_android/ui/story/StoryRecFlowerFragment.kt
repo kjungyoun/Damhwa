@@ -1,11 +1,13 @@
 package com.example.damhwa_android.ui.story
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.data.StoryFlower
 import com.example.damhwa_android.databinding.FragmentStoryRecFlowerBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,13 +26,14 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
             }
         }
     }
+
     override fun init() {
         super.init()
         binding.backButton.setOnClickListener {
             routeToBack()
         }
 
-        val adapter = RecommendedFlowerAdapter()
+        val adapter = RecommendedFlowerAdapter(::routeToFlowerDetail)
         binding.carouselRecycler.adapter = adapter
 
         storyViewModel.recommendedFlowerListFromStory
@@ -38,6 +41,7 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
             .subscribe { flowers ->
                 adapter.flowers = flowers
                 adapter.notifyDataSetChanged()
+                storyViewModel.clearData()
             }
             .addToDisposable()
 
@@ -47,8 +51,11 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
     private fun routeToBack() =
         findNavController().navigate(R.id.action_storyRecFlowerFragment_to_storyFragment)
 
-    private fun routeToFlowerDetail() =
-        findNavController().navigate(R.id.action_storyRecFlowerFragment_to_storyFlowerDetailFragment)
+    private fun routeToFlowerDetail(flower: StoryFlower) =
+        findNavController().navigate(
+            R.id.action_storyRecFlowerFragment_to_storyFlowerDetailFragment,
+            bundleOf("flower" to flower)
+        )
 
     private fun Disposable.addToDisposable(): Disposable = addTo(disposables)
 
