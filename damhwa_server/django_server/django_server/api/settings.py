@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -57,8 +57,7 @@ REST_FRAMEWORK = {
 }
 
 # CORS 관련 추가
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8080'
-												,'http://localhost:8080']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8080','http://localhost:8080','http://j5a503.p.ssafy.io:8080','http://3.38.108.66:8080']
 CORS_ALLOW_CREDENTIALS = True
 
 

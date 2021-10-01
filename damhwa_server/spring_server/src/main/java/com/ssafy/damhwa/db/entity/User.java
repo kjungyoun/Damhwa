@@ -28,9 +28,10 @@ public class User {
         this.profile = profile;
     }
 
-    public User update(String username, String profile){
+    public User update(String username, String profile, String email){
         this.username = username;
         this.profile = profile;
+        this.email = email;
         return this;
     }
 }

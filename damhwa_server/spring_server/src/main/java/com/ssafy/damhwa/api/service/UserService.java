@@ -5,7 +5,6 @@ import com.ssafy.damhwa.db.entity.User;
 import java.util.Optional;
 
 public interface UserService {
-    boolean createUser(User user);
+    void createOrUpdateUser(User user);
     Optional<User> findUserByNo(long userno);
-    boolean updateUser(User user);
 }

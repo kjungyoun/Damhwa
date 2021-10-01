@@ -120,7 +120,7 @@ public class AuthServiceImpl implements AuthService{
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
             // kakao Info에서 필요한 정보 추출
-            long userno = element.getAsJsonObject().get("id").getAsLong();
+            long userno = element.getAsJsonObject().get("id").getAsLong(); // long user id
             String username = properties.getAsJsonObject().get("nickname").getAsString();
             String profile = properties.getAsJsonObject().get("profile_image").getAsString();
             boolean hasEmail = kakao_account.getAsJsonObject().get("has_email").getAsBoolean();
@@ -136,19 +136,9 @@ public class AuthServiceImpl implements AuthService{
             user.setUsername(username);
             user.setProfile(profile);
 
-            // Kakao User가 이미 존재하는 회원인지 확인
-            Optional<User> dbUser = userService.findUserByNo(userno);
-            boolean isSuccess;
-
-            if(dbUser.isPresent()) // 이미 존재하는 User
-                isSuccess = userService.updateUser(user); // User 정보 최신화
-            else
-                isSuccess = userService.createUser(user); // User 생성
-
-            if(isSuccess){
-                System.out.println("GetUserInfo : " + user);
-                return user;
-            }
+            // User Db에 저장
+            userService.createOrUpdateUser(user);
+            return user;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

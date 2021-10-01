@@ -1,14 +1,14 @@
 server:
-  port: 8080
+#  port: 8080
   servlet:
     encoding:
       charset: utf-8
       enabled: true
       force: true
-  address: localhost
+#  address: localhost
 
 spring:
-    datasource:
+    datasource: # url 배포시에 3.38.108.66 로 수정 필요!!!
       url: jdbc:mysql://localhost:3306/damhwa?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
       driver-class-name : com.mysql.cj.jdbc.Driver
       username : ssafy
@@ -21,10 +21,8 @@ spring:
           implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
           physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         ddl-auto: update
-      show-sql: true # JPA가 DB에 날리는 모든 쿼리문을 로깅
       properties:
         hiberante.dialog: org.hibernate.dialect.MySQL57Dialect
-        hibernate.format_sql: true # 실행 쿼리를 가독성 있게 표시
 
 logging:
   level:
@@ -36,7 +34,7 @@ logging:
       apache:
         tiles: INFO
       hibernate:
-        SQL: DEBUG
+        SQL: DEBUG # JPA가 생성해주는 Query문을 log에 찍을 수 있음
         type:
           descriptor:
             sql:

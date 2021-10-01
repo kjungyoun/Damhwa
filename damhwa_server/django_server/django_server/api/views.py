@@ -17,12 +17,37 @@ def msg_recomm(request):
         # KoBert 감정 분석 모델
         model_result = [23.1211, 32.52321, 11.9844, 4.012124, 0.0, 27.12341]
 
-        datas = knn(model_result)
+        # knn 알고리즘
+        flag = True
+        datas = knn(model_result, flag)
         print (datas)
 
         return Response(data=datas, status=status.HTTP_200_OK)
 
-def knn(model_result):
+# State Recommend
+@api_view(['POST'])
+def state_recomm(request):
+    if request.method == 'POST':
+        print("Django Success!")
+        data = request.data.get('state') # Request data
+        print("request data : " + data)
+
+        # KoBert 감정 분석 모델 load
+        model_result = [23.1211, 32.52321, 11.9844, 4.012124, 0.0, 27.12341]
+        state = "행복"
+
+        # knn 알고리즘
+        flag = False
+        datas = knn(model_result, flag)
+        response = {
+            'fno': datas,
+            'state' : state
+        }
+        print(datas)
+
+        return Response(data=response, status=status.HTTP_200_OK)
+
+def knn(model_result, flag):
     # DB emotion 조회
     try:
         cursor = connection.cursor()
@@ -61,7 +86,10 @@ def knn(model_result):
         for index, row in df1.iterrows():
             result_fno.append(int(row['fno']))
 
-        return result_fno
+        if(flag):
+            return result_fno
+        else:
+            return result_fno[0]
     except:
         connection.rollback()
         print("Failed selecting in emotion")
