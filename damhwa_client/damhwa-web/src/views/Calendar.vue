@@ -7,7 +7,11 @@
   </div>  
   <div>
     <div v-for="(data, idx) in calendarData.filteredHistories" :key="idx">
-      {{ data }}
+      <div>
+        <div>{{ data.receiver }}</div>
+        <div>{{ data.contents}}</div>
+        <button @click="routeToHistoryDetail(data)"> 서신보기 </button>
+      </div>
     </div>
   </div>
 </template>
@@ -56,9 +60,13 @@ export default {
               && selectedDate.getDate() == date.getDate()
     }
 
+    const routeToHistoryDetail = (history) => {
+      console.log(history)
+    }
+
     watch(() => checkDateAndFiltering())
     
-    return { calendarData } 
+    return { calendarData, routeToHistoryDetail} 
   },
 }
 </script>
