@@ -1,18 +1,72 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+      <v-date-picker 
+        :attributes='calendarData.attributes'
+        v-model="calendarData.date" 
+      />
+  </div>  
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import dumpData from '../constants/dumpData.json'
+import { reactive, watch } from 'vue'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
+  setup() {
+    var filteredData = []
+    const dateData = dumpData.map(data => {
+      const tmpDateObj =  new Date(data.regdate)
+      return new Date(tmpDateObj.getFullYear(), tmpDateObj.getMonth(), tmpDateObj.getDate())
+    })
+    
+    const calendarData = reactive({
+      date: new Date(),
+      attributes: [
+          {
+            dot: 'red',
+            dates: dateData,
+          },
+          {
+            dot: 'blue',
+            dates: dateData,
+          }
+        ]
+      })
+
+    const checkDateAndFiltering = () => {
+        const filteredData = dumpData.filter((date) => {
+          const dateObj =  new Date(date.regdate)
+          const selectedDateObj = new Date(calendarData.date)
+
+          console.log(dateObj, selectedDateObj)
+          if (isMatched(selectedDateObj, dateObj)) {
+            return dateObj
+          }
+        })
+        console.log(filteredData)
+    }
+    
+    const isMatched = (selectedDate, date) => {
+      return selectedDate.getFullYear() == date.getFullYear() 
+              && selectedDate.getMonth() == date.getMonth() 
+              && selectedDate.getDate() == date.getDate()
+    }
+
+    watch(
+      () => calendarData.date,
+      (currentDate, prevDate) => {
+        console.log(prevDate)
+        filteredData = dumpData.filter((date) => {
+          const dateObj =  new Date(date.regdate)
+          const selectedDateObj = new Date(currentDate)
+
+          if (isMatched(selectedDateObj, dateObj)) {
+            return dateObj
+          }
+        })
+      console.log(filteredData)
+    })
+    return { checkDateAndFiltering, calendarData } 
+  },
 }
 </script>
