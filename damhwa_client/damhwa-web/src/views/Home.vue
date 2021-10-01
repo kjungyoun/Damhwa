@@ -34,11 +34,10 @@ export default {
       })
 
     const checkDateAndFiltering = () => {
-        const filteredData = dumpData.filter((date) => {
+        filteredData = dumpData.filter((date) => {
           const dateObj =  new Date(date.regdate)
           const selectedDateObj = new Date(calendarData.date)
 
-          console.log(dateObj, selectedDateObj)
           if (isMatched(selectedDateObj, dateObj)) {
             return dateObj
           }
@@ -52,20 +51,8 @@ export default {
               && selectedDate.getDate() == date.getDate()
     }
 
-    watch(
-      () => calendarData.date,
-      (currentDate, prevDate) => {
-        console.log(prevDate)
-        filteredData = dumpData.filter((date) => {
-          const dateObj =  new Date(date.regdate)
-          const selectedDateObj = new Date(currentDate)
-
-          if (isMatched(selectedDateObj, dateObj)) {
-            return dateObj
-          }
-        })
-      console.log(filteredData)
-    })
+    watch(() => checkDateAndFiltering())
+    
     return { checkDateAndFiltering, calendarData } 
   },
 }
