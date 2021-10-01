@@ -19,9 +19,11 @@
 <script>
 import histories from '../data/dumpData.json'
 import { reactive, watch } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
   name: 'Calendar',
   setup() {
+    const router = useRouter()
     const historyDates = histories.map(data => {
       const tmpDateObj =  new Date(data.regdate)
       return new Date(tmpDateObj.getFullYear(), tmpDateObj.getMonth(), tmpDateObj.getDate())
@@ -59,18 +61,18 @@ export default {
               && selectedDate.getDate() == date.getDate()
     }
 
-    watch(() => checkDateAndFiltering())
-    
-    return { calendarData} 
-  },
-  methods: {
-    routeToHistoryDetail(history) {
+    // router methods 말고 setup안에서 해결했습니다.
+    const routeToHistoryDetail = function(history) {
       if (history.htype) {
-        this.$router.push({name: 'LetterDetail', params: { historyId: history.hno }})
+        router.push({name: 'LetterDetail', params: { historyId: history.hno }})
       } else {
-        this.$router.push({name: 'FeelingDetail', params: { historyId: history.hno }})
+        router.push({name: 'FeelingDetail', params: { historyId: history.hno }})
       }
     }
+
+    watch(() => checkDateAndFiltering())
+    
+    return { calendarData, routeToHistoryDetail } 
   }
 }
 </script>
