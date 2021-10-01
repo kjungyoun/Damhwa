@@ -26,8 +26,8 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/backButton"
-            app:layout_constraintTop_toBottomOf="@+id/backButton" />
+            app:layout_constraintStart_toStartOf="@id/backButton"
+            app:layout_constraintTop_toBottomOf="@id/backButton" />
 
         <TextView
             android:id="@+id/feelingFlowerFlowerText"
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/feelingFlowerFeelingText"
-            app:layout_constraintTop_toBottomOf="@+id/feelingFlowerFeelingText" />
+            app:layout_constraintStart_toStartOf="@id/feelingFlowerFeelingText"
+            app:layout_constraintTop_toBottomOf="@id/feelingFlowerFeelingText" />
 
         <ImageView
             android:id="@+id/flowerPic"
@@ -44,11 +44,51 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="50dp"
             android:layout_marginVertical="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/flowerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/feelingFlowerFlowerText" />
+            app:layout_constraintTop_toBottomOf="@id/feelingFlowerFlowerText" />
 
+        <TextView
+            android:id="@+id/flowerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/flowerDescription"
+            app:layout_constraintStart_toStartOf="@+id/flowerDescription"
+            tools:text="매발톱" />
+
+        <TextView
+            android:id="@+id/flowerDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="30dp"
+            app:layout_constraintBottom_toTopOf="@id/shareKakao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="독립의 뜻을 가지고 있습니다. 테스트 입니다.  테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트입니다." />
+
+        <Button
+            android:id="@+id/shareKakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카카오톡 공유하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/findFlower"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/findFlower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내담화 내곁에"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/shareKakao" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
