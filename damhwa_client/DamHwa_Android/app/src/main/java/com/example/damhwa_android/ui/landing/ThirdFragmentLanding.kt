@@ -17,17 +17,7 @@ class ThirdFragmentLanding : BaseFragment<FragmentThirdLandingBinding>(R.layout.
     // BaseFragment를 상속했기 때문에, 굳이 return view가 없어도 됨.
     override fun init() {
         super.init()
-        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-            if (error != null) {
-                Log.d("ERROR:", error.toString())
-                Toast.makeText(requireContext(), "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
-            } else if (tokenInfo != null) {
-                Toast.makeText(requireContext(), "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-            }
-        }
-
+        checkKakaoToken()
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 when {
@@ -75,4 +65,18 @@ class ThirdFragmentLanding : BaseFragment<FragmentThirdLandingBinding>(R.layout.
             }
         }
     }
+
+    private fun checkKakaoToken() {
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (error != null) {
+                Log.d("ERROR:", error.toString())
+                Toast.makeText(requireContext(), "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+            } else if (tokenInfo != null) {
+                Toast.makeText(requireContext(), "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+        }
+    }
+
 }

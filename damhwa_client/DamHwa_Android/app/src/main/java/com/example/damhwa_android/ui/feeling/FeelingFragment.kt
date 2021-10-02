@@ -1,6 +1,8 @@
 package com.example.damhwa_android.ui.feeling
 
+import android.content.Context
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -28,9 +30,19 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
             }
         }
     }
+    // editText 밖 터치시 키보드 내리기
+    private fun hideKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.writeFeelingEditText.windowToken, 0)
+    }
 
     override fun init() {
         super.init()
+
+        binding.constraintFeeling.setOnClickListener() {
+            hideKeyboard()
+        }
+
         binding.changeFlower.setOnClickListener {
             feelingViewModel.changeTextToFlower()
         }
