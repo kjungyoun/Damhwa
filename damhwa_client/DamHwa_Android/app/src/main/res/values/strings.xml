@@ -16,6 +16,14 @@
     <string name="feeling_guide">%s 당신, </string>
     <string name="flower_guide">오늘은 %s 어때요?</string>
     <string name="kakao_app_key">kakao5d4ceabed4218c89d458e28bfdd4ed60</string>
+    <string name="first_landing_flower">꽃\n으\n로\n\n하\n는\n\n이\n야\n기</string>
+    <string name="first_landing_damhwa">담\n화</string>
+    <string name="third_landing_damhwa">담화</string>
+    <string name="third_landing_mind">마음</string>
+    <string name="third_landing_most">가장</string>
+    <string name="third_landing_perfume">향기로운</string>
+    <string name="third_landing_send">을 전하는</string>
     <string name="void_feeling_text">감정 텍스트가 비었습니다.</string>
     <string name="void_letter_text">편지 텍스트가 비었습니다.</string>
+    <string name="third_landing_method">방법</string>
 </resources>
