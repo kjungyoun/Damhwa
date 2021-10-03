@@ -8,5 +8,5 @@ import retrofit2.http.POST
 
 interface StoryService {
     @POST("api/recomm/msg")
-    fun changeLetterToFlowers(@Body letterText: RequestBody): Single<List<Flower>>
+    fun changeLetterToFlowers(@Body body: RequestBody): Single<List<Flower>>
 }

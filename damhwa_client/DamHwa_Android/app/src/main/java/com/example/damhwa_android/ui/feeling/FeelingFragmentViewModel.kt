@@ -3,6 +3,7 @@ package com.example.damhwa_android.ui.feeling
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
+import com.example.damhwa_android.data.FeelingFlower
 import com.example.damhwa_android.repository.FeelingRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -32,9 +33,9 @@ class FeelingFragmentViewModel(
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
 
-    private val _recommendedFlowerFromFeelingSubject: BehaviorSubject<FlowerRecommendedByFeeling> =
-        BehaviorSubject.createDefault(FlowerRecommendedByFeeling())
-    val recommendedFlowerFromFeeling: Observable<FlowerRecommendedByFeeling> =
+    private val _recommendedFlowerFromFeelingSubject: BehaviorSubject<FeelingFlower> =
+        BehaviorSubject.create()
+    val recommendedFlowerFromFeeling: Observable<FeelingFlower> =
         _recommendedFlowerFromFeelingSubject
 
     fun changeTextToFlower() {
@@ -58,10 +59,7 @@ class FeelingFragmentViewModel(
             .subscribe { response ->
                 if (response != null) {
                     _recommendedFlowerFromFeelingSubject.onNext(
-                        FlowerRecommendedByFeeling(
-                            name = response.name,
-                            description = response.description
-                        )
+                        response
                     )
                 }
                 navigateToFlowerDetail()
@@ -90,8 +88,4 @@ class FeelingFragmentViewModel(
         val feelingText: String? = null
     )
 
-    data class FlowerRecommendedByFeeling(
-        val name: String? = null,
-        val description: String? = null,
-    )
 }
