@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.Flower
+import com.example.damhwa_android.data.History
 import com.example.damhwa_android.repository.StoryRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -81,6 +82,19 @@ class StoryFragmentViewModel(
                 Log.d("로그", response.toString())
                 navigateToFlowerDetail()
             }
+            .addToDisposable()
+    }
+
+    fun saveHistory(history: History) {
+        storyRepository.saveHistory(history)
+            .subscribeOn(Schedulers.io())
+            .subscribe({ respone ->
+                if (respone.statusCode != 200) {
+                    Log.e("ErrorLogger - StoryFragmentViewModel - saveHistory", "Error in saving")
+                }
+            }, {
+                Log.e("ErrorLogger - StoryFragmentViewModel - saveHistory", it.message.toString())
+            })
             .addToDisposable()
     }
 

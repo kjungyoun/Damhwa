@@ -1,6 +1,7 @@
 package com.example.damhwa_android.network.service
 
 import com.example.damhwa_android.data.FeelingFlower
+import com.example.damhwa_android.data.HistoryResponse
 import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel.Feeling
 import io.reactivex.Single
 import okhttp3.RequestBody
@@ -10,4 +11,7 @@ import retrofit2.http.POST
 interface FeelingService {
     @POST("api/recomm/state")
     fun changeFeelingToFlower(@Body body: RequestBody): Single<FeelingFlower>
+
+    @POST("history/save")
+    fun saveHistory(@Body body: RequestBody): Single<HistoryResponse>
 }

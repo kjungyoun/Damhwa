@@ -44,7 +44,6 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
                 storyViewModel.clearData()
             }
             .addToDisposable()
-
     }
 
 

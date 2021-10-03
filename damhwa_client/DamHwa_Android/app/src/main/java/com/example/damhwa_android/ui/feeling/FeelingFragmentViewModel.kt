@@ -1,9 +1,11 @@
 package com.example.damhwa_android.ui.feeling
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.FeelingFlower
+import com.example.damhwa_android.data.History
 import com.example.damhwa_android.repository.FeelingRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -19,9 +21,9 @@ class FeelingFragmentViewModel(
     private val _feelingInputSubject: BehaviorSubject<Feeling> =
         BehaviorSubject.createDefault(Feeling())
 
-    private val _isCompletedChangedToFlowerSubject: BehaviorSubject<Boolean> =
+    private val _isCompletedSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
-    val completeTrigger: Observable<Boolean> = _isCompletedChangedToFlowerSubject
+    val completeTrigger: Observable<Boolean> = _isCompletedSubject
 
     private val _changeFeelingToFlowerErrorIdSubject: PublishSubject<Int> = PublishSubject.create()
 
@@ -29,19 +31,19 @@ class FeelingFragmentViewModel(
         BehaviorSubject.createDefault(false)
     val setEnableButtonTrigger: Observable<Boolean> = isEnableChangeToFlowerSubject
 
-    private val _isChangingToFlowerSubject: BehaviorSubject<Boolean> =
+    private val _isChangingSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
-    val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
+    val isChanging: Observable<Boolean> = _isChangingSubject
 
-    private val _recommendedFlowerFromFeelingSubject: BehaviorSubject<FeelingFlower> =
+    private val _recommFlowerSubject: BehaviorSubject<FeelingFlower> =
         BehaviorSubject.create()
     val recommendedFlowerFromFeeling: Observable<FeelingFlower> =
-        _recommendedFlowerFromFeelingSubject
+        _recommFlowerSubject
 
     fun changeTextToFlower() {
         _feelingInputSubject.firstOrError()
             .subscribeOn(Schedulers.io())
-            .doOnSubscribe { _isChangingToFlowerSubject.onNext(true) }
+            .doOnSubscribe { _isChangingSubject.onNext(true) }
             .flatMap { feelingInput ->
                 if (!feelingInput.feelingText.isNullOrBlank()) {
                     repository.changeFeelingToFlower(feelingInput)
@@ -54,11 +56,11 @@ class FeelingFragmentViewModel(
                     )
                 }
             }
-            .doOnSuccess { _isChangingToFlowerSubject.onNext(false) }
-            .doOnError { _isChangingToFlowerSubject.onNext(false) }
+            .doOnSuccess { _isChangingSubject.onNext(false) }
+            .doOnError { _isChangingSubject.onNext(false) }
             .subscribe { response ->
                 if (response != null) {
-                    _recommendedFlowerFromFeelingSubject.onNext(
+                    _recommFlowerSubject.onNext(
                         response
                     )
                 }
@@ -67,13 +69,26 @@ class FeelingFragmentViewModel(
             .addToDisposable()
     }
 
+    fun saveHistory(history: History) {
+        repository.saveHistory(history)
+            .subscribeOn(Schedulers.io())
+            .subscribe({ respone ->
+                if (respone.statusCode != 200) {
+                    Log.e("ErrorLogger - FeelingFragmentViewModel - saveHistory", "Error in saving")
+                }
+            }, {
+                Log.e("ErrorLogger - FeelingFragmentViewModel - saveHistory", it.message.toString())
+            })
+            .addToDisposable()
+    }
+
     fun navigateToFlowerDetail() {
-        _isCompletedChangedToFlowerSubject.onNext(true)
+        _isCompletedSubject.onNext(true)
     }
 
     fun clearData() {
         _feelingInputSubject.onNext(Feeling())
-        _isCompletedChangedToFlowerSubject.onNext(false)
+        _isCompletedSubject.onNext(false)
         feelingText = MutableLiveData("")
     }
 

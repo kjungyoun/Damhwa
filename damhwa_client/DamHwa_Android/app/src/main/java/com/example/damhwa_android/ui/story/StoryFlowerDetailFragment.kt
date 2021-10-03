@@ -4,12 +4,18 @@ import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Intent
 import android.util.Log
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
 import com.example.damhwa_android.data.Flower
+import com.example.damhwa_android.data.History
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentStoryFlowerDetailBinding
+import com.example.damhwa_android.network.DamhwaInjection
 import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
@@ -29,6 +35,13 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
     R.layout.fragment_story_flower_detail
 ) {
     private val disposables by lazy { CompositeDisposable() }
+    private val storyViewModel by activityViewModels<StoryFragmentViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return StoryFragmentViewModel(DamhwaInjection.providerStoryRepository()) as T
+            }
+        }
+    }
     lateinit var flower: Flower
 
     override fun init() {
@@ -98,6 +111,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                 .subscribe({ linkResult ->
                     Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
+                    saveHistory()
 
                     Log.w(ContentValues.TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(ContentValues.TAG, "Argument Msg: ${linkResult.argumentMsg}")
@@ -108,20 +122,28 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         } else {
             val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
 
-            // 1. CustomTabs으로 Chrome 브라우저 열기
             try {
                 KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
             } catch(e: UnsupportedOperationException) {
-                // Chrome 브라우저가 없을 때 예외처리
             }
 
-            // 2. CustomTabs으로 디바이스 기본 브라우저 열기
             try {
                 KakaoCustomTabsClient.open(requireContext(), sharerUrl)
             } catch (e: ActivityNotFoundException) {
-                // 인터넷 브라우저가 없을 때 예외처리
             }
         }
+    }
+
+    private fun saveHistory() {
+        storyViewModel.saveHistory(
+            History(
+                userNo = DamhwaSharedPreferencesImpl.getUserNo(),
+                fNo = flower.fno,
+                receiver = "",
+                msg = storyViewModel.letterText.value.toString(),
+                htype = false
+            )
+        )
     }
 
     private fun routeToRecFlowerList() =
