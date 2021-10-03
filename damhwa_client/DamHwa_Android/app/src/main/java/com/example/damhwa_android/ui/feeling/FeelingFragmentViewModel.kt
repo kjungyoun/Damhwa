@@ -27,10 +27,6 @@ class FeelingFragmentViewModel(
 
     private val _changeFeelingToFlowerErrorIdSubject: PublishSubject<Int> = PublishSubject.create()
 
-    private val isEnableChangeToFlowerSubject: BehaviorSubject<Boolean> =
-        BehaviorSubject.createDefault(false)
-    val setEnableButtonTrigger: Observable<Boolean> = isEnableChangeToFlowerSubject
-
     private val _isChangingSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingSubject

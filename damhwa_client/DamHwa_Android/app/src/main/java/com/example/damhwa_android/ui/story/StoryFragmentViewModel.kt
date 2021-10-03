@@ -28,10 +28,6 @@ class StoryFragmentViewModel(
 
     private val _changeFeelingToFlowerErrorIdSubject: PublishSubject<Int> = PublishSubject.create()
 
-    private val isEnableChangeToFlowerSubject: BehaviorSubject<Boolean> =
-        BehaviorSubject.createDefault(false)
-    val setEnableButtonTrigger: Observable<Boolean> = isEnableChangeToFlowerSubject
-
     private val _isChangingToFlowerSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
@@ -40,7 +36,6 @@ class StoryFragmentViewModel(
         BehaviorSubject.createDefault(emptyList())
     val recommendedFlowerListFromStory: Observable<List<Flower>> =
         _recommendedFlowerFromStorySubject
-
 
     fun setLetterText() {
         _letterInputSubject.onNext(
