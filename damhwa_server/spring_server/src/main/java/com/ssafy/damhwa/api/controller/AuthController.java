@@ -33,8 +33,8 @@ public class AuthController {
         String accessToken = authService.getAccessToken(code); // AccessToken 요청
         User user =  authService.getUserInfo(accessToken); // Kakao Info 를 DB에 저장하여 User 정보 최신화
 
-        String responseUrl = "http://localhost:8080/";
-//        String responseUrl = "http://j5a503.p.ssafy.io:8080/";
+//        String responseUrl = "http://localhost:8080/";
+        String responseUrl = "http://j5a503.p.ssafy.io:8080/";
         ModelAndView mav = new ModelAndView("redirect:" + responseUrl); // 특정 url로 redirect 시켜줌
         mav.addObject("userno", user.getUserno());
         mav.addObject("accessToken", accessToken);

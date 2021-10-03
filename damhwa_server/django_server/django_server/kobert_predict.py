@@ -16,7 +16,6 @@ def new_softmax(a):
 
 # 예측 모델 설정
 def predict(predict_sentence):
-    msg,predict_sentence = predict_sentence.split(":")
     print('predict 요청 데이터 : ' + predict_sentence)
     data = [predict_sentence, '0']
     dataset_another = [data]

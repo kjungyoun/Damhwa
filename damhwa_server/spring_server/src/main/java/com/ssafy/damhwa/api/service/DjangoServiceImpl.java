@@ -28,8 +28,8 @@ public class DjangoServiceImpl implements DjangoService {
     @Override
     public List<Flower> getMsgRecommendFlower(String msg) {
         RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://j5a503.p.ssafy.io:8000/api/recomm/msg";
-        String url = "http://localhost:8000/api/recomm/msg";
+        String url = "http://j5a503.p.ssafy.io:8000/api/recomm/msg";
+//        String url = "http://localhost:8000/api/recomm/msg";
 
         // header 셋팅
         HttpHeaders headers = new HttpHeaders();
@@ -64,8 +64,8 @@ public class DjangoServiceImpl implements DjangoService {
     public FlowerNEmotionRes getStateRecommendFlower(String state) {
         RestTemplate restTemplate = new RestTemplate();
 
-        //String url = "http://j5a503.p.ssafy.io:8000/api/recomm/state";
-        String url = "http://localhost:8000/api/recomm/state";
+        String url = "http://j5a503.p.ssafy.io:8000/api/recomm/state";
+//        String url = "http://localhost:8000/api/recomm/state";
 
         // Header 셋팅
         HttpHeaders headers = new HttpHeaders();

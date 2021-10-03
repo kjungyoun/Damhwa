@@ -1,5 +1,7 @@
 package com.ssafy.damhwa.api.controller;
 
+import com.ssafy.damhwa.api.request.MsgRecommReq;
+import com.ssafy.damhwa.api.request.StateRecommReq;
 import com.ssafy.damhwa.api.response.FlowerNEmotionRes;
 import com.ssafy.damhwa.api.service.DjangoService;
 import com.ssafy.damhwa.db.entity.Flower;
@@ -21,7 +23,8 @@ public class DjangoController {
 
     // 메세지 기반 추천
     @PostMapping("/msg")
-    public ResponseEntity<List<Flower>> msgRecomm (@RequestBody String msg){
+    public ResponseEntity<List<Flower>> msgRecomm (@RequestBody MsgRecommReq msgRecommReq){
+        String msg = msgRecommReq.getMsg();
         List<Flower> result = djangoService.getMsgRecommendFlower(msg);
 
         return new ResponseEntity<List<Flower>>(result,HttpStatus.OK);
@@ -29,7 +32,9 @@ public class DjangoController {
 
     // 기분 기반 추천
     @PostMapping("/state")
-    public ResponseEntity<FlowerNEmotionRes> stateRecomm (@RequestBody String state){
+    public ResponseEntity<FlowerNEmotionRes> stateRecomm (@RequestBody StateRecommReq stateRecommReq){
+        String state = stateRecommReq.getState();
+        System.out.println(state);
         FlowerNEmotionRes response = djangoService.getStateRecommendFlower(state);
 
         return new ResponseEntity<FlowerNEmotionRes>(response, HttpStatus.OK);
