@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.data.StoryFlower
+import com.example.damhwa_android.data.Flower
 import com.example.damhwa_android.databinding.FragmentStoryFlowerDetailBinding
 import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
@@ -29,7 +29,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
     R.layout.fragment_story_flower_detail
 ) {
     private val disposables by lazy { CompositeDisposable() }
-    lateinit var flower: StoryFlower
+    lateinit var flower: Flower
 
     override fun init() {
         super.init()
@@ -52,16 +52,16 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
 
     private fun getFlowerData() {
         arguments?.let {
-            flower  = it.getSerializable("flower") as StoryFlower
+            flower  = it.getSerializable("flower") as Flower
             setFlowerData()
         }
     }
 
     private fun setFlowerData() {
-        binding.flowerNameText.text = flower.name
-        binding.flowerDescription.text = flower.description
+        binding.flowerNameText.text = flower.fNameKR
+        binding.flowerDescription.text = flower.fContents
         Glide.with(requireActivity())
-            .load(flower.imageUrl)
+            .load(flower.img1)
             .centerCrop()
             .into(binding.flowerPic)
     }
@@ -69,9 +69,9 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
     private fun shareKakaoTalk() {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = flower.name,
-                description = flower.description,
-                imageUrl = flower.imageUrl,
+                title = flower.fNameKR,
+                description = flower.fContents,
+                imageUrl = flower.img1,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )

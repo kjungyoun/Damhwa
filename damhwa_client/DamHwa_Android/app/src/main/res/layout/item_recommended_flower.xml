@@ -7,7 +7,7 @@
 
         <variable
             name="flower"
-            type="com.example.damhwa_android.data.StoryFlower" />
+            type="com.example.damhwa_android.data.Flower" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/flower_photo"
-            app:flowerUrl="@{flower.imageUrl}"
+            app:flowerUrl="@{flower.img1}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/carouselTitle"
@@ -30,7 +30,7 @@
             android:id="@+id/carouselTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{flower.name}"
+            android:text="@{flower.FContents}"
             app:layout_constraintBottom_toTopOf="@+id/carouselDescription"
             app:layout_constraintStart_toStartOf="@+id/carouselDescription"
             tools:text="매발톱" />
@@ -39,7 +39,7 @@
             android:id="@+id/carouselDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{flower.description}"
+            android:text="@{flower.FContents}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
