@@ -5,7 +5,8 @@ from rest_framework.response import Response
 from django.db import connection
 import numpy as np
 import pandas as pd
-from django_server.test import predict
+import sys
+from os import path
 # Message Recommend
 @api_view(['POST', 'GET'])
 def msg_recomm(request):
@@ -16,6 +17,8 @@ def msg_recomm(request):
 
         # KoBert 감정 분석 모델
         # model_result = [21.45123, 10.1234, 4.012312, 4.01234, 31.43234, 13.123415]
+        sys.path.append(path.join(path.dirname(__file__), '..'))
+        from test import predict
         model_result = predict(data)
 
         # knn 알고리즘

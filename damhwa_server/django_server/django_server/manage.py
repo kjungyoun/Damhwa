@@ -77,34 +77,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # GPU 사용
-    device = torch.device("cpu")
-    print(device)
-
-    # BERT 모델, Vocabulary 불러오기 필수
-    bertmodel, vocab = get_pytorch_kobert_model()
-    print("----------------bertmodel, vocab 완료----------------")
-    # Setting parameters
-    max_len = 64
-    batch_size = 32
-    warmup_ratio = 0.1
-    num_epochs = 20
-    max_grad_norm = 1
-    log_interval = 100
-    learning_rate = 5e-5
-    print("————————parameter 세팅 완료————————")
-
-    # 모델 load
-    PATH = '/Users/youn/Downloads/kobert/'
-    model = torch.load(PATH + 'KoBERT_86.pt', map_location=device)  # 전체 모델을 통째로 불러옴, 클래스 선언 필수
-    model.load_state_dict(
-        torch.load(PATH + 'model_state_dict_86.pt', map_location=device))  # state_dict를 불러 온 후, 모델에 저장
-    print("————————model-load 완료————————")
-
-    # 토큰화
-    tokenizer = get_tokenizer()
-    tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
-    print("————————토큰화 완료————————")
-    print("————————모델 로드 성공! ————————")
-
     main()
