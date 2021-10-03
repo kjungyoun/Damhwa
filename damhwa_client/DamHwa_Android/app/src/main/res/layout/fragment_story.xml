@@ -2,15 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="storyViewModel"
             type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_story"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/constraint_story"
         tools:context=".ui.story.StoryFragment">
 
         <TextView
@@ -18,24 +20,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textColor="@color/black"
             android:text="@string/write_letter"
+            android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/realtimeTextView"
-            android:text="@{storyViewModel.letterText}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="20dp"
-            android:background="@drawable/bg_edittext_transparent"
-            app:layout_constraintBottom_toTopOf="@+id/editText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/writeFeelingGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/write_letter_guide"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/editText"
             app:layout_constraintTop_toBottomOf="@+id/writeLetterTitle" />
 
         <EditText
@@ -48,29 +48,29 @@
             android:gravity="top"
             android:hint="@string/write_letter_ph"
             android:inputType="textMultiLine"
-            android:text="@={storyViewModel.letterText}"
             android:padding="15dp"
             android:scrollbars="vertical"
-            android:textSize="13sp"
+            android:text="@={storyViewModel.letterText}"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/realtimeTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/writeFeelingGuide" />
 
         <Button
             android:id="@+id/changeFlower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:background="@drawable/bg_bold_stroke"
-            android:drawableStart="@drawable/ic_love_chinese"
-            android:paddingHorizontal="15dp"
+            android:background="@drawable/button_selector"
+            android:paddingHorizontal="40dp"
             android:text="@string/recommend_flower"
             android:textSize="15sp"
+            android:enabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -17,7 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel.FlowerRecommendedByFeeling
+import com.example.damhwa_android.data.FeelingFlower
+import com.example.damhwa_android.data.History
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
@@ -42,8 +44,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             }
         }
     }
-    private lateinit var feeling: String
-    private lateinit var flower: String
+    private lateinit var recommFlower: FeelingFlower
 
     override fun init() {
         super.init()
@@ -55,30 +56,29 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { flowerInformation ->
-                feeling = flowerInformation.description!!
-                flower = flowerInformation.name!!
+            .subscribe { result ->
+                recommFlower = result
                 makeFeelingFlowerGuideText()
-                setInformation(flowerInformation)
+                setInformation(result)
                 feelingViewModel.clearData()
             }
             .addToDisposable()
     }
 
-    private fun setInformation(flowerInformation: FlowerRecommendedByFeeling) {
-        binding.flowerDescription.text = flowerInformation.description
-        binding.flowerName.text = flowerInformation.name
+    private fun setInformation(feelingFlower: FeelingFlower) {
+        binding.flowerDescription.text = feelingFlower.flower.fContents
+        binding.flowerName.text = feelingFlower.flower.fNameKR
         Glide.with(requireActivity())
-            .load("https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg")
+            .load(feelingFlower.flower.img1)
             .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = flower,
-                description = feeling,
-                imageUrl = "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
+                title = recommFlower.flower.fNameKR,
+                description = recommFlower.flower.fContents,
+                imageUrl = recommFlower.flower.img1,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )
@@ -105,7 +105,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .subscribe({ linkResult ->
                     Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
-
+                    saveHistory()
                     Log.w(TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(TAG, "Argument Msg: ${linkResult.argumentMsg}")
                 }, { error ->
@@ -114,21 +114,28 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .addToDisposable()
         } else {
             val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
-
-            // 1. CustomTabs으로 Chrome 브라우저 열기
             try {
                 KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
             } catch(e: UnsupportedOperationException) {
-                // Chrome 브라우저가 없을 때 예외처리
             }
 
-            // 2. CustomTabs으로 디바이스 기본 브라우저 열기
             try {
                 KakaoCustomTabsClient.open(requireContext(), sharerUrl)
             } catch (e: ActivityNotFoundException) {
-                // 인터넷 브라우저가 없을 때 예외처리
             }
         }
+    }
+
+    private fun saveHistory() {
+        feelingViewModel.saveHistory(
+            History(
+                userNo = DamhwaSharedPreferencesImpl.getUserNo(),
+                fNo = recommFlower.flower.fno,
+                receiver = "",
+                msg = feelingViewModel.feelingText.value.toString(),
+                htype = true
+            )
+        )
     }
 
     private fun Disposable.addToDisposable(): Disposable = addTo(disposables)
@@ -137,14 +144,14 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         findNavController().navigate(R.id.action_feelingFlowerDetailFragment_to_feelingFragment)
 
     private fun makeFeelingFlowerGuideText() {
-        val feelingText = getString(R.string.feeling_guide, feeling)
-        val flowerText = getString(R.string.flower_guide, flower)
+        val feelingText = getString(R.string.feeling_guide, recommFlower.emotionResult)
+        val flowerText = getString(R.string.flower_guide, recommFlower.flower.fNameKR)
 
-        val feelingTextStartIndex = feelingText.indexOf(feeling)
-        val feelingTextEndIndex = feelingTextStartIndex + feeling.length
+        val feelingTextStartIndex = feelingText.indexOf(recommFlower.emotionResult)
+        val feelingTextEndIndex = feelingTextStartIndex + recommFlower.emotionResult.length
 
-        val flowerTextStartIndex = flowerText.indexOf(flower)
-        val flowerTextEndIndex = flowerTextStartIndex + flower.length
+        val flowerTextStartIndex = flowerText.indexOf(recommFlower.flower.fNameKR)
+        val flowerTextEndIndex = flowerTextStartIndex + recommFlower.flower.fNameKR.length
 
         val feelingSpannableText = SpannableStringBuilder(feelingText).apply {
             setSpan(

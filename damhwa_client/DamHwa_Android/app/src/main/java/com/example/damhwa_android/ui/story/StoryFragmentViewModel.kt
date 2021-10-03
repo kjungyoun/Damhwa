@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
-import com.example.damhwa_android.data.StoryFlower
-import com.example.damhwa_android.data.StoryFlowers
+import com.example.damhwa_android.data.Flower
+import com.example.damhwa_android.data.History
 import com.example.damhwa_android.repository.StoryRepository
-import com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -29,24 +28,19 @@ class StoryFragmentViewModel(
 
     private val _changeFeelingToFlowerErrorIdSubject: PublishSubject<Int> = PublishSubject.create()
 
-    private val isEnableChangeToFlowerSubject: BehaviorSubject<Boolean> =
-        BehaviorSubject.createDefault(false)
-    val setEnableButtonTrigger: Observable<Boolean> = isEnableChangeToFlowerSubject
-
     private val _isChangingToFlowerSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
 
-    private val _recommendedFlowerFromStorySubject: BehaviorSubject<StoryFlowers> =
-        BehaviorSubject.createDefault(StoryFlowers())
-    val recommendedFlowerListFromStory: Observable<StoryFlowers> =
+    private val _recommendedFlowerFromStorySubject: BehaviorSubject<List<Flower>> =
+        BehaviorSubject.createDefault(emptyList())
+    val recommendedFlowerListFromStory: Observable<List<Flower>> =
         _recommendedFlowerFromStorySubject
-
 
     fun setLetterText() {
         _letterInputSubject.onNext(
-            _letterInputSubject.value?.copy(letterText = letterText.value!!)
-                ?: Letter(letterText = letterText.value!!)
+            _letterInputSubject.value?.copy(msg = letterText.value!!)
+                ?: Letter(msg = letterText.value!!)
         )
     }
 
@@ -61,7 +55,7 @@ class StoryFragmentViewModel(
             .subscribeOn(Schedulers.io())
             .doOnSubscribe { _isChangingToFlowerSubject.onNext(true) }
             .flatMap { letterInput ->
-                if (!letterInput.letterText.isNullOrBlank()) {
+                if (!letterInput.msg.isNullOrBlank()) {
                     storyRepository.changeLetterToFlowers(letterInput)
                 } else {
                     _changeFeelingToFlowerErrorIdSubject.onNext(R.string.void_letter_text)
@@ -77,14 +71,25 @@ class StoryFragmentViewModel(
             .subscribe { response ->
                 if (response != null) {
                     _recommendedFlowerFromStorySubject.onNext(
-                        StoryFlowers(
-                            response.storyFlowers
-                        )
+                        response
                     )
                 }
-                Log.d("로그", response.storyFlowers.toString())
+                Log.d("로그", response.toString())
                 navigateToFlowerDetail()
             }
+            .addToDisposable()
+    }
+
+    fun saveHistory(history: History) {
+        storyRepository.saveHistory(history)
+            .subscribeOn(Schedulers.io())
+            .subscribe({ respone ->
+                if (respone.statusCode != 200) {
+                    Log.e("ErrorLogger - StoryFragmentViewModel - saveHistory", "Error in saving")
+                }
+            }, {
+                Log.e("ErrorLogger - StoryFragmentViewModel - saveHistory", it.message.toString())
+            })
             .addToDisposable()
     }
 
@@ -93,6 +98,6 @@ class StoryFragmentViewModel(
     }
 
     data class Letter(
-        val letterText: String? = null,
+        val msg: String? = null,
     )
 }

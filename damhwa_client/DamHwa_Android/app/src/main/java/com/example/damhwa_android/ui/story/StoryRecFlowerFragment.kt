@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.data.StoryFlower
+import com.example.damhwa_android.data.Flower
 import com.example.damhwa_android.databinding.FragmentStoryRecFlowerBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,14 +44,13 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
                 storyViewModel.clearData()
             }
             .addToDisposable()
-
     }
 
 
     private fun routeToBack() =
         findNavController().navigate(R.id.action_storyRecFlowerFragment_to_storyFragment)
 
-    private fun routeToFlowerDetail(flower: StoryFlower) =
+    private fun routeToFlowerDetail(flower: Flower) =
         findNavController().navigate(
             R.id.action_storyRecFlowerFragment_to_storyFlowerDetailFragment,
             bundleOf("flower" to flower)

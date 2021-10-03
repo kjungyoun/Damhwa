@@ -49,6 +49,7 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
         binding.feelingViewModel = feelingViewModel
         feelingViewModel.feelingText.observe(this, Observer {
             feelingViewModel.setFeelingText()
+            binding.changeFlower.isEnabled = it.length >= 1
         })
 
         feelingViewModel.completeTrigger

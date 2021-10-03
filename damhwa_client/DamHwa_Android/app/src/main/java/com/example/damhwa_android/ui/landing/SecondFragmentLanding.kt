@@ -36,6 +36,4 @@ class SecondFragmentLanding : Fragment() {
             }
         }
     }
-
-
 }
