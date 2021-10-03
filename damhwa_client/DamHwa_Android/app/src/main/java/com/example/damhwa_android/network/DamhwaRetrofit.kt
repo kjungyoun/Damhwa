@@ -10,18 +10,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DamhwaRetrofit {
 
-    const val API_END_POINT = "https://1d717421-0beb-4c41-9e24-f1a44c272dcb.mock.pstmn.io"
+    const val API_END_POINT = "http://j5a503.p.ssafy.io:8080/"
 
     fun <T> create(
         service: Class<T>,
     ): T = Retrofit.Builder()
         .baseUrl(API_END_POINT)
         .client(provideOkHTTPClient(provideLoggingIntercepter()))
-        .addConverterFactory(GsonConverterFactory.create(
-            GsonBuilder()
-                .setLenient()
-                .create()
-        ))
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
         .create(service)
@@ -34,8 +30,7 @@ object DamhwaRetrofit {
 
     private fun provideLoggingIntercepter(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().also {
-            it.level = HttpLoggingInterceptor.Level.HEADERS
+            it.level = HttpLoggingInterceptor.Level.BODY
         }
     }
-
 }

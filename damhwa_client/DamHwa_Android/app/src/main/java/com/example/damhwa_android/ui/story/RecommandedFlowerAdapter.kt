@@ -2,31 +2,27 @@ package com.example.damhwa_android.ui.story
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.damhwa_android.R
-import com.example.damhwa_android.data.StoryFlower
-import com.example.damhwa_android.data.StoryFlowers
+import com.example.damhwa_android.data.Flower
 import com.example.damhwa_android.databinding.ItemRecommendedFlowerBinding
 
 class RecommendedFlowerAdapter(
-    private val navigate: (StoryFlower) -> Unit
+    private val navigate: (Flower) -> Unit
 ):
     RecyclerView.Adapter<RecommendedFlowerAdapter.RecommendedFlowerViewHolder>() {
-    var flowers = StoryFlowers()
+    var flowers = emptyList<Flower>()
 
     inner class RecommendedFlowerViewHolder(val binding: ItemRecommendedFlowerBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 val position = adapterPosition
-                if (position < flowers.storyFlowers.size) {
-                     val flower = flowers.storyFlowers[position]
+                if (position < flowers.size) {
+                     val flower = flowers[position]
                     navigate(flower)
                 }
             }
         }
-        fun bind(flower: StoryFlower) {
+        fun bind(flower: Flower) {
             binding.flower = flower
         }
     }
@@ -37,8 +33,8 @@ class RecommendedFlowerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecommendedFlowerViewHolder, position: Int) {
-        holder.bind(flowers.storyFlowers[position])
+        holder.bind(flowers[position])
     }
 
-    override fun getItemCount() = flowers.storyFlowers.size
+    override fun getItemCount() = flowers.size
 }

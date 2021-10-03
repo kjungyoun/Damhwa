@@ -61,6 +61,7 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
             .addToDisposable()
         storyViewModel.letterText.observe(this, Observer {
             storyViewModel.setLetterText()
+            binding.changeFlower.isEnabled = it.length >= 1
         })
 
         storyViewModel.isChanging
