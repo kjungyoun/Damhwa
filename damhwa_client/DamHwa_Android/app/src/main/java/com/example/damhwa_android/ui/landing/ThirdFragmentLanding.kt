@@ -1,13 +1,17 @@
 package com.example.damhwa_android.ui.landing
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferences
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentThirdLandingBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.example.damhwa_android.ui.MainActivity

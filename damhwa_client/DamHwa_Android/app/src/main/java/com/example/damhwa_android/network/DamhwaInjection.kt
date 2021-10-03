@@ -1,5 +1,8 @@
 package com.example.damhwa_android.network
 
+import android.content.SharedPreferences
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferences
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.network.service.FeelingService
 import com.example.damhwa_android.network.service.LandingService
 import com.example.damhwa_android.network.service.StoryService
