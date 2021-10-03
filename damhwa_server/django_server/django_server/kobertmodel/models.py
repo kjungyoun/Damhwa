@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Feeling(models.Model):
     feelingno = models.BigIntegerField(primary_key=True)
     feelingname = models.CharField(max_length=30, blank=True, null=True)

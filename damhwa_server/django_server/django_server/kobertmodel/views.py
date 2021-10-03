@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.db import connection
 import numpy as np
 import pandas as pd
-
+from .bertModel.test import predict
 # Message Recommend
 @api_view(['POST', 'GET'])
 def msg_recomm(request):
@@ -15,7 +15,8 @@ def msg_recomm(request):
         print("request data : " + data)
 
         # KoBert 감정 분석 모델
-        model_result = [23.1211, 32.52321, 11.9844, 4.012124, 0.0, 27.12341]
+        # model_result = [21.45123, 10.1234, 4.012312, 4.01234, 31.43234, 13.123415]
+        model_result = predict(data)
 
         # knn 알고리즘
         flag = True
@@ -33,8 +34,9 @@ def state_recomm(request):
         print("request data : " + data)
 
         # KoBert 감정 분석 모델 load
-        model_result = [23.1211, 32.52321, 11.9844, 4.012124, 0.0, 27.12341]
-        state = "행복"
+        # model_result = [21.45123, 10.1234, 4.012312, 4.01234, 31.43234, 13.123415]
+        model_result = predict(data)
+        state = model_result[6]
 
         # knn 알고리즘
         flag = False
@@ -93,3 +95,6 @@ def knn(model_result, flag):
     except:
         connection.rollback()
         print("Failed selecting in emotion")
+
+
+
