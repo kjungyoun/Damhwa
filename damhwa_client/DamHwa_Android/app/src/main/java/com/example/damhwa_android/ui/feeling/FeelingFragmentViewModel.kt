@@ -17,6 +17,7 @@ class FeelingFragmentViewModel(
     private val repository: FeelingRepository
 ) : BaseViewModel() {
     var feelingText = MutableLiveData<String>()
+    var feelingHistory = ""
 
     private val _feelingInputSubject: BehaviorSubject<Feeling> =
         BehaviorSubject.createDefault(Feeling())
@@ -85,6 +86,7 @@ class FeelingFragmentViewModel(
     fun clearData() {
         _feelingInputSubject.onNext(Feeling())
         _isCompletedSubject.onNext(false)
+        feelingHistory = feelingText.value ?: ""
         feelingText = MutableLiveData("")
     }
 

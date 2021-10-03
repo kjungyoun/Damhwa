@@ -18,6 +18,7 @@ class StoryFragmentViewModel(
 ) : BaseViewModel() {
 
     var letterText = MutableLiveData<String>()
+    var letterHistory = ""
 
     private val _letterInputSubject: BehaviorSubject<Letter> =
         BehaviorSubject.createDefault(Letter())
@@ -47,6 +48,7 @@ class StoryFragmentViewModel(
     fun clearData() {
         _letterInputSubject.onNext(Letter())
         _isCompletedChangedToFlowerSubject.onNext(false)
+        letterHistory = letterText.value ?: ""
         letterText = MutableLiveData("")
     }
 

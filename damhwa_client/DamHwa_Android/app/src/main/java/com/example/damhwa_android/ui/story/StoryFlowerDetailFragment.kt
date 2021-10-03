@@ -140,7 +140,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),
                 fNo = flower.fno,
                 receiver = "",
-                msg = storyViewModel.letterText.value.toString(),
+                msg = storyViewModel.letterHistory,
                 htype = false
             )
         )
