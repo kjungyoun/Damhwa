@@ -94,7 +94,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             )
         )
         checkKakaoTalkExist(defaultFeed)
-
     }
 
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
