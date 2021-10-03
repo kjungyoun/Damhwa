@@ -31,7 +31,6 @@
         app:layout_constraintStart_toEndOf="@+id/sendFlower"
         app:layout_constraintTop_toTopOf="@+id/sendFlower"/>
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="311dp"
@@ -41,13 +40,25 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:layout_width="410dp"
-        android:layout_height="659dp"
-        android:src="@drawable/cherry_blossom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/cherry_blossom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/black_layout_landing"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

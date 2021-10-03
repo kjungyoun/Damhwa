@@ -9,6 +9,17 @@
         >
 
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/white_box_first_landing"
+            app:layout_constraintEnd_toEndOf="@+id/damHwa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sendFlower" />
+
         <TextView
             android:id="@+id/sendFlower"
             android:layout_width="wrap_content"
@@ -17,7 +28,7 @@
             android:layout_marginTop="56dp"
             android:gravity="center"
             android:textColor="@color/black"
-            android:text="꽃\n으\n로\n\n하\n는\n\n이\n야\n기"
+            android:text="@string/first_landing_flower"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,14 +37,25 @@
             android:id="@+id/damHwa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
             android:gravity="center"
             android:layout_marginTop="20dp"
-            android:text="담\n화"
+            android:text="@string/first_landing_damhwa"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="50sp"
             app:layout_constraintStart_toEndOf="@+id/sendFlower"
             app:layout_constraintTop_toTopOf="@+id/sendFlower" />
+
+
+        <ImageView
+            android:id="@+id/intro_flower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/intro_flower"
+            app:layout_constraintStart_toEndOf="@+id/sendFlower"
+            app:layout_constraintTop_toBottomOf="@+id/damHwa" />
 
         <ImageView
             android:id="@+id/langE"
@@ -42,7 +64,7 @@
             android:src="@drawable/child"
             app:layout_constraintBottom_toBottomOf="@+id/bookBlackLine"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <ImageView
             android:id="@+id/bookBlackLine"
