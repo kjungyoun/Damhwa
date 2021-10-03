@@ -5,14 +5,10 @@ import sys
 # torch
 import torch
 from torch import nn
-from torch.utils.data import Dataset
 import gluonnlp as nlp
 import numpy as np
 from torch.utils.data import Dataset, DataLoader
 
-# kobert
-from kobert.utils import get_tokenizer
-from kobert.pytorch_kobert import get_pytorch_kobert_model
 
 # 모델 정의
 class BERTClassifier(nn.Module):  ## 클래스를 상속

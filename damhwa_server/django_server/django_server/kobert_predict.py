@@ -1,6 +1,10 @@
 from torch.utils.data import Dataset
 from manage import *
+from kobertmodel.apps import KobertmodelConfig
 
+# kobert
+from kobert.utils import get_tokenizer
+from kobert.pytorch_kobert import get_pytorch_kobert_model
 
 def new_softmax(a):
     c = np.max(a)  # 최댓값
@@ -12,12 +16,11 @@ def new_softmax(a):
 
 # 예측 모델 설정
 def predict(predict_sentence):
-    print('predict 성공')
+    msg,predict_sentence = predict_sentence.split(":")
+    print('predict 요청 데이터 : ' + predict_sentence)
     data = [predict_sentence, '0']
     dataset_another = [data]
-    # GPU 사용
-    device = torch.device("cpu")
-    print(device)
+
     # 토큰화
     bertmodel, vocab = get_pytorch_kobert_model()
     tokenizer = get_tokenizer()
@@ -32,25 +35,20 @@ def predict(predict_sentence):
     learning_rate = 5e-5
     print("————————parameter 세팅 완료————————")
 
-    # 모델 load
-    PATH = '/Users/youn/Downloads/kobert/'
-    model = torch.load(PATH + 'KoBERT_86.pt', map_location=device)  # 전체 모델을 통째로 불러옴, 클래스 선언 필수
-    model.load_state_dict(
-        torch.load(PATH + 'model_state_dict_86.pt', map_location=device))  # state_dict를 불러 온 후, 모델에 저장
-    print("————————model-load 완료————————")
+
     another_test = BERTDataset(dataset_another, 0, 1, tok, max_len, True, False)
     test_dataloader = torch.utils.data.DataLoader(another_test, batch_size=batch_size, num_workers=5)
 
-    model.eval()
+    KobertmodelConfig.model.eval()
 
     for token_ids, valid_length, segment_ids, label in test_dataloader:
-        token_ids = token_ids.long().to(device)
-        segment_ids = segment_ids.long().to(device)
+        token_ids = token_ids.long().to(KobertmodelConfig.device)
+        segment_ids = segment_ids.long().to(KobertmodelConfig.device)
 
         valid_length = valid_length
-        label = label.long().to(device)
+        label = label.long().to(KobertmodelConfig.device)
 
-        out = model(token_ids, valid_length, segment_ids)
+        out = KobertmodelConfig.model(token_ids, valid_length, segment_ids)
 
         for i in out:
             logits = i
@@ -62,27 +60,18 @@ def predict(predict_sentence):
                 probability.append(np.round(logit, 3))
 
             if np.argmax(logits) == 0:
-                emotion = "기쁨"
+                emotion = "기쁜"
             elif np.argmax(logits) == 1:
-                emotion = "불안"
+                emotion = "불안한"
             elif np.argmax(logits) == 2:
-                emotion = '당황'
+                emotion = '당황스러운'
             elif np.argmax(logits) == 3:
-                emotion = '슬픔'
+                emotion = '슬픈'
             elif np.argmax(logits) == 4:
-                emotion = '분노'
+                emotion = '분노에 찬'
             elif np.argmax(logits) == 5:
-                emotion = '상처'
+                emotion = '상처받은'
 
             probability.append(emotion)
             print(probability)
     return probability
-
-    # # 데이터 시연
-    # end = 1
-    # while end == 1:
-    #     sentence = input("하고싶은 말을 입력해주세요 : ")
-    #     if len(sentence) < 5:
-    #         break
-    #     predict(sentence)
-    #     print("\n")

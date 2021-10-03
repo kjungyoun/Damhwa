@@ -18,7 +18,7 @@ def msg_recomm(request):
         # KoBert 감정 분석 모델
         # model_result = [21.45123, 10.1234, 4.012312, 4.01234, 31.43234, 13.123415]
         sys.path.append(path.join(path.dirname(__file__), '..'))
-        from test import predict
+        from kobert_predict import predict
         model_result = predict(data)
 
         # knn 알고리즘
@@ -37,7 +37,8 @@ def state_recomm(request):
         print("request data : " + data)
 
         # KoBert 감정 분석 모델 load
-        # model_result = [21.45123, 10.1234, 4.012312, 4.01234, 31.43234, 13.123415]
+        sys.path.append(path.join(path.dirname(__file__), '..'))
+        from kobert_predict import predict
         model_result = predict(data)
         state = model_result[6]
 
