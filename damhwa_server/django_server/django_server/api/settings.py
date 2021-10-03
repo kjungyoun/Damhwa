@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kobertmodel',
+    'django_server',
 ]
 
 MIDDLEWARE = [

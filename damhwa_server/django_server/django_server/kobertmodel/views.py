@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.db import connection
 import numpy as np
 import pandas as pd
-from .bertModel.test import predict
+from django_server.test import predict
 # Message Recommend
 @api_view(['POST', 'GET'])
 def msg_recomm(request):

@@ -9,6 +9,8 @@ from torch.utils.data import Dataset, DataLoader
 # kobert
 from kobert.utils import get_tokenizer
 from kobert.pytorch_kobert import get_pytorch_kobert_model
+from django_server.manage import model
+from django_server.manage import tok
 
 
 # 모델 정의
@@ -145,3 +147,11 @@ if __name__ == "__main__":
     tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
     print("————————토큰화 완료————————")
     print("————————데이터 시연 시작! ————————")
+    # # 데이터 시연
+    # end = 1
+    # while end == 1:
+    #     sentence = input("하고싶은 말을 입력해주세요 : ")
+    #     if len(sentence) < 5:
+    #         break
+    #     predict(sentence)
+    #     print("\n")
