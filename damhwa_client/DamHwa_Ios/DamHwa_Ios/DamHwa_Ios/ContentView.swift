@@ -1,42 +1,123 @@
 //
 //  ContentView.swift
-//  DamHwa_Ios
+//  ACarouselDemo iOS
 //
-//  Created by minkpang on 2021/09/23.
+//  Created by Autumn on 2020/11/16.
 //
 
 import SwiftUI
+import ACarousel
+               
+struct Item: Identifiable {
+    let id = UUID()
+    let image: Image
+}
+
+let roles = ["Luffy", "Zoro", "Sanji", "Nami", "Usopp", "Chopper", "Robin", "Franky", "Brook"]
 
 struct ContentView: View {
+    
+    @State var spacing: CGFloat = 10
+    @State var headspace: CGFloat = 10
+    @State var sidesScaling: CGFloat = 0.8
+    @State var isWrap: Bool = false
+    @State var autoScroll: Bool = false
+    @State var time: TimeInterval = 1
+    @State var currentIndex: Int = 0
+    
     var body: some View {
         NavigationView{
-            VStack {
-                Text("Hello, world!")
-                    .padding()
-                TextField("Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(""))
-                NavigationLink(destination: TextRecommend()){
-                    Text("꽃으로 전하기")
-                }
-                TabView {
-                    
-                    Text("담").tabItem {
-                        Image(systemName: "list.dash")
-                        Text("담")
+        VStack {
+            Text("\(currentIndex + 1)/\(roles.count)")
+            Spacer().frame(height: 40)
+            NavigationLink(
+                destination: Text("\(currentIndex + 1)"),
+                label: {
+                    ACarousel(roles,
+                              id: \.self,
+                              index: $currentIndex,
+                              spacing: spacing,
+                              headspace: headspace,
+                              sidesScaling: sidesScaling,
+                              isWrap: isWrap,
+                              autoScroll: autoScroll ? .active(time) : .inactive) { name in
+                        Image(name)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 300)
+                            .cornerRadius(30)
                     }
-                    Text("화").tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("화")
-                    }
-                }
-            }.navigationBarTitle("서신쓰기",displayMode: .inline)
+                    .frame(height: 300)
+                })
             
+            Spacer()
+            
+//            ControlPanel(spacing: $spacing,
+//                         headspace: $headspace,
+//                         sidesScaling: $sidesScaling,
+//                         isWrap: $isWrap,
+//                         autoScroll: $autoScroll,
+//                         duration: $time)
+//            Spacer()
+            }
         }
-        
     }
 }
+
+//struct ControlPanel: View {
+//
+//    @Binding var spacing: CGFloat
+//    @Binding var headspace: CGFloat
+//    @Binding var sidesScaling: CGFloat
+//    @Binding var isWrap: Bool
+//    @Binding var autoScroll: Bool
+//    @Binding var duration: TimeInterval
+//
+//    var body: some View {
+//        VStack {
+//            Group {
+//                HStack {
+//                    Text("spacing: ").frame(width: 120)
+//                    Slider(value: $spacing, in: 0...30, minimumValueLabel: Text("0"), maximumValueLabel: Text("30")) { EmptyView() }
+//                }
+//                HStack {
+//                    Text("headspace: ").frame(width: 120)
+//                    Slider(value: $headspace, in: 0...30, minimumValueLabel: Text("0"), maximumValueLabel: Text("30")) { EmptyView() }
+//                }
+//                HStack {
+//                    Text("sidesScaling: ").frame(width: 120)
+//                    Slider(value: $sidesScaling, in: 0...1, minimumValueLabel: Text("0"), maximumValueLabel: Text("1")) { EmptyView() }
+//                }
+//                HStack {
+//                    Toggle(isOn: $isWrap, label: {
+//                        Text("wrap: ").frame(width: 120)
+//                    })
+//                }
+//                VStack {
+//                    HStack {
+//                        Toggle(isOn: $autoScroll, label: {
+//                            Text("autoScroll: ").frame(width: 120)
+//                        })
+//                    }
+//                    if autoScroll {
+//                        HStack {
+//                            Text("duration: ").frame(width: 120)
+//                            Slider(value: $duration, in: 1...10, minimumValueLabel: Text("1"), maximumValueLabel: Text("10")) { EmptyView() }
+//                        }
+//                    }
+//                }
+//            }.navigationBarTitle("Carousel", displayMode: .inline)
+//        }
+//        .padding([.horizontal, .bottom])
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+
+
+
