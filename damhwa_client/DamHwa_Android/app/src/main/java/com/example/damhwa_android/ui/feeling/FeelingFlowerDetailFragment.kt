@@ -94,7 +94,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             )
         )
         checkKakaoTalkExist(defaultFeed)
-
     }
 
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
@@ -132,7 +131,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),
                 fNo = recommFlower.flower.fno,
                 receiver = "",
-                msg = feelingViewModel.feelingText.value.toString(),
+                msg = feelingViewModel.feelingHistory,
                 htype = true
             )
         )
