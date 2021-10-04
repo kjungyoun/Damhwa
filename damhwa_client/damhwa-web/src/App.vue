@@ -33,6 +33,18 @@ body {
   background-image: url("~@/assets/letter_bg.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover
+  background-size: cover;
+  font-family: 'SangSangRock';
+}
+
+.button {
+  border: 3px solid black;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  margin-top: 20px;
+  color: black;
+  font-family: 'SangSangRock';
 }
 </style>
