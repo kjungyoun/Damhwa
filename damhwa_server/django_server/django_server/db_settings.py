@@ -5,8 +5,8 @@ DATABASES = {
 		'NAME' : 'damhwa',
 		'USER' : 'ssafy',
 		'PASSWORD' : 'ssafy',
-		# 'HOST' : '3.38.108.66', 배포 시
-		'HOST' : 'localhost',
+		'HOST' : '3.38.108.66', #배포 시
+		# 'HOST' : 'localhost',
 		'PORT' : '3306',
 	}
 }
