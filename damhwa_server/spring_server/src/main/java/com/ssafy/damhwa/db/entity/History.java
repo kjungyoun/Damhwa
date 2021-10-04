@@ -29,4 +29,8 @@ public class History {
 //    @ManyToOne
 //    @JoinColumn(name = "userno",referencedColumnName = "userno",insertable = false, updatable = false)
 //    User user;
+
+    @OneToOne
+    @JoinColumn(name= "fno", referencedColumnName = "fno", insertable = false, updatable = false)
+    Flower flower;
 }
