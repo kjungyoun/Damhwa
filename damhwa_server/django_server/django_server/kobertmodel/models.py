@@ -1,15 +1,6 @@
 from django.db import models
 
 
-class Feeling(models.Model):
-    feelingno = models.BigIntegerField(primary_key=True)
-    feelingname = models.CharField(max_length=30, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'feeling'
-
-
 class Flower(models.Model):
     fno = models.BigIntegerField(primary_key=True)
     fnamekr = models.CharField(db_column='fnameKR', max_length=40, blank=True, null=True)  # Field name made lowercase.
