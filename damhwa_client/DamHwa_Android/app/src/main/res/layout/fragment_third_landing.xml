@@ -77,7 +77,7 @@
             android:gravity="left"
             android:text="@string/third_landing_damhwa"
             android:textColor="@color/black"
-            android:textSize="50dp"
+            android:textSize="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="70dp" />
 
         <ImageView
             android:id="@+id/third_landing_flower"
@@ -123,13 +123,17 @@
             />
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/black_layout_landing"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/black_layout_landing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

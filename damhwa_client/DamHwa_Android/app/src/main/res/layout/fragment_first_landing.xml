@@ -8,63 +8,26 @@
         android:layout_height="match_parent"
         >
 
-
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/firstLandingPoster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/white_box_first_landing"
-            app:layout_constraintEnd_toEndOf="@+id/damHwa"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/sendFlower" />
-
-        <TextView
-            android:id="@+id/sendFlower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="56dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="@string/first_landing_flower"
-            android:textSize="30sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/first_landing_poster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/damHwa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="@string/first_landing_damhwa"
-            android:textColor="@color/black"
-            android:textSize="50sp"
-            app:layout_constraintStart_toEndOf="@+id/sendFlower"
-            app:layout_constraintTop_toTopOf="@+id/sendFlower" />
-
-
-        <ImageView
-            android:id="@+id/intro_flower"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/intro_flower"
-            app:layout_constraintStart_toEndOf="@+id/sendFlower"
-            app:layout_constraintTop_toBottomOf="@+id/damHwa" />
 
         <ImageView
             android:id="@+id/langE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
             android:src="@drawable/child"
             app:layout_constraintBottom_toBottomOf="@+id/bookBlackLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintEnd_toEndOf="@+id/bookBlackLine"
+            app:layout_constraintStart_toStartOf="@+id/firstLandingPoster"
+            app:layout_constraintTop_toBottomOf="@+id/firstLandingPoster" />
 
         <ImageView
             android:id="@+id/bookBlackLine"
