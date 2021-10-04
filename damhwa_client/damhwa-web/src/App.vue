@@ -9,6 +9,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 body {
   background: #F2EEE5;
   font-family: 'SangSangRock';
@@ -19,19 +20,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
 }
 
-#nav {
-  padding: 30px;
+.title {
+  font-family: 'SangSangRock';
+  color: black;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.detail-bg {
+  height: 100vh;
+  background-image: url("~@/assets/letter_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover
 }
 </style>

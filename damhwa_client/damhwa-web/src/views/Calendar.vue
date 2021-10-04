@@ -102,10 +102,12 @@ export default {
 </script>
 
 <style scoped>
-
-.title {
-  font-family: 'SangSangRock';
-  color: black;
+.calendar-bg {
+  height: 100vh;
+  background-image: url("~@/assets/calender_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .list {
