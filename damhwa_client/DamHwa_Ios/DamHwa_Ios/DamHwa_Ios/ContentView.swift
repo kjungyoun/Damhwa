@@ -14,6 +14,7 @@ struct Item: Identifiable {
 }
 
 let roles = ["Luffy", "Zoro", "Sanji", "Nami", "Usopp", "Chopper", "Robin", "Franky", "Brook"]
+let testF = [241,214]
 
 struct ContentView: View {
     
@@ -24,14 +25,22 @@ struct ContentView: View {
     @State var autoScroll: Bool = false
     @State var time: TimeInterval = 1
     @State var currentIndex: Int = 0
+    @State var msg: String
+    @State var fArray = [Int]()
     
     var body: some View {
         NavigationView{
         VStack {
+            
+            Spacer().frame(height:30)
+            Text("\(msg)")
+            Text("이야기")
+                .padding()
+                .font(.custom("SangSangRockOTF", size: 35))
             Text("\(currentIndex + 1)/\(roles.count)")
             Spacer().frame(height: 40)
             NavigationLink(
-                destination: Text("\(currentIndex + 1)"),
+                destination: DetailFlower(index: currentIndex + 1, name: roles[currentIndex]),
                 label: {
                     ACarousel(roles,
                               id: \.self,
@@ -43,78 +52,37 @@ struct ContentView: View {
                               autoScroll: autoScroll ? .active(time) : .inactive) { name in
                         Image(name)
                             .resizable()
-                            .scaledToFill()
-                            .frame(height: 300)
-                            .cornerRadius(30)
+                            .frame(height: 500)
+                            .cornerRadius(60)
                     }
-                    .frame(height: 300)
+                    .frame(height: 500)
                 })
-            
             Spacer()
-            
-//            ControlPanel(spacing: $spacing,
-//                         headspace: $headspace,
-//                         sidesScaling: $sidesScaling,
-//                         isWrap: $isWrap,
-//                         autoScroll: $autoScroll,
-//                         duration: $time)
-//            Spacer()
             }
+        .background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
+        .ignoresSafeArea()
         }
     }
 }
 
-//struct ControlPanel: View {
-//
-//    @Binding var spacing: CGFloat
-//    @Binding var headspace: CGFloat
-//    @Binding var sidesScaling: CGFloat
-//    @Binding var isWrap: Bool
-//    @Binding var autoScroll: Bool
-//    @Binding var duration: TimeInterval
-//
-//    var body: some View {
-//        VStack {
-//            Group {
-//                HStack {
-//                    Text("spacing: ").frame(width: 120)
-//                    Slider(value: $spacing, in: 0...30, minimumValueLabel: Text("0"), maximumValueLabel: Text("30")) { EmptyView() }
-//                }
-//                HStack {
-//                    Text("headspace: ").frame(width: 120)
-//                    Slider(value: $headspace, in: 0...30, minimumValueLabel: Text("0"), maximumValueLabel: Text("30")) { EmptyView() }
-//                }
-//                HStack {
-//                    Text("sidesScaling: ").frame(width: 120)
-//                    Slider(value: $sidesScaling, in: 0...1, minimumValueLabel: Text("0"), maximumValueLabel: Text("1")) { EmptyView() }
-//                }
-//                HStack {
-//                    Toggle(isOn: $isWrap, label: {
-//                        Text("wrap: ").frame(width: 120)
-//                    })
-//                }
-//                VStack {
-//                    HStack {
-//                        Toggle(isOn: $autoScroll, label: {
-//                            Text("autoScroll: ").frame(width: 120)
-//                        })
-//                    }
-//                    if autoScroll {
-//                        HStack {
-//                            Text("duration: ").frame(width: 120)
-//                            Slider(value: $duration, in: 1...10, minimumValueLabel: Text("1"), maximumValueLabel: Text("10")) { EmptyView() }
-//                        }
-//                    }
-//                }
-//            }.navigationBarTitle("Carousel", displayMode: .inline)
-//        }
-//        .padding([.horizontal, .bottom])
-//    }
-//}
+
+
+// swipe back 
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(msg:"",fArray:[])
     }
 }
 

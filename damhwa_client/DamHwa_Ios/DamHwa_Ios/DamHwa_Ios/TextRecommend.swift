@@ -36,11 +36,13 @@ struct AppleUser: Codable {
 }
 
 struct TextRecommend: View {
+    @EnvironmentObject var authentication: Authentication
     @Environment(\.colorScheme) var colorScheme
     @State var name : String =  "before login"
     
     var body: some View {
         VStack{
+            Spacer()
         SignInWithAppleButton(.signIn, onRequest: configure, onCompletion: handle)
             .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
             .frame(height: 45)
@@ -69,7 +71,7 @@ struct TextRecommend: View {
                 }
                 else {
                     print("accessTokenInfo() success.")
-
+                    authentication.updateValidation(success: true)
                     //do something
                     let kakaoToken = accessTokenInfo
                     print(kakaoToken)
@@ -101,7 +103,24 @@ struct TextRecommend: View {
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {
                         _ = AuthController.handleOpenUrl(url: url)
                     }
+                    
                 })
+            Spacer()
+        }.onAppear{
+            if (AuthApi.hasToken()) {
+                UserApi.shared.accessTokenInfo { (_, error) in
+                    if let error = error {
+                        authentication.updateValidation(success: false)
+                    }
+                    else {
+                        authentication.updateValidation(success: true)
+                        //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                    }
+                }
+            }
+            else {
+                //로그인 필요
+            }
         }
       }
     
@@ -109,6 +128,7 @@ struct TextRecommend: View {
         request.requestedScopes = [.fullName, .email]
         
     }
+        
     func handle(_ authResult: Result<ASAuthorization, Error>){
         switch authResult {
         case .success(let auth):

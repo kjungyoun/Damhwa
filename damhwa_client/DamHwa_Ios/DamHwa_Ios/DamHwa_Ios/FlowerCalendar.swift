@@ -7,16 +7,23 @@
 
 import SwiftUI
 
+struct Msg: Encodable{
+    let msg: String
+}
+
 struct FlowerCalendar: View {
     
     @State var text : String =  "before test"
     
     func post() {
         let text = self.text
-        let param = "text=\(text)"
-        let paramData = param.data(using: .utf8)
+        let param = Msg(msg: "testmsg")
+//        let param = "text=\(text)"
+//        let paramData = param.data(using: .utf8)
+//        let param = Msg(msg:"\(text)")
+        let paramData = try? JSONEncoder().encode(param)
         
-        let url = URL(string: "https://e1804655-4546-4e34-9b59-9f47db9b121c.mock.pstmn.io/test3")
+        let url = URL(string: "http://j5a503.p.ssafy.io:8080/api/recomm/msg")
         
         var request = URLRequest(url: url!)
                 request.httpMethod = "POST"
@@ -25,6 +32,7 @@ struct FlowerCalendar: View {
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
                 request.setValue(String(paramData!.count), forHTTPHeaderField: "Content-Length")
        
+        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                     // 서버가 응답 없거나 통신이 실패했을때
                     if let e = error {
