@@ -1,5 +1,8 @@
 <template>
-  <p>Feeling</p>
+  <div class="detail-bg">
+    <h1 class="title"> 추천 꽃 </h1>
+
+  </div>
 </template>
 
 <script>
@@ -9,5 +12,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>
