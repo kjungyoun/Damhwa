@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VCalendar from 'v-calendar';
-
+import {SetupCalendar, Calendar, DatePicker} from 'v-calendar';
 createApp(App)
 .use(router)
-.use(VCalendar, {})
+.use(SetupCalendar, {})
+.component('Calendar', Calendar)
+.component('DatePicker', DatePicker)
+
 .mount('#app')
