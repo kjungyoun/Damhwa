@@ -70,7 +70,7 @@ class StoryFragmentViewModel(
             }
             .doOnSuccess { _isChangingToFlowerSubject.onNext(false) }
             .doOnError { _isChangingToFlowerSubject.onNext(false) }
-            .subscribe { response ->
+            .subscribe({ response ->
                 if (response != null) {
                     _recommendedFlowerFromStorySubject.onNext(
                         response
@@ -78,7 +78,9 @@ class StoryFragmentViewModel(
                 }
                 Log.d("로그", response.toString())
                 navigateToFlowerDetail()
-            }
+            }, {
+                Log.e("ErrorLogger - StoryFragmentViewModel - changeFlower", it.message.toString())
+            })
             .addToDisposable()
     }
 

@@ -55,14 +55,16 @@ class FeelingFragmentViewModel(
             }
             .doOnSuccess { _isChangingSubject.onNext(false) }
             .doOnError { _isChangingSubject.onNext(false) }
-            .subscribe { response ->
+            .subscribe ({ response ->
                 if (response != null) {
                     _recommFlowerSubject.onNext(
                         response
                     )
                 }
                 navigateToFlowerDetail()
-            }
+            }, {
+                Log.e("ErrorLogger - FeelingFragmentViewModel - changeFlower", it.message.toString())
+            })
             .addToDisposable()
     }
 

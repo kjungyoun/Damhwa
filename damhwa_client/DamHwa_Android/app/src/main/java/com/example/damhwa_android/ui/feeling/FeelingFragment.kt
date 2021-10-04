@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.custom.LoadingDialogFragment
 import com.example.damhwa_android.databinding.FragmentFeelingBinding
 import com.example.damhwa_android.network.DamhwaInjection
+import com.example.damhwa_android.ui.MainActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -21,7 +21,6 @@ import io.reactivex.rxkotlin.addTo
 class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
     R.layout.fragment_feeling
 ) {
-    private val loadingDialogFragment by lazy { LoadingDialogFragment() }
     private val disposables by lazy { CompositeDisposable() }
     private val feelingViewModel by activityViewModels<FeelingFragmentViewModel> {
         object : ViewModelProvider.Factory {
@@ -75,20 +74,8 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
 
     fun checkLoading(loading: Boolean) {
         when (loading) {
-            true -> startLoadingSpinner()
-            false -> hideLoadingSpinner()
-        }
-    }
-
-    private fun startLoadingSpinner() {
-        if (!loadingDialogFragment.isAdded){
-            loadingDialogFragment.show(requireActivity().supportFragmentManager, "loader")
-        }
-    }
-
-    private fun hideLoadingSpinner() {
-        if (loadingDialogFragment.isAdded) {
-            loadingDialogFragment.dismissAllowingStateLoss()
+            true -> (activity as MainActivity).loadingDialog.show()
+            false -> (activity as MainActivity).loadingDialog.dismiss()
         }
     }
 
