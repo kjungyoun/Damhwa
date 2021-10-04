@@ -53,22 +53,7 @@ export default {
       historyDates: [],
       date: new Date(),
       attributes: [
-        {
-          dot: {
-            style: {
-              "background-color": "#7C947D",
-            },
-          },
-          dates: this.historyDates,
-        },
-        {
-          dot: {
-            style: {
-              "background-color": "#F4AFA9",
-            },
-          },
-          dates: this.historyDates,
-        },
+        
       ],
       filteredHistories: [],
     };
@@ -89,7 +74,6 @@ export default {
     },
     sendUserNo(userNo) {
       console.log(userNo)
-      alert("origin: ", userNo);
     },
     isMatched(selectedDate, date) {
       return (
@@ -101,7 +85,7 @@ export default {
     checkDateAndFiltering() {
       this.filteredHistories = histories.filter((history) => {
         const dateObj = new Date(history.regdate);
-        const selectedDateObj = new Date(this.calendarData.date);
+        const selectedDateObj = new Date(this.date);
 
         if (this.isMatched(selectedDateObj, dateObj)) {
           return dateObj;
@@ -118,15 +102,29 @@ export default {
         tmpDateObj.getDate()
       );
     });
-    console.log(this.historyDates)
+    this.attributes.push({
+          dot: {
+            style: {
+              "background-color": "#7C947D",
+            },
+          },
+          dates: this.historyDates,
+        },
+        {
+          dot: {
+            style: {
+              "background-color": "#F4AFA9",
+            },
+          },
+          dates: this.historyDates,
+        })
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),
     };
   },
   watch: {
-    data: function(msgNew, msgOld) {
-      console.log(msgNew, msgOld)
+    date: function() {
       this.checkDateAndFiltering();
     },
   },
