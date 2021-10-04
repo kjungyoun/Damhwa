@@ -45,16 +45,18 @@
 </template>
 
 <script>
-import histories from "../data/dumpData.json";
+import axios from "axios";
+import constants from "../util/constants";
+
 export default {
   name: "Calendar",
   data() {
     return {
-      historyDates: [],
+      histories: [],
+      hFeelingDates: [],
+      hLetterDates: [],
       date: new Date(),
-      attributes: [
-        
-      ],
+      attributes: [],
       filteredHistories: [],
     };
   },
@@ -73,7 +75,7 @@ export default {
       }
     },
     sendUserNo(userNo) {
-      console.log(userNo)
+      this.getHistoryData(userNo);
     },
     isMatched(selectedDate, date) {
       return (
@@ -82,8 +84,64 @@ export default {
         selectedDate.getDate() == date.getDate()
       );
     },
+    getHistoryData(userNo) {
+      console.log(userNo);
+      axios
+        .get(constants.BASE_URL, {
+          params: {
+            userno: userNo,
+          },
+        })
+        .then((res) => {
+          this.histories = res.data
+          this.filterInTwoType(res.data)
+        });
+    },
+    filterInTwoType(histories) {
+      this.hFeelingDates = histories
+        .filter((it) => it.htype)
+        .map((history) => {
+          const tmpDateObj = new Date(history.regdate);
+          return new Date(
+            tmpDateObj.getFullYear(),
+            tmpDateObj.getMonth(),
+            tmpDateObj.getDate()
+          );
+        });
+      this.hLetterDates = histories
+        .filter((it) => !it.htype)
+        .map((history) => {
+          const tmpDateObj = new Date(history.regdate);
+          return new Date(
+            tmpDateObj.getFullYear(),
+            tmpDateObj.getMonth(),
+            tmpDateObj.getDate()
+          );
+        });
+        this.setDatesInCalendar()
+    },
+    setDatesInCalendar() {
+      this.attributes.push(
+      {
+        dot: {
+          style: {
+            "background-color": "#7C947D",
+          },
+        },
+        dates: this.hLetterDates,
+      },
+      {
+        dot: {
+          style: {
+            "background-color": "#F4AFA9",
+          },
+        },
+        dates: this.hFeelingDates,
+      }
+    );
+    },
     checkDateAndFiltering() {
-      this.filteredHistories = histories.filter((history) => {
+      this.filteredHistories = this.histories.filter((history) => {
         const dateObj = new Date(history.regdate);
         const selectedDateObj = new Date(this.date);
 
@@ -94,30 +152,6 @@ export default {
     },
   },
   beforeMount() {
-    this.historyDates = histories.map((data) => {
-      const tmpDateObj = new Date(data.regdate);
-      return new Date(
-        tmpDateObj.getFullYear(),
-        tmpDateObj.getMonth(),
-        tmpDateObj.getDate()
-      );
-    });
-    this.attributes.push({
-          dot: {
-            style: {
-              "background-color": "#7C947D",
-            },
-          },
-          dates: this.historyDates,
-        },
-        {
-          dot: {
-            style: {
-              "background-color": "#F4AFA9",
-            },
-          },
-          dates: this.historyDates,
-        })
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),

@@ -14,7 +14,3 @@ createApp(App)
 .component('DatePicker', DatePicker)
 .mount('#app')
 
-const sendUserNo = (userno) => {
-  console.log(userno)
-}
-window.sendUserNo = sendUserNo
