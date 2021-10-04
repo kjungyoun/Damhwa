@@ -14,9 +14,6 @@ class FlowerStoreActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.addJavascriptInterface(WebAppInterface(this), "FlowerStore" )
 
-        webView.loadUrl("file:///android_asset/sample.html")
-
-
+        webView.loadUrl("http://192.168.0.7:8080/find")
     }
-
 }

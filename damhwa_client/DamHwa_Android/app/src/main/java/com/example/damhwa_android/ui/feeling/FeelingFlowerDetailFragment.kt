@@ -115,6 +115,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
             try {
                 KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
+                saveHistory()
             } catch(e: UnsupportedOperationException) {
             }
 
