@@ -12,12 +12,14 @@ const routes = [
   {
     path: '/feelingdetail/:historyId',
     name: 'FeelingDetail',
-    component: FeelingDetail
+    component: FeelingDetail,
+    props: true
   },
   {
     path: '/letterdetail/:historyId',
     name: 'LetterDetail',
-    component: LetterDetail
+    component: LetterDetail,
+    props: true
   }
 ]
 
