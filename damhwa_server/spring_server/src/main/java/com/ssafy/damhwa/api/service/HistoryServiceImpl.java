@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HistoryServiceImpl implements HistoryService{
@@ -56,6 +57,15 @@ public class HistoryServiceImpl implements HistoryService{
     public List<History> getHistoryList(long userno) {
         List<History> list = historyRepository.findAllByUserno(userno);
         return list;
+    }
+
+    @Override
+    public History getHistory(long hno) {
+        Optional<History> result = historyRepository.findByHno(hno);
+        if(result.isPresent())
+            return result.get();
+        else
+            return null;
     }
 
 }
