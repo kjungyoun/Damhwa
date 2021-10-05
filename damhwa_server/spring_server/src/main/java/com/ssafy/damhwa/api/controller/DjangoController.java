@@ -32,12 +32,12 @@ public class DjangoController {
 
     // 기분 기반 추천
     @PostMapping("/state")
-    public ResponseEntity<FlowerNEmotionRes> stateRecomm (@RequestBody StateRecommReq stateRecommReq){
+    public ResponseEntity<Flower> stateRecomm (@RequestBody StateRecommReq stateRecommReq){
         String state = stateRecommReq.getState();
         System.out.println(state);
-        FlowerNEmotionRes response = djangoService.getStateRecommendFlower(state);
+        Flower response = djangoService.getStateRecommendFlower(state);
 
-        return new ResponseEntity<FlowerNEmotionRes>(response, HttpStatus.OK);
+        return new ResponseEntity<Flower>(response, HttpStatus.OK);
     }
 
 }
