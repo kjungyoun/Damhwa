@@ -21,6 +21,9 @@ struct Flower: Codable {
     let flang:String
     let fcontents:String
     let fgrow:String
+    let img1:String
+    let watercolor_img:String
+
     
 }
 
@@ -54,42 +57,53 @@ struct AlamofireTest: View {
                            parameters: mm,
                            encoder: JSONParameterEncoder.default).response { response in
                             guard let data = String(bytes: response.value!!, encoding: .utf8)else{return}
-                            print("\(data)")
-
+                            var fnoArr = [Int]()
+                            var fimgArr = [String]()
+                            
+                            let data2 = Data(data.utf8)
+                            do {
+                                let f = try JSONDecoder().decode([Flower].self, from: data2)
+                                for i in f{
+                                    fnoArr.append(i.fno)
+                                    fimgArr.append(i.img1)
+                                }
+                                print(fnoArr)
+                                print(fimgArr)
+                            } catch {
+                                print(error)
+                            }
                             
                 }
             }, label: {
                 Text("Button2")
             })
-        }.onAppear{
-            let mm = Mm(msg: "testmsg")
-            
-            AF.request("http://j5a503.p.ssafy.io:8080/api/recomm/msg",
-                       method: .post,
-                       parameters: mm,
-                       encoder: JSONParameterEncoder.default).response { response in
-                        guard let data = String(bytes: response.value!!, encoding: .utf8)else{return}
-                        
-                        var fnoArr = [Int]()
-                        
-                        let data2 = Data(data.utf8)
-                        do {
-                            let f = try JSONDecoder().decode([Flower].self, from: data2)
-                            print(f)
-                            for i in f{
-                                print(i)
-                                fnoArr.append(i.fno)
-
-                            }
-                            print(fnoArr)
-                        } catch {
-                            print(error)
-                        }
-                        print("------")
-                        print("\(data)")
-                 
-            }
         }
+//        .onAppear{
+//            let mm = Mm(msg: "testmsg")
+//            
+//            AF.request("http://j5a503.p.ssafy.io:8080/api/recomm/msg",
+//                       method: .post,
+//                       parameters: mm,
+//                       encoder: JSONParameterEncoder.default).response { response in
+//                        guard let data = String(bytes: response.value!!, encoding: .utf8)else{return}
+//                        
+//                        var fnoArr = [Int]()
+//                        var fimgArr = [String]()
+//                        
+//                        let data2 = Data(data.utf8)
+//                        do {
+//                            let f = try JSONDecoder().decode([Flower].self, from: data2)
+//                            for i in f{
+//                                fnoArr.append(i.fno)
+//                                fimgArr.append(i.img1)
+//                            }
+//                            print(fnoArr)
+//                            print(fimgArr)
+//                        } catch {
+//                            print(error)
+//                        }
+//            }
+//        }
     }
 }
 

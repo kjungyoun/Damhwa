@@ -24,6 +24,7 @@ struct Flower2: Codable {
     let fuse:String
     let fgrow:String
     let img1:String
+    let watercolor_img:String
     
 }
 
@@ -50,7 +51,7 @@ extension String{
 
 struct DetailFlower: View {
     var index: Int
-    @State var name: String
+    @State var name: Int
     @State var fname: String = ""
     @State var fdesc: String = ""
     @State var flang: String = ""
@@ -59,34 +60,34 @@ struct DetailFlower: View {
     
     var body: some View {
         NavigationView{
-        VStack{
-            Spacer().frame(height:30)
-            Text("\(fname)")
-                .padding()
-                .font(.custom("SangSangRockOTF", size: 35))
-                .frame(width:2000)
-            Image(uiImage: "\(fimg)".load())
-                .resizable()
-                .frame(width: 350, height: 400)
-                .cornerRadius(60)
-                .padding()
-            
-            Text("\(fdesc)")
-                .frame(width: 360, height: 150, alignment: .topLeading)
-                .background(Color.white.opacity(0.5))
-                .padding()
-                .font(.custom("SangSangRockOTF", size: 15))
-            
-            Button(action: Link, label: {
-                Text("공유하기")
-            })
-            Spacer()
-        }.background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255)
-        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
-        .ignoresSafeArea()
+            VStack{
+                Spacer().frame(height:30)
+                Text("\(fname)")
+                    .padding()
+                    .font(.custom("SangSangRockOTF", size: 35))
+                    .frame(width:2000)
+                Image(uiImage: "\(fimg)".load())
+                    .resizable()
+                    .frame(width: 350, height: 400)
+                    .cornerRadius(60)
+                    .padding()
+                
+                Text("\(fdesc)")
+                    .frame(width: 360, height: 150, alignment: .topLeading)
+                    .background(Color.white.opacity(0.5))
+                    .padding()
+                    .font(.custom("SangSangRockOTF", size: 15))
+                
+                Button(action: Link, label: {
+                    Text("공유하기")
+                })
+                Spacer()
+            }.background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255)
+                            .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
+            .ignoresSafeArea()
         }.onAppear{
             do {
-                let url = URL(string: "http://j5a503.p.ssafy.io:8080/flower/detail/?fno=241")
+                let url = URL(string: "http://j5a503.p.ssafy.io:8080/flower/detail/?fno=\(name)")
                 let response = try String(contentsOf: url!)
                 
                 let data2 = Data(response.utf8)
@@ -96,7 +97,7 @@ struct DetailFlower: View {
                     fname = f.fname_KR
                     fdesc = f.fcontents
                     flang = f.flang
-                    fimg = f.img1
+                    fimg = f.watercolor_img
                 } catch {
                     print("----")
                     print(error)
@@ -110,10 +111,10 @@ struct DetailFlower: View {
     }
     func Link(){
         let title = "피드 메시지"
-            let description = "피드 메시지 예제"
-
-            let feedTemplateJsonStringData =
-              """
+        let description = "피드 메시지 예제"
+        
+        let feedTemplateJsonStringData =
+            """
               {
                   "objectType": "feed",
                   "content": {
@@ -148,26 +149,28 @@ struct DetailFlower: View {
                   ]
               }
               """.data(using: .utf8)!
-
-            if let templatable = try? JSONDecoder().decode(FeedTemplate.self, from: feedTemplateJsonStringData) {
-              LinkApi.shared.defaultLink(templatable: templatable) { linkResult, error in
+        
+        if let templatable = try? JSONDecoder().decode(FeedTemplate.self, from: feedTemplateJsonStringData) {
+            LinkApi.shared.defaultLink(templatable: templatable) { linkResult, error in
                 if let error = error {
-                  print(error)
+                    print(error)
                 }
                 else {
-                  print("defaultLink() success.")
-
-                  if let linkResult = linkResult {
-                    UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
-                  }
+                    print("defaultLink() success.")
+                    // userapi.shared.me 카카오 유저넘버 필요
+                    // history 저장하는 과정 필요
+                    
+                    if let linkResult = linkResult {
+                        UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                    }
                 }
-              }
             }
+        }
     }
 }
 
 struct DetailFlower_Previews: PreviewProvider {
     static var previews: some View {
-        DetailFlower(index:5, name:"Luffy")
+        DetailFlower(index:5, name:0)
     }
 }
