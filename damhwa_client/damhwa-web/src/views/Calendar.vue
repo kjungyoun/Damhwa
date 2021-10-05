@@ -24,10 +24,10 @@
         </div>
         <div>
           <div class="list-title">
-            <span class="flower-name">{{ data.fno }}</span>
+            <span class="flower-name">{{ data.flower.fname_KR }}</span>
             <span>
               <img
-                v-if="data.htype"
+                v-if="!data.htype"
                 class="separater"
                 src="~@/assets/pink.png"
                 alt=""
@@ -70,7 +70,7 @@ export default {
       } else {
         this.$router.push({
           name: "FeelingDetail",
-          params: { historyId: history.hno },
+          params: { historyId: history.hno},
         });
       }
     },
@@ -152,6 +152,7 @@ export default {
     },
   },
   beforeMount() {
+    this.sendUserNo(111)
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),
