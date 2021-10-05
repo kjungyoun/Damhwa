@@ -31,6 +31,7 @@ struct ContentView: View {
     @State var fImgArray = [String]()
     @State var indexArray: [Int] = [0]
     @State var check = 0
+    @State var receiver: String
     
     @State var flowerImages = [Image](arrayLiteral: Image(uiImage: "".load()))
     
@@ -45,7 +46,7 @@ struct ContentView: View {
                 Text("\(currentIndex + 1)/\(fArray.count)")
                 Spacer().frame(height: 40)
                 NavigationLink(
-                    destination: DetailFlower(index: currentIndex + 1, name: fArray[currentIndex]),
+                    destination: DetailFlower(index: currentIndex + 1, name: fArray[currentIndex], fmsg: msg,freceiver: "\(receiver)"),
                     label: {
                         ACarousel(indexArray,
                                   id: \.self,
@@ -100,7 +101,7 @@ extension UINavigationController: UIGestureRecognizerDelegate {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(msg:"",fArray:[],fImgArray:[])
+        ContentView(msg:"",fArray:[],fImgArray:[],receiver:"")
     }
 }
 

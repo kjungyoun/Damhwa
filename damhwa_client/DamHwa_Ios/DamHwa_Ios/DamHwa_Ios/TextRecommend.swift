@@ -128,9 +128,11 @@ struct TextRecommend: View {
             if (AuthApi.hasToken()) {
                 UserApi.shared.accessTokenInfo { (_, error) in
                     if let error = error {
+                        print("error")
                         authentication.updateValidation(success: false)
                     }
                     else {
+                        print("succeee")
                         authentication.updateValidation(success: true)
                         //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
                     }

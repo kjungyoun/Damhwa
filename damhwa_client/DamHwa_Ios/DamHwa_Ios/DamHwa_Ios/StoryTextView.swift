@@ -18,9 +18,11 @@ extension View {
 struct StoryTextView: View {
     
     @State var story = ""
+    @State var receiver = ""
     @State private var shouldTransit: Bool = false
     @State var fnoArr = [Int]()
     @State var fimgArr = [String]()
+    @State private var isLoading = false
     
     var body: some View {
         HStack {
@@ -40,20 +42,46 @@ struct StoryTextView: View {
                             .padding()
                             .frame(width:400, alignment:.topLeading)
                             .font(.custom("SangSangRockOTF", size: 20))
+                        Text("   받는이")
+                            .font(.custom("SangSangRockOTF", size: 20))
+                            .frame(width:400, alignment:.topLeading)
+                        TextEditor(text: $receiver)
+                            .keyboardType(.default)
+                            .frame(width: 360, height: 40, alignment: .topLeading)
+                            .background(Color.white.opacity(0.5))
+                            .font(.custom("SangSangRockOTF", size: 20))
+                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                        Text("   서신을 작성하시오")
+                            .font(.custom("SangSangRockOTF", size: 20))
+                            .frame(width:400, alignment:.topLeading)
                         TextEditor(text: $story)
-                            .keyboardType(.webSearch)
+                            .keyboardType(.default)
                             .frame(width: 360, height: 400, alignment: .topLeading)
                             .background(Color.white.opacity(0.5))
                             .font(.custom("SangSangRockOTF", size: 20))
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                         Spacer()
-                        NavigationLink(destination: ContentView(msg:"\(story)",fArray:fnoArr,fImgArray:fimgArr).navigationBarHidden(true), isActive: $shouldTransit){
+                        NavigationLink(destination: ContentView(msg:"\(story)",fArray:fnoArr,fImgArray:fimgArr,receiver:"\(receiver)").navigationBarHidden(true), isActive: $shouldTransit){
                             Image("recommButton").resizable().frame(width:120, height:40)
                                 .onTapGesture {
+                                    isLoading = true
                                     post()
-                                }
-                        }
+                                }.opacity(story.isEmpty ? 0.5 : 1.0)
+                        }.disabled(story.isEmpty)
                         Spacer().frame(height:100)
+                    }
+                    if isLoading{
+                        ZStack{
+                            Color(.systemBackground)
+                                .ignoresSafeArea()
+                            LottieView(filename: "simpleflower")
+                                .ignoresSafeArea()
+//                            
+//                            ProgressView()
+//                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+//                                .scaleEffect(3)
+                        }
+                        
                     }
                     
                 }.navigationBarTitle("서신쓰기", displayMode: .inline)
@@ -85,6 +113,7 @@ struct StoryTextView: View {
                         print(fnoArr)
                         print(fimgArr)
                         self.shouldTransit = true
+                        isLoading = false
                         
                     } catch {
                         print(error)

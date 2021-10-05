@@ -9,7 +9,7 @@ import SwiftUI
 import WebKit
 
 struct WebViewPage: UIViewRepresentable {
-    var urlToLoad: String
+    var urlToLoad: String = "https://www.naver.com/"
     
     // make ui view
     func makeUIView(context: Context) -> WKWebView {
@@ -36,6 +36,6 @@ struct WebViewPage: UIViewRepresentable {
 
 struct WebViewPage_Previews: PreviewProvider {
     static var previews: some View {
-        WebViewPage(urlToLoad: "https://www.naver.com")
+        WebViewPage(urlToLoad: "https://www.naver.com/")
     }
 }
