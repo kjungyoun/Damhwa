@@ -21,12 +21,20 @@
       </div>
     </div>
     <div class="list">
-      <div class="m-3 d-flex justify-content-start">
+      <div class="m-3 d-flex justify-content-start" style="font-size: 20px;">
         [작성한 내용]
       </div>
       <div class="m-3" style="word-break:break-all; text-align: justify">
         {{ data.history.contents }}
       </div>
+    </div>
+    <div class="list mt-2">
+      <div class="m-3 d-flex justify-content-start" style="font-size: 20px;">
+        [이야기]
+      </div>
+      <p class="m-3" style="word-break:break-all; text-align: justify">
+        {{ data.history.flower.fcontents }}
+      </p>
     </div>
   </div>
 </template>
