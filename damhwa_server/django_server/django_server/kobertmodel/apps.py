@@ -8,7 +8,7 @@ class KobertmodelConfig(AppConfig):
     device = torch.device("cpu")
     print(device)
     # 모델 load
-    # PATH = '/Users/youn/Downloads/kobert/'
+    # PATH = '/Users/youn/SSAFY 문서/damhwa/kobert_model/'
     PATH = '/root/model/' # 배포용 (Docker에서 디렉터리 생성하기)
     model = torch.load(PATH + 'KoBERT_86.pt', map_location=device)  # 전체 모델을 통째로 불러옴, 클래스 선언 필수
     model.load_state_dict(

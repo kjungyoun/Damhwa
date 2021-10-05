@@ -9,5 +9,5 @@ import java.util.List;
 public interface DjangoService {
 
     List<Flower> getMsgRecommendFlower(String msg);
-    FlowerNEmotionRes getStateRecommendFlower (String state);
+    Flower getStateRecommendFlower (String state);
 }

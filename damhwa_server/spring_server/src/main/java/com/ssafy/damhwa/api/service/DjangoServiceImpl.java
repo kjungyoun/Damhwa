@@ -61,7 +61,7 @@ public class DjangoServiceImpl implements DjangoService {
     }
 
     @Override
-    public FlowerNEmotionRes getStateRecommendFlower(String state) {
+    public Flower getStateRecommendFlower(String state) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://j5a503.p.ssafy.io:8000/api/recomm/state";
@@ -87,11 +87,8 @@ public class DjangoServiceImpl implements DjangoService {
 
         // Flower DB 조회
         Flower flower = flowerService.getFlowerByfno(fno);
+        flower.setEmotionResult(emotionResult);
 
-        FlowerNEmotionRes flowerNEmotionRes = new FlowerNEmotionRes();
-        flowerNEmotionRes.setFlower(flower);
-        flowerNEmotionRes.setEmotionResult(emotionResult);
-
-        return flowerNEmotionRes;
+        return flower;
     }
 }
