@@ -61,14 +61,6 @@ struct Test: View {
               }
               """.data(using: .utf8)!
 
-            // templatable은 메시지 만들기 항목 참고
-
-//        do{
-//            let temp = try JSONDecoder().decode(FeedTemplate.self, from: feedTemplateJsonStringData)
-//                print(temp)
-//            }catch{
-//                print(error)
-//            }
             if let templatable = try? JSONDecoder().decode(FeedTemplate.self, from: feedTemplateJsonStringData) {
               LinkApi.shared.defaultLink(templatable: templatable) { linkResult, error in
                 if let error = error {
