@@ -1,43 +1,48 @@
 <template>
-  <div>
+  <div class="container">
     <div>
-      <h1 class="title">꽃 달력</h1>
+      <div>
+        <h1 class="title mt-4">꽃 달력</h1>
+      </div>
+      <DatePicker
+        :attributes="this.attributes"
+        v-model="this.date"
+        color="yellow"
+        is-expanded
+      />
+      <p class="title"> 날짜를 누르시오 </p>
     </div>
-    <DatePicker
-      :attributes="this.attributes"
-      v-model="this.date"
-      color="yellow"
-      is-expanded
-    />
-  </div>
-  <div>
     <div>
-      {{}}
-    </div>
-    <div v-for="(data, idx) in this.filteredHistories" :key="idx">
-      <div class="list">
-        <div class="image-style">
-          <img
-            class="image-style"
-            src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg"
-          />
-        </div>
-        <div>
-          <div class="list-title">
-            <span class="flower-name">{{ data.flower.fname_KR }}</span>
-            <span>
-              <img
-                v-if="!data.htype"
-                class="separater"
-                src="~@/assets/pink.png"
-                alt=""
-              />
-              <img v-else class="separater" src="~@/assets/green.png" alt="" />
-            </span>
+      <div class="d-flex m-4 justify-content-start">
+        <h2 class="title">{{ date.getMonth() + 1 }}월 {{ date.getDate() }}일</h2>
+      </div>
+      <div v-for="(data, idx) in this.filteredHistories" :key="idx">
+        <div class="list">
+          <div class="image-style">
+            <img
+              style="border-radius: 250px;"
+              class="image-style"
+              :src=data.flower.watercolor_img
+            />
           </div>
-          <button class="button" @click="this.routeToHistoryDetail(data)">
-            서신보기
-          </button>
+          <div>
+            <div class="list-title">
+              <span class="flower-name">{{ data.flower.fname_KR }}</span>
+              <span>
+                <img
+                  v-if="!data.htype"
+                  class="separater"
+                  src="~@/assets/pink.png"
+                  alt=""
+                />
+                
+                <img v-else class="separater" src="~@/assets/green.png" alt="" />
+              </span>
+            </div>
+            <button class="button d-flex justify-content-start" @click="this.routeToHistoryDetail(data)">
+              서신보기
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -56,6 +61,7 @@ export default {
       hFeelingDates: [],
       hLetterDates: [],
       date: new Date(),
+      day: "",
       attributes: [],
       filteredHistories: [],
     };
@@ -152,7 +158,7 @@ export default {
     },
   },
   beforeMount() {
-    this.sendUserNo(111)
+    this.sendUserNo(1927960578)
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),
@@ -163,6 +169,9 @@ export default {
       this.checkDateAndFiltering();
     },
   },
+  mounted: function () {
+    this.checkDateAndFiltering();
+  }
 };
 </script>
 

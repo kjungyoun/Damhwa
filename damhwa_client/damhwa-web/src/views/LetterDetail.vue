@@ -1,14 +1,34 @@
 <template>
-  <div class="detail-bg">
-    <h1 class="title">보낸 서신</h1>
-    <img class="app-bar" src="~@/assets/back.png" alt="" @click="goToCalendar">
-    <div>
-      <img class="image-style" :src="data.flower.img1" alt="">
-      <div>
-        <p><span>{{ data.flower.fname_KR }}</span> : <span>{{ data.flower.flang }}</span></p>
+  <div class="container detail-bg">
+    <div class="d-flex">
+      <div style="flex: 1;">
+        <img class="app-bar mt-4 mx-2" src="~@/assets/back.png" alt="" @click="goToCalendar">
       </div>
-      <div>
-        {{ props.contents }}
+      <div style="flex: 7;">
+        <h1 class="title m-4">보낸 서신</h1>
+      </div>
+      <div style="flex: 1;"></div>
+    </div>
+    <div class="mt-3 mx-3 d-flex justify-content-start" style="color: #7C947D; font-size: 20px;">
+      {{ data.date }}
+    </div>
+    <div class="d-flex justify-content-center">
+      <img style="border-radius: 150px;" class="image-style p-4 d" :src="data.history.flower.watercolor_img" alt="">        
+    </div>
+      <h3>{{data.history.flower.fname_KR}}: {{data.history.flower.flang}}</h3>
+    <div>
+      <div class="list">
+        <div v-if="data.history.receiver"  class="me-2 ms-2 mt-2 d-flex justify-content-start">
+          [받은 사람]: {{ data.history.receiver }}
+        </div>
+        <div class="m-2 d-flex justify-content-start">
+          <div>
+            [편지 내용]
+          </div>
+        </div>
+        <div class="m-3" style="word-break:break-all; text-align: justify">
+          {{ data.history.contents }}
+        </div>
       </div>
     </div>
   </div>
@@ -31,16 +51,20 @@ export default {
   setup(props) {
     const router = useRouter()
     let data = reactive({
-      flower: {}
+      history: {},
+      date: ""
     })
     onBeforeMount(() => {
-      axios.get(constants.BASE_URL_GET_FLOWER, {
+      axios.get(constants.BASE_URL_GET_HISTORY, {
          params: {
-            fno: props.fno,
+            hno: props.historyId,
           },
       })
       .then(res => {
-        data.flower = res.data
+        data.history = res.data
+        console.log(data.history)
+        data.date = data.history.regdate
+        data.date = data.date.slice(0, 10)
       })
     })
 
@@ -52,12 +76,22 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 .app-bar {
   position: relative;
 }
 .image-style {
   width: 200px;
   height: 200px;
+}
+
+.list {
+  width: 95%;
+  max-height: 100%;
+  margin: 5px auto;
+  padding: 10px;
+  background-color: #ffffff85;
+  border-radius: 12px;
+  font-family: "SangSangRock";
 }
 </style>
