@@ -12,23 +12,33 @@
     <div class="mt-3 mx-3 d-flex justify-content-start" style="color: #7C947D; font-size: 20px;">
       {{ data.date }}
     </div>
-    <div class="d-flex justify-content-center">
+    <div style="flex: 1;">
       <img style="border-radius: 150px;" class="image-style p-4 d" :src="data.history.flower.watercolor_img" alt="">        
     </div>
+    <div style="flex: 1;">
       <h3>{{data.history.flower.fname_KR}}: {{data.history.flower.flang}}</h3>
-    <div>
+    </div>
+    <div class="container">
       <div class="list">
         <div v-if="data.history.receiver"  class="me-2 ms-2 mt-2 d-flex justify-content-start">
           [받은 사람]: {{ data.history.receiver }}
         </div>
         <div class="m-2 d-flex justify-content-start">
-          <div>
+          <div style="font-size: 20px;">
             [편지 내용]
           </div>
         </div>
         <div class="m-3" style="word-break:break-all; text-align: justify">
-          {{ data.history.contents }}
+          {{ data.history.contents }} 
         </div>
+      </div>
+      <div class="list mt-2">
+        <div class="m-3 d-flex justify-content-start" style="font-size: 20px;">
+          [이야기]
+        </div>
+        <p class="m-3" style="word-break:break-all; text-align: justify">
+          {{data.history.flower.fcontents}}
+        </p>
       </div>
     </div>
   </div>
@@ -87,8 +97,9 @@ export default {
 
 .list {
   width: 95%;
+  min-height: 100px;
   max-height: 100%;
-  margin: 5px auto;
+  margin: auto;
   padding: 10px;
   background-color: #ffffff85;
   border-radius: 12px;
