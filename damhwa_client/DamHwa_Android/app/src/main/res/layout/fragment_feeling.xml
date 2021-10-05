@@ -2,19 +2,29 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feelingViewModel"
+            type="com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_feeling"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/story_feeling_backgroud"
         tools:context=".ui.feeling.FeelingFragment">
 
         <TextView
             android:id="@+id/writeFeelingTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="@string/write_feeling"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +33,10 @@
             android:id="@+id/writeFeelingGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_letter_guide"
+            android:layout_marginTop="15dp"
+            android:text="@string/write_feeling_guide"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="@id/writeFeelingEditText"
             app:layout_constraintTop_toBottomOf="@+id/writeFeelingTitle" />
 
@@ -42,7 +52,9 @@
             android:inputType="textMultiLine"
             android:padding="15dp"
             android:scrollbars="vertical"
-            android:textSize="13sp"
+            android:text="@={feelingViewModel.feelingText}"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:background="@drawable/bg_bold_stroke"
+            android:enabled="false"
+            android:background="@drawable/button_selector"
             android:paddingHorizontal="40dp"
             android:text="@string/recommend_flower_feeling"
             android:textSize="15sp"

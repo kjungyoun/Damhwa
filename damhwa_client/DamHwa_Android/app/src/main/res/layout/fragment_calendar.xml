@@ -6,11 +6,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.calendar.CalendarFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <WebView
+            android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="꽃 달력 웹뷰" />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </layout>

@@ -1,0 +1,42 @@
+server:
+#  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+#  address: localhost
+
+spring:
+    datasource: # url 배포시에 3.38.108.66 로 수정 필요!!!
+      url: jdbc:mysql://3.38.108.66:3306/damhwa?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+#      url: jdbc:mysql://localhost:3306/damhwa?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+      driver-class-name : com.mysql.cj.jdbc.Driver
+      username : ssafy
+      password : ssafy
+    jpa:
+      database: mysql # 사용하는 DB
+      open-in-view: false # 웹 요청이 완료될 때 까지 동일한 EntityManager를 갖도록 해줌 (성능상 안좋음으로 false)
+      hibernate:
+        naming:
+          implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+          physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        ddl-auto: update
+      properties:
+        hiberante.dialog: org.hibernate.dialect.MySQL57Dialect
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
+        boot: DEBUG
+      apache:
+        tiles: INFO
+      hibernate:
+        SQL: DEBUG # JPA가 생성해주는 Query문을 log에 찍을 수 있음
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE # SQL에서 ? 표시된 부분 (bind parameter)를 로그로 출력해 확인할 수 있음

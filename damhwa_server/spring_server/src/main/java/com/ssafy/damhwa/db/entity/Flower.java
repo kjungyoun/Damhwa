@@ -1,23 +1,19 @@
 package com.ssafy.damhwa.db.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @ToString
+@Entity
+@NoArgsConstructor
 public class Flower {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long fno;
+    int fno;
 
     @Column
     String fname_KR;
@@ -44,7 +40,7 @@ public class Flower {
 
     @Builder
 
-    public Flower(Long fno, String fname_KR, String fname_EN, int fmonth, int fday, String flang, String fcontents, String fuse, String fgrow, String img1, String img2, String img3) {
+    public Flower(int fno, String fname_KR, String fname_EN, int fmonth, int fday, String flang, String fcontents, String fuse, String fgrow, String img1, String img2, String img3) {
         this.fno = fno;
         this.fname_KR = fname_KR;
         this.fname_EN = fname_EN;
