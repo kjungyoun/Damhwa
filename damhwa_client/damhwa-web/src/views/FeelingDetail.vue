@@ -2,29 +2,29 @@
   <div class="detail-bg">
     <div class="d-flex">
       <div style="flex: 1;">
-        <img style="border-radius: 150px;" class="m-4 app-bar" src="~@/assets/back.png" @click="goToCalendar" alt="">
+        <img style="border-radius: 150px;" class="mt-4 mx-2 app-bar" src="~@/assets/back.png" @click="goToCalendar" alt="">
       </div>
-      <div style="flex: 3;">
+      <div style="flex: 7;">
         <h1 class="title m-4">추천 꽃</h1>  
       </div>
       <div style="flex: 1;"></div>
     </div>
     
-    <div class="m-3 d-flex justify-content-start" style="color: #7C947D">
+    <div class="mt-3 mx-3 d-flex justify-content-start" style="color: #7C947D; font-size: 20px;">
       {{ data.date }}
     </div>
     <div class="d-flex justify-content-center">
-      <img style="border-radius: 150px;" class="image-style p-4 d" :src="data.history.flower.watercolor_img" alt="">
+      <img style="border-radius: 150px;" class="image-style p-3" :src="data.history.flower.watercolor_img" alt="">
       <div class="align-self-center">
         <h4 align="left">{{data.history.flower.fname_KR}}</h4>
-        <h4 align="left">{{data.history.flower.flang}}</h4>
+        <h5 align="left">{{data.history.flower.flang}}</h5>
       </div>
     </div>
     <div class="list">
-      <div class="m-4">
+      <div class="m-3 d-flex justify-content-start">
         [작성한 내용]
       </div>
-      <div style="word-break:break-all; text-align: justify">
+      <div class="m-3" style="word-break:break-all; text-align: justify">
         {{ data.history.contents }}
       </div>
     </div>
@@ -84,7 +84,7 @@ export default {
 .list {
   width: 95%;
   max-height: 100%;
-  margin: 5px auto;
+  margin: auto;
   padding: 10px;
   background-color: #ffffff85;
   border-radius: 12px;

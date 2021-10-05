@@ -2,14 +2,14 @@
   <div class="container detail-bg">
     <div class="d-flex">
       <div style="flex: 1;">
-        <img class="app-bar m-4" src="~@/assets/back.png" alt="" @click="goToCalendar">
+        <img class="app-bar mt-4 mx-2" src="~@/assets/back.png" alt="" @click="goToCalendar">
       </div>
-      <div style="flex: 3;">
+      <div style="flex: 7;">
         <h1 class="title m-4">보낸 서신</h1>
       </div>
       <div style="flex: 1;"></div>
     </div>
-    <div class="m-3 d-flex justify-content-start" style="color: #7C947D">
+    <div class="mt-3 mx-3 d-flex justify-content-start" style="color: #7C947D; font-size: 20px;">
       {{ data.date }}
     </div>
     <div class="d-flex justify-content-center">
@@ -26,7 +26,7 @@
             [편지 내용]
           </div>
         </div>
-        <div style="word-break:break-all; text-align: justify">
+        <div class="m-3" style="word-break:break-all; text-align: justify">
           {{ data.history.contents }}
         </div>
       </div>
