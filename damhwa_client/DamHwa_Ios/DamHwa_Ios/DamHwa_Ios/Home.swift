@@ -1,13 +1,14 @@
 
 import SwiftUI
 
+
 struct Home: View {
     
     @State var story = ""
+
     
     var body: some View {
             TabView {
-                
                 StoryTextView().tabItem {
                     Image(systemName: "paintbrush.pointed.fill")
                     Text("서신")
@@ -16,7 +17,7 @@ struct Home: View {
                     Image(systemName: "face.smiling.fill")
                     Text("감정")
                 }
-                FlowerCalendar().tabItem {
+                AlamofireTest().tabItem {
                     Image(systemName: "calendar")
                     Text("달력")
                 }

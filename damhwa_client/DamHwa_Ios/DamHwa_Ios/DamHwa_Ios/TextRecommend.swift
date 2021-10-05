@@ -11,6 +11,7 @@ import KakaoSDKUser
 import KakaoSDKLink
 import KakaoSDKTemplate
 import SafariServices
+import Alamofire
 
 struct AppleUser: Codable {
     let userId: String
@@ -36,79 +37,116 @@ struct AppleUser: Codable {
 }
 
 struct TextRecommend: View {
+    @EnvironmentObject var authentication: Authentication
     @Environment(\.colorScheme) var colorScheme
     @State var name : String =  "before login"
     
     var body: some View {
         VStack{
-        SignInWithAppleButton(.signIn, onRequest: configure, onCompletion: handle)
-            .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-            .frame(height: 45)
-            .padding()
-        
-        Spacer()
-        Button(action : {
-                    //카카오톡이 깔려있는지 확인하는 함수
-                    if (UserApi.isKakaoTalkLoginAvailable()) {
-                        //카카오톡이 설치되어있다면 카카오톡을 통한 로그인 진행
-                        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                            print(oauthToken?.accessToken)
-                            print(error)
-                        }
-                    }else{
-                        //카카오톡이 설치되어있지 않다면 사파리를 통한 로그인 진행
-                        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                            print(oauthToken?.accessToken)
-                            print(error)
-                        }
-                        
-                    }
-            UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
-                if let error = error {
-                    print(error)
-                }
-                else {
-                    print("accessTokenInfo() success.")
-
-                    //do something
-                    let kakaoToken = accessTokenInfo
-                    print(kakaoToken)
-                }
-            }
-            UserApi.shared.me() {(user, error) in
-                if let error = error {
-                    print(error)
-                }
-                else {
-                    print("me() success.")
-                    
-                    //do something
-                    let userData = user?.kakaoAccount?.email
-                    print(userData)
-                    self.name = userData!
-                }
-            }
+            Spacer()
+            SignInWithAppleButton(.signIn, onRequest: configure, onCompletion: handle)
+                .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                .frame(height: 45)
+                .padding()
             
-                }){
-                    
-                    Text("카카오 로그인")
-                    Text(name)
-                }
-                //ios가 버전이 올라감에 따라 sceneDelegate를 더이상 사용하지 않게되었다
-                //그래서 로그인을 한후 리턴값을 인식을 하여야하는데 해당 코드를 적어주지않으면 리턴값을 인식되지않는다
-                //swiftUI로 바뀌면서 가장큰 차이점이다.
-                .onOpenURL(perform: { url in
-                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
-                        _ = AuthController.handleOpenUrl(url: url)
+            Spacer()
+            Button(action : {
+                //카카오톡이 깔려있는지 확인하는 함수
+                if (UserApi.isKakaoTalkLoginAvailable()) {
+                    //카카오톡이 설치되어있다면 카카오톡을 통한 로그인 진행
+                    UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                        print(oauthToken?.accessToken)
+                        print(error)
                     }
-                })
+                }else{
+                    //카카오톡이 설치되어있지 않다면 사파리를 통한 로그인 진행
+                    UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                        print(oauthToken?.accessToken)
+                        print(error)
+                    }
+                    
+                }
+                UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        print("accessTokenInfo() success.")
+                        authentication.updateValidation(success: true)
+                        //do something
+                        let kakaoToken = accessTokenInfo
+                        print(kakaoToken)
+                    }
+                }
+                UserApi.shared.me() {(user, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        print("me() success.")
+                        
+                        //do something
+                        let userData = user?.kakaoAccount?.profile?.nickname
+                        print(userData!)
+                        let id = user?.id
+                        print(id!)
+                        let email = user?.kakaoAccount?.email
+                        print(email!)
+                        //                    self.name = userData!
+                        let parameters = [
+                            "userno" : "\(id!)", // Int로 보낼수 없음. Any가 encodable 이 아니라서...
+                            "email" : "\(email!)",
+                            "username" : "\(userData)",
+                            "profile" : ""
+                        ]
+                        
+                        AF.request("http://j5a503.p.ssafy.io:8080/auth/kakao/login",
+                                   method: .post,
+                                   parameters: parameters,
+                                   encoder: JSONParameterEncoder.default).response { response in
+                                    print(response)
+                                   }
+                    }
+                }
+                
+            }){
+                
+                Text("카카오 로그인")
+                Text(name)
+            }
+            //ios가 버전이 올라감에 따라 sceneDelegate를 더이상 사용하지 않게되었다
+            //그래서 로그인을 한후 리턴값을 인식을 하여야하는데 해당 코드를 적어주지않으면 리턴값을 인식되지않는다
+            //swiftUI로 바뀌면서 가장큰 차이점이다.
+            .onOpenURL(perform: { url in
+                if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                    _ = AuthController.handleOpenUrl(url: url)
+                }
+                
+            })
+            Spacer()
+        }.onAppear{
+            if (AuthApi.hasToken()) {
+                UserApi.shared.accessTokenInfo { (_, error) in
+                    if let error = error {
+                        authentication.updateValidation(success: false)
+                    }
+                    else {
+                        authentication.updateValidation(success: true)
+                        //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                    }
+                }
+            }
+            else {
+                //로그인 필요
+            }
         }
-      }
+    }
     
     func configure(_ request: ASAuthorizationAppleIDRequest){
         request.requestedScopes = [.fullName, .email]
         
     }
+    
     func handle(_ authResult: Result<ASAuthorization, Error>){
         switch authResult {
         case .success(let auth):
@@ -145,6 +183,6 @@ struct TextRecommend: View {
 struct TextRecommend_Previews: PreviewProvider {
     static var previews: some View {
         TextRecommend()
-            
+        
     }
 }
