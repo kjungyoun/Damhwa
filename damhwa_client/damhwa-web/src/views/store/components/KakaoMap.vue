@@ -28,7 +28,7 @@ export default {
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=e75f132cf57e43836d8d31100a80ad78";
       document.head.appendChild(script);
     }
   },
@@ -44,7 +44,6 @@ export default {
         };
         this.map = new kakao.maps.Map(container, options);
         this.geocoder = new kakao.maps.services.Geocoder();
-        this.ps = new kakao.maps.services.Places();
         this.searchAddrFromCoords(this.map.getCenter(), this.displayCenterInfo);
       });
     },
@@ -53,10 +52,10 @@ export default {
         map: this.map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-      console.log(place);
+      console.log(marker);
 
       // 마커에 클릭이벤트를 등록합니다
-      new kakao.maps.event.addListener(marker, 'click', function() {
+      kakao.maps.event.addListener(marker, 'click', function() {
           // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
           this.displayInfoWindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
           this.displayInfoWindow.open(this.map, marker);
@@ -91,7 +90,7 @@ export default {
     },
     displayCenterInfo(result, status) {
       if (status == "OK") {
-        this.address = result[0].address_name;
+        this.address = result[0].address_name; 
         const kw = this.address + " 꽃집";
         this.initPlaces(kw);
       }
