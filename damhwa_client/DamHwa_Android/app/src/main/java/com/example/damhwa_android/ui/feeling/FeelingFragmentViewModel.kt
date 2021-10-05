@@ -28,6 +28,9 @@ class FeelingFragmentViewModel(
 
     private val _changeFeelingToFlowerErrorIdSubject: PublishSubject<Int> = PublishSubject.create()
 
+    private val _errorLogger: PublishSubject<String> = PublishSubject.create()
+    val error: Observable<String> = _errorLogger
+
     private val _isChangingSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingSubject
@@ -63,6 +66,7 @@ class FeelingFragmentViewModel(
                 }
                 navigateToFlowerDetail()
             }, {
+                _errorLogger.onNext("데이터를 변환하는 서버에 문제가 발생했어요. \n 조금 이따 다시 시도해 주세요!")
                 Log.e("ErrorLogger - FeelingFragmentViewModel - changeFlower", it.message.toString())
             })
             .addToDisposable()
@@ -73,6 +77,7 @@ class FeelingFragmentViewModel(
             .subscribeOn(Schedulers.io())
             .subscribe({ respone ->
                 if (respone.statusCode != 200) {
+                    _errorLogger.onNext("감정 내역을 캘린더에 저장하던 도중 문제가 발생했어요. \n 다시 시도해주세요!")
                     Log.e("ErrorLogger - FeelingFragmentViewModel - saveHistory", "Error in saving")
                 }
             }, {

@@ -1,5 +1,6 @@
 package com.example.damhwa_android.ui.story
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
@@ -35,18 +36,18 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
 
         val adapter = RecommendedFlowerAdapter(::routeToFlowerDetail)
         binding.carouselRecycler.adapter = adapter
-        binding.carouselRecycler.setIntervalRatio(0.6f)
+        binding.carouselRecycler.setIntervalRatio(0.5f)
         binding.carouselRecycler.setAlpha(true)
-//        binding.carouselRecycler.setInfinite(true)
-//        binding.carouselRecycler.set3DItem(true)
 
         storyViewModel.recommendedFlowerListFromStory
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { flowers ->
+            .subscribe ({ flowers ->
                 adapter.flowers = flowers
                 adapter.notifyDataSetChanged()
                 storyViewModel.clearData()
-            }
+            }, {
+                Log.e("ErrorLogger - StoryRecFlower - recommFlowerList", it.message.toString())
+            })
             .addToDisposable()
     }
 

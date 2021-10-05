@@ -10,17 +10,16 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edittext_transparent"
         android:padding="30dp">
 
         <ImageView
             android:id="@+id/flower_photo"
-            app:flowerUrl="@{flower.img1}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/carouselTitle"
+            app:flowerUrl="@{flower.watercolor_img}"
+            android:layout_width="250dp"
+            android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,24 +28,14 @@
             android:id="@+id/carouselTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@{flower.FNameKR}"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/carouselDescription"
-            app:layout_constraintStart_toStartOf="@+id/carouselDescription"
+            app:layout_constraintEnd_toEndOf="@+id/flower_photo"
+            app:layout_constraintStart_toStartOf="@+id/flower_photo"
+            app:layout_constraintTop_toBottomOf="@+id/flower_photo"
             tools:text="매발톱" />
-
-        <TextView
-            android:id="@+id/carouselDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{flower.FContents}"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="독립의 뜻을 가지고 있습니다. 유후유후유후유후 테스트 입니다. 테스트입니다." />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

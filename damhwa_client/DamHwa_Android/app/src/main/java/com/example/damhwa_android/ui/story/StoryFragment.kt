@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.databinding.FragmentStoryBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.example.damhwa_android.ui.MainActivity
@@ -29,13 +30,6 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
                 return StoryFragmentViewModel(DamhwaInjection.providerStoryRepository()) as T
             }
         }
-    }
-    // context안에 getSystemService에서 Context.INPUT_METHOD_SERVICE를 추가한다.
-    // 그리고 난 뒤에 이를 hideSoftInputFromWindow로 토글한다.
-    // 내가 이해한 부분은 여기까지
-    private fun hideKeyboard() {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.editText.windowToken, 0)
     }
 
     override fun init() {
@@ -59,6 +53,15 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
             })
             .addToDisposable()
 
+        storyViewModel.error
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ errorMsg ->
+                DamwhaToast.createToast(requireContext(), errorMsg)?.show()
+            }, {
+                Log.e("ErrorLogger - StoryFragment - storyViewModel.error", it.toString())
+            })
+            .addToDisposable()
+
         storyViewModel.letterText.observe(this, Observer {
             storyViewModel.setLetterText()
             binding.changeFlower.isEnabled = it.length >= 1
@@ -79,6 +82,11 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
             true -> (activity as MainActivity).loadingDialog.show()
             false -> (activity as MainActivity).loadingDialog.dismiss()
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.editText.windowToken, 0)
     }
 
     private fun routeToStoryRecFragment() =

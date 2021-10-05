@@ -2,6 +2,7 @@ package com.example.damhwa_android.ui.feeling
 
 import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -17,11 +18,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.data.FeelingFlower
 import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
+import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
@@ -56,44 +59,45 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
+            .subscribe ({ result ->
                 recommFlower = result
                 makeFeelingFlowerGuideText()
                 setInformation(result)
                 feelingViewModel.clearData()
-            }
+            }, {
+                Log.e("ErrorLogger - FeelingDetail - recommended", it.message.toString())
+            })
             .addToDisposable()
     }
 
+    private fun startFindFlowerWebView() {
+        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun setInformation(feelingFlower: FeelingFlower) {
-        binding.flowerDescription.text = feelingFlower.flower.fContents
-        binding.flowerName.text = feelingFlower.flower.fNameKR
+        binding.flowerDescription.text = feelingFlower.fContents
         Glide.with(requireActivity())
-            .load(feelingFlower.flower.img1)
+            .load(feelingFlower.watercolor_img)
             .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = recommFlower.flower.fNameKR,
-                description = recommFlower.flower.fContents,
-                imageUrl = recommFlower.flower.img1,
+                title = recommFlower.fNameKR,
+                description = feelingViewModel.feelingHistory,
+                imageUrl = recommFlower.watercolor_img,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )
             ),
-            buttons = listOf(
-                Button(
-                    "앱으로 보기",
-                    Link(
-                        androidExecutionParams = mapOf("key1" to "value1", "key2" to "value2"),
-                        iosExecutionParams = mapOf("key1" to "value1", "key2" to "value2")
-                    )
-                )
-            )
         )
         checkKakaoTalkExist(defaultFeed)
+    }
+
+    fun showToast(msg: String) {
+        DamwhaToast.createToast(requireContext(), msg)?.show()
     }
 
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
@@ -102,6 +106,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ linkResult ->
+                    showToast("담화 공유 성공!")
                     Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
@@ -130,10 +135,10 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         feelingViewModel.saveHistory(
             History(
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),
-                fNo = recommFlower.flower.fno,
+                fNo = recommFlower.fno,
                 receiver = "",
                 msg = feelingViewModel.feelingHistory,
-                htype = true
+                htype = false
             )
         )
     }
@@ -145,13 +150,13 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
 
     private fun makeFeelingFlowerGuideText() {
         val feelingText = getString(R.string.feeling_guide, recommFlower.emotionResult)
-        val flowerText = getString(R.string.flower_guide, recommFlower.flower.fNameKR)
+        val flowerText = getString(R.string.flower_guide, recommFlower.fNameKR)
 
         val feelingTextStartIndex = feelingText.indexOf(recommFlower.emotionResult)
         val feelingTextEndIndex = feelingTextStartIndex + recommFlower.emotionResult.length
 
-        val flowerTextStartIndex = flowerText.indexOf(recommFlower.flower.fNameKR)
-        val flowerTextEndIndex = flowerTextStartIndex + recommFlower.flower.fNameKR.length
+        val flowerTextStartIndex = flowerText.indexOf(recommFlower.fNameKR)
+        val flowerTextEndIndex = flowerTextStartIndex + recommFlower.fNameKR.length
 
         val feelingSpannableText = SpannableStringBuilder(feelingText).apply {
             setSpan(

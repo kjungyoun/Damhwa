@@ -27,5 +27,7 @@ data class Flower(
     @SerializedName("img2")
     val img2: String,
     @SerializedName("img3")
-    val img3: String
+    val img3: String,
+    @SerializedName("watercolor_img")
+    val watercolor_img: String
 ): Serializable

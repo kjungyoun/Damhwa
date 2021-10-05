@@ -18,7 +18,9 @@ class StoryFragmentViewModel(
 ) : BaseViewModel() {
 
     var letterText = MutableLiveData<String>()
+    var receiverText = MutableLiveData<String>()
     var letterHistory = ""
+    var receiverHistory = ""
 
     private val _letterInputSubject: BehaviorSubject<Letter> =
         BehaviorSubject.createDefault(Letter())
@@ -32,6 +34,9 @@ class StoryFragmentViewModel(
     private val _isChangingToFlowerSubject: BehaviorSubject<Boolean> =
         BehaviorSubject.createDefault(false)
     val isChanging: Observable<Boolean> = _isChangingToFlowerSubject
+
+    private val _errorLogger: PublishSubject<String> = PublishSubject.create()
+    val error: Observable<String> = _errorLogger
 
     private val _recommendedFlowerFromStorySubject: BehaviorSubject<List<Flower>> =
         BehaviorSubject.createDefault(emptyList())
@@ -50,6 +55,8 @@ class StoryFragmentViewModel(
         _isCompletedChangedToFlowerSubject.onNext(false)
         letterHistory = letterText.value ?: ""
         letterText = MutableLiveData("")
+        receiverHistory = receiverText.value ?: ""
+        receiverText = MutableLiveData("")
     }
 
     fun changeTextToFlower() {
@@ -79,6 +86,7 @@ class StoryFragmentViewModel(
                 Log.d("로그", response.toString())
                 navigateToFlowerDetail()
             }, {
+                _errorLogger.onNext("데이터를 변환하는 서버에 문제가 발생했어요. \n 조금 이따 다시 시도해 주세요!")
                 Log.e("ErrorLogger - StoryFragmentViewModel - changeFlower", it.message.toString())
             })
             .addToDisposable()
@@ -89,6 +97,7 @@ class StoryFragmentViewModel(
             .subscribeOn(Schedulers.io())
             .subscribe({ respone ->
                 if (respone.statusCode != 200) {
+                    _errorLogger.onNext("서신 내용을 캘린더에 저장하던 도중 문제가 발생했어요. \n 다시 시도해주세요!")
                     Log.e("ErrorLogger - StoryFragmentViewModel - saveHistory", "Error in saving")
                 }
             }, {
