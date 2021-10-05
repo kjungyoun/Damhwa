@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.databinding.FragmentFeelingBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.example.damhwa_android.ui.MainActivity
@@ -50,6 +51,15 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
             feelingViewModel.setFeelingText()
             binding.changeFlower.isEnabled = it.length >= 1
         })
+
+        feelingViewModel.error
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ errorMsg ->
+                DamwhaToast.createToast(requireContext(), errorMsg)?.show()
+            }, {
+                Log.e("ErrorLogger - FeelingFragment - feelingViewModel.error", it.toString())
+            })
+            .addToDisposable()
 
         feelingViewModel.completeTrigger
             .observeOn(AndroidSchedulers.mainThread())

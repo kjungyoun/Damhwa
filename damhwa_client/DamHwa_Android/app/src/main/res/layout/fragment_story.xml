@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="storyViewModel"
             type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
@@ -40,11 +41,30 @@
             app:layout_constraintTop_toBottomOf="@+id/writeLetterTitle" />
 
         <EditText
+            android:id="@+id/receiver"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/bg_edittext_transparent"
+            android:hint="@string/receiver"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:text="@={storyViewModel.receiverText}"
+            app:layout_constraintBottom_toTopOf="@id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writeFeelingGuide" />
+
+
+        <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_edittext_transparent"
             android:gravity="top"
             android:hint="@string/write_letter_ph"
@@ -57,7 +77,7 @@
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/writeFeelingGuide" />
+            app:layout_constraintTop_toBottomOf="@id/receiver" />
 
         <Button
             android:id="@+id/changeFlower"
@@ -65,10 +85,10 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
             android:background="@drawable/button_selector"
+            android:enabled="false"
             android:paddingHorizontal="40dp"
             android:text="@string/recommend_flower"
             android:textSize="15sp"
-            android:enabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

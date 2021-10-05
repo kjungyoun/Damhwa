@@ -140,7 +140,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 fNo = recommFlower.fno,
                 receiver = "",
                 msg = feelingViewModel.feelingHistory,
-                htype = true
+                htype = false
             )
         )
     }

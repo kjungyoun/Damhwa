@@ -46,10 +46,10 @@
             android:id="@+id/flowerDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
-            android:padding="20dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="30dp"
             android:background="@drawable/bg_edittext_transparent"
+            android:padding="20dp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/shareKakao"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,12 +60,13 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="@string/kakao_caution"
             android:textColor="@color/grey"
             android:textSize="10sp"
+            app:layout_constraintRight_toRightOf="@+id/flowerDescription"
             app:layout_constraintStart_toStartOf="@+id/flowerDescription"
-            app:layout_constraintTop_toBottomOf="@+id/flowerDescription"
-            app:layout_constraintRight_toRightOf="@+id/flowerDescription"/>
+            app:layout_constraintTop_toBottomOf="@+id/flowerDescription" />
 
         <ImageView
             android:id="@+id/shareKakao"

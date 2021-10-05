@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.databinding.FragmentStoryBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.example.damhwa_android.ui.MainActivity
@@ -49,6 +50,15 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
                 }
             }, {
                 Log.e("ErrorLogger - StoryFragment - storyViewModel.completeTrigger", it.toString())
+            })
+            .addToDisposable()
+
+        storyViewModel.error
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ errorMsg ->
+                DamwhaToast.createToast(requireContext(), errorMsg)?.show()
+            }, {
+                Log.e("ErrorLogger - StoryFragment - storyViewModel.error", it.toString())
             })
             .addToDisposable()
 

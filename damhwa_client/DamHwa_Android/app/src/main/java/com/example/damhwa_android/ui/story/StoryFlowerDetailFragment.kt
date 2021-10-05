@@ -136,9 +136,9 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
             History(
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),
                 fNo = flower.fno,
-                receiver = "",
+                receiver = storyViewModel.receiverHistory,
                 msg = storyViewModel.letterHistory,
-                htype = false
+                htype = true
             )
         )
     }
