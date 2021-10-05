@@ -14,7 +14,6 @@ struct Sm: Encodable {
 }
 
 struct Flower3: Codable {
-    let flower:[String:String]
     let fno:Int
     let fname_KR:String
     let fname_EN:String
@@ -26,12 +25,17 @@ struct Flower3: Codable {
     let fgrow:String
     let img1:String
     let watercolor_img:String
+    let emotionResult:String
 }
 
 struct FeelingRecommend: View {
     
     @State var feeling = ""
     @State private var shouldTransit: Bool = false
+    @State var fname = 0
+    @State var femotion = ""
+    @State private var isLoading = false
+
     
     var body: some View {
         HStack {
@@ -62,15 +66,31 @@ struct FeelingRecommend: View {
                             .font(.custom("SangSangRockOTF", size: 20))
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                         Spacer()
-                        NavigationLink(destination: ContentView(msg:"\(feeling)").navigationBarHidden(true), isActive: $shouldTransit){
+                        NavigationLink(destination: EmotionDetail(name: fname,femotion:"\(femotion)",fmsg: feeling).navigationBarHidden(true), isActive: $shouldTransit){
                             Image("feelRecommButton").resizable().frame(width:120, height:40)
                                 .onTapGesture {
+                                    isLoading = true
                                     post()
-                                }
-                        }
+                                }.opacity(feeling.isEmpty ? 0.5 : 1.0)
+                        }.disabled(feeling.isEmpty)
                         
                         Spacer()
                     }
+                    
+                    if isLoading{
+                        ZStack{
+                            Color(.systemBackground)
+                                .ignoresSafeArea()
+                            LottieView(filename: "simpleflower")
+                                .ignoresSafeArea()
+                            
+//                            ProgressView()
+//                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+//                                .scaleEffect(3)
+                        }
+                        
+                    }
+                    
                 }.navigationBarTitle("감정쓰기",displayMode: .inline)
                 .navigationBarHidden(true)
                 .background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
@@ -90,22 +110,21 @@ struct FeelingRecommend: View {
                    parameters: mm,
                    encoder: JSONParameterEncoder.default).response { response in
                     guard let data = String(bytes: response.value!!, encoding: .utf8)else{return}
-                    print(data)
                     let data2 = Data(data.utf8)
-                    print(data2)
                     
                     do {
                         let f = try JSONDecoder().decode(Flower3.self, from: data2)
                         print(f)
+                        fname = f.fno
+                        femotion = f.emotionResult
                         self.shouldTransit = true
-                        
+                        isLoading = false
                     } catch {
                         print(error)
                     }
                     
                    }
         
-        print("ddd")
     }
 }
 

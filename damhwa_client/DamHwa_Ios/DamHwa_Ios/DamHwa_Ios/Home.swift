@@ -17,7 +17,7 @@ struct Home: View {
                     Image(systemName: "face.smiling.fill")
                     Text("감정")
                 }
-                AlamofireTest().tabItem {
+                WebViewPage().tabItem {
                     Image(systemName: "calendar")
                     Text("달력")
                 }

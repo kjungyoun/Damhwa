@@ -1,5 +1,5 @@
 //
-//  DetailFlower.swift
+//  EmotionDetail.swift
 //  DamHwa_Ios
 //
 //  Created by minkpang on 2021/10/01.
@@ -13,79 +13,53 @@ import KakaoSDKUser
 import KakaoSDKTalk
 import Alamofire
 
-struct Flower2: Codable {
-    let fno:Int
-    let fname_KR:String
-    let fname_EN:String
-    let fmonth:Int
-    let fday:Int
-    let flang:String
-    let fcontents:String
-    let fuse:String
-    let fgrow:String
-    let img1:String
-    let watercolor_img:String
-    
+struct Fm: Encodable {
+    let fno: Int
+    let userno: Int
+    let msg: String
+    let receiver: String
+    let htype: Bool
 }
 
-extension String{
-    func load() -> UIImage {
-        
-        do{
-            guard let url = URL(string: self)else{
-                return UIImage()
-            }
-            
-            let data: Data = try
-                Data(contentsOf: url)
-            
-            return UIImage(data: data)
-                ?? UIImage()
-        }catch{
-            
-        }
-        return UIImage()
-    }
-    
-}
 
-struct DetailFlower: View {
-    var index: Int
+struct EmotionDetail: View {
     @State var name: Int
     @State var fname: String = ""
     @State var fdesc: String = ""
     @State var flang: String = ""
     @State var fimg: String = ""
-    @State var kakaoId: Int64 = 0
-    @State var fno: Int = 0
+    @State var desc = ""
+    @State var femotion = ""
     @State var fmsg: String = ""
-    @State var freceiver: String = ""
-
-
-    @State var desc = "dkdkdkdkdkdkdkkdk"
+    @State var fno: Int = 0
+    
+    @State var kakaoId: Int64 = 0
     
     var body: some View {
         NavigationView{
             VStack{
-                Spacer().frame(height:30)
-                Text("\(fname)")
-                    .padding()
-                    .font(.custom("SangSangRockOTF", size: 35))
-                    .frame(width:2000)
+                Spacer().frame(height:50)
+                Text("조금 \(femotion) 당신 \n오늘은 \(fname) 어때요??")
+                    .padding(.horizontal,16)
+                    .font(.custom("SangSangRockOTF", size: 30))
+                    .frame(width: 400, alignment: .leading)
+                HStack{
+                }.frame(width: 2000, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Image(uiImage: "\(fimg)".load())
                     .resizable()
-                    .frame(width: 350, height: 400)
+                    .frame(width: 300, height: 350)
                     .cornerRadius(60)
                     .padding()
                 
                 Text("\(fdesc)")
                     .frame(width: 360, height: 150, alignment: .topLeading)
+                    .padding(4)
                     .background(Color.white.opacity(0.5))
-                    .padding()
                     .font(.custom("SangSangRockOTF", size: 15))
                 
                 Button(action: Link, label: {
-                    Text("공유하기")
+                    Image("shareButton").resizable().frame(width:120, height:100)
+                        .padding()
                 })
                 Spacer()
             }.background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255)
@@ -105,6 +79,7 @@ struct DetailFlower: View {
                     flang = f.flang
                     fimg = f.watercolor_img
                     fno = f.fno
+                    
                 } catch {
                     print("----")
                     print(error)
@@ -126,7 +101,7 @@ struct DetailFlower: View {
                   "objectType": "feed",
                   "content": {
                       "title": "\(fname)",
-                      "description": "\(flang)",
+                      "description": "꽃말:\(flang) 메세지:\(fmsg)",
                       "imageUrl": "\(fimg)",
                       "link": {
                           "mobile_web_url": "https://developers.kakao.com",
@@ -158,7 +133,7 @@ struct DetailFlower: View {
                         }
                     }
                     
-                    let mm = Fm(fno: fno, userno:Int(kakaoId), msg:"\(fmsg)", receiver:"\(freceiver)", htype:true)
+                    let mm = Fm(fno: fno, userno:Int(kakaoId), msg:"\(fmsg)", receiver:"", htype:false)
                     
                     AF.request("http://j5a503.p.ssafy.io:8080/history/save",
                                method: .post,
@@ -168,6 +143,7 @@ struct DetailFlower: View {
                                }
                     
                     print("ddd")
+                    
                     // userapi.shared.me 카카오 유저넘버 필요
                     // history 저장하는 과정 필요
                     
@@ -180,8 +156,8 @@ struct DetailFlower: View {
     }
 }
 
-struct DetailFlower_Previews: PreviewProvider {
+struct EmotionDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DetailFlower(index:5, name:0)
+        EmotionDetail(name:0,femotion:"")
     }
 }
