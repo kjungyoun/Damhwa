@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.data.Flower
 import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
@@ -62,7 +63,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
 
     private fun getFlowerData() {
         arguments?.let {
-            flower  = it.getSerializable("flower") as Flower
+            flower = it.getSerializable("flower") as Flower
             setFlowerData()
         }
     }
@@ -80,24 +81,19 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         val defaultFeed = FeedTemplate(
             content = Content(
                 title = flower.fNameKR,
-                description = flower.fContents,
+                description = storyViewModel.letterHistory,
                 imageUrl = flower.watercolor_img,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )
             ),
-            buttons = listOf(
-                Button(
-                    "앱으로 보기",
-                    Link(
-                        androidExecutionParams = mapOf("key1" to "value1", "key2" to "value2"),
-                        iosExecutionParams = mapOf("key1" to "value1", "key2" to "value2")
-                    )
-                )
-            )
         )
 
         checkKakaoTalkExist(defaultFeed)
+    }
+
+    fun showToast(msg: String) {
+        DamwhaToast.createToast(requireContext(), msg)?.show()
     }
 
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
@@ -106,6 +102,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ linkResult ->
+                    showToast("서신 전달 성공!")
                     Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
@@ -121,7 +118,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
 
             try {
                 KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
-            } catch(e: UnsupportedOperationException) {
+            } catch (e: UnsupportedOperationException) {
             }
 
             try {

@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.data.FeelingFlower
 import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
@@ -58,12 +59,14 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
+            .subscribe ({ result ->
                 recommFlower = result
                 makeFeelingFlowerGuideText()
                 setInformation(result)
                 feelingViewModel.clearData()
-            }
+            }, {
+                Log.e("ErrorLogger - FeelingDetail - recommended", it.message.toString())
+            })
             .addToDisposable()
     }
 
@@ -74,7 +77,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
 
     private fun setInformation(feelingFlower: FeelingFlower) {
         binding.flowerDescription.text = feelingFlower.fContents
-        binding.flowerName.text = feelingFlower.fNameKR
         Glide.with(requireActivity())
             .load(feelingFlower.watercolor_img)
             .into(binding.flowerPic)
@@ -84,23 +86,18 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         val defaultFeed = FeedTemplate(
             content = Content(
                 title = recommFlower.fNameKR,
-                description = recommFlower.fContents,
+                description = feelingViewModel.feelingHistory,
                 imageUrl = recommFlower.watercolor_img,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )
             ),
-            buttons = listOf(
-                Button(
-                    "앱으로 보기",
-                    Link(
-                        androidExecutionParams = mapOf("key1" to "value1", "key2" to "value2"),
-                        iosExecutionParams = mapOf("key1" to "value1", "key2" to "value2")
-                    )
-                )
-            )
         )
         checkKakaoTalkExist(defaultFeed)
+    }
+
+    fun showToast(msg: String) {
+        DamwhaToast.createToast(requireContext(), msg)?.show()
     }
 
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
@@ -109,6 +106,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ linkResult ->
+                    showToast("담화 공유 성공!")
                     Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
