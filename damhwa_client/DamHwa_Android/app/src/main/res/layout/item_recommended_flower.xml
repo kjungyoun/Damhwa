@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/flower_photo"
-            app:flowerUrl="@{flower.img1}"
+            app:flowerUrl="@{flower.watercolor_img}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/carouselTitle"

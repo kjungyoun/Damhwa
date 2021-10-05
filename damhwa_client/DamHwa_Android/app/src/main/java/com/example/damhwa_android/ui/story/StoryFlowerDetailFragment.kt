@@ -74,7 +74,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         binding.flowerNameText.text = flower.fNameKR
         binding.flowerDescription.text = flower.fContents
         Glide.with(requireActivity())
-            .load(flower.img1)
+            .load(flower.watercolor_img)
             .centerCrop()
             .into(binding.flowerPic)
     }
@@ -84,7 +84,7 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
             content = Content(
                 title = flower.fNameKR,
                 description = flower.fContents,
-                imageUrl = flower.img1,
+                imageUrl = flower.watercolor_img,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )

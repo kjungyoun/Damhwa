@@ -2,6 +2,7 @@ package com.example.damhwa_android.ui.feeling
 
 import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -22,6 +23,7 @@ import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
+import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
@@ -54,6 +56,9 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
+        binding.findFlower.setOnClickListener {
+            startFindFlowerWebView()
+        }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->
@@ -65,20 +70,25 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             .addToDisposable()
     }
 
+    private fun startFindFlowerWebView() {
+        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun setInformation(feelingFlower: FeelingFlower) {
-        binding.flowerDescription.text = feelingFlower.flower.fContents
-        binding.flowerName.text = feelingFlower.flower.fNameKR
+        binding.flowerDescription.text = feelingFlower.fContents
+        binding.flowerName.text = feelingFlower.fNameKR
         Glide.with(requireActivity())
-            .load(feelingFlower.flower.img1)
+            .load(feelingFlower.watercolor_img)
             .into(binding.flowerPic)
     }
 
     private fun shareKakaoTalk() {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = recommFlower.flower.fNameKR,
-                description = recommFlower.flower.fContents,
-                imageUrl = recommFlower.flower.img1,
+                title = recommFlower.fNameKR,
+                description = recommFlower.fContents,
+                imageUrl = recommFlower.watercolor_img,
                 link = Link(
                     mobileWebUrl = "https://developers.kakao.com"
                 )
@@ -130,7 +140,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         feelingViewModel.saveHistory(
             History(
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),
-                fNo = recommFlower.flower.fno,
+                fNo = recommFlower.fno,
                 receiver = "",
                 msg = feelingViewModel.feelingHistory,
                 htype = true
@@ -145,13 +155,13 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
 
     private fun makeFeelingFlowerGuideText() {
         val feelingText = getString(R.string.feeling_guide, recommFlower.emotionResult)
-        val flowerText = getString(R.string.flower_guide, recommFlower.flower.fNameKR)
+        val flowerText = getString(R.string.flower_guide, recommFlower.fNameKR)
 
         val feelingTextStartIndex = feelingText.indexOf(recommFlower.emotionResult)
         val feelingTextEndIndex = feelingTextStartIndex + recommFlower.emotionResult.length
 
-        val flowerTextStartIndex = flowerText.indexOf(recommFlower.flower.fNameKR)
-        val flowerTextEndIndex = flowerTextStartIndex + recommFlower.flower.fNameKR.length
+        val flowerTextStartIndex = flowerText.indexOf(recommFlower.fNameKR)
+        val flowerTextEndIndex = flowerTextStartIndex + recommFlower.fNameKR.length
 
         val feelingSpannableText = SpannableStringBuilder(feelingText).apply {
             setSpan(
