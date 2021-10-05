@@ -56,9 +56,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
-        binding.findFlower.setOnClickListener {
-            startFindFlowerWebView()
-        }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->

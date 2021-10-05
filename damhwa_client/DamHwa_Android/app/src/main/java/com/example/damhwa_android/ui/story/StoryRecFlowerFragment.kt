@@ -37,8 +37,6 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
         binding.carouselRecycler.adapter = adapter
         binding.carouselRecycler.setIntervalRatio(0.6f)
         binding.carouselRecycler.setAlpha(true)
-//        binding.carouselRecycler.setInfinite(true)
-//        binding.carouselRecycler.set3DItem(true)
 
         storyViewModel.recommendedFlowerListFromStory
             .observeOn(AndroidSchedulers.mainThread())

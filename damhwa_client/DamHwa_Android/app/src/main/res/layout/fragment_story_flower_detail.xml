@@ -44,10 +44,12 @@
 
         <TextView
             android:id="@+id/flowerDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="30dp"
-            android:paddingHorizontal="30dp"
+            android:padding="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/bg_edittext_transparent"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/shareKakao"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,24 +57,25 @@
             tools:text="독립의 뜻을 가지고 있습니다. 테스트 입니다.  테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트입니다." />
 
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/kakao_caution"
+            android:textColor="@color/grey"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/flowerDescription"
+            app:layout_constraintTop_toBottomOf="@+id/flowerDescription"
+            app:layout_constraintRight_toRightOf="@+id/flowerDescription"/>
+
         <ImageView
             android:id="@+id/shareKakao"
             android:layout_width="90dp"
             android:layout_height="70dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_share_kakao"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/findFlower"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/findFlower"
-            android:layout_width="90dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_find_store"
-            android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/shareKakao" />
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

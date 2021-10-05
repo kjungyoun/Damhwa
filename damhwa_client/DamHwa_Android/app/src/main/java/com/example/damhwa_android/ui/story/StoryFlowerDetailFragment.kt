@@ -53,9 +53,6 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         binding.shareKakao.setOnClickListener {
             shareKakaoTalk()
         }
-        binding.findFlower.setOnClickListener {
-            startFindFlowerWebView()
-        }
     }
 
     private fun startFindFlowerWebView() {
