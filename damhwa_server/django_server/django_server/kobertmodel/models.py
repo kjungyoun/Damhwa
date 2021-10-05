@@ -14,6 +14,7 @@ class Flower(models.Model):
     img1 = models.CharField(max_length=400, blank=True, null=True)
     img2 = models.CharField(max_length=400, blank=True, null=True)
     img3 = models.CharField(max_length=400, blank=True, null=True)
+    watercolor_img = models.CharField(max_length=400, blank=True, null=True)
 
     class Meta:
         managed = False
