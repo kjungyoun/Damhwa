@@ -1,6 +1,6 @@
 const sendUserNo = (userno) => {
-
-  console.log(userno)
+  // console.log(userno)
+  userno
 }
 
 export default sendUserNo
