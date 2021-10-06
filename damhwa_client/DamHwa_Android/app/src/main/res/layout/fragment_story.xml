@@ -3,9 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="storyViewModel"
+            type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_story"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/story_feeling_backgroud"
         tools:context=".ui.story.StoryFragment">
 
         <TextView
@@ -13,38 +22,71 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textColor="@color/black"
             android:text="@string/write_letter"
+            android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/writeFeelingGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/write_letter_guide"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/writeLetterTitle" />
+
         <EditText
+            android:id="@+id/receiver"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/bg_edittext_transparent"
+            android:hint="@string/receiver"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:text="@={storyViewModel.receiverText}"
+            app:layout_constraintBottom_toTopOf="@id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writeFeelingGuide" />
+
+
+        <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="20dp"
-            android:textSize="13sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_edittext_transparent"
             android:gravity="top"
             android:hint="@string/write_letter_ph"
             android:inputType="textMultiLine"
             android:padding="15dp"
             android:scrollbars="vertical"
+            android:text="@={storyViewModel.letterText}"
+            android:textColor="@color/black"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@id/changeFlower"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/writeLetterTitle" />
+            app:layout_constraintTop_toBottomOf="@id/receiver" />
 
         <Button
             android:id="@+id/changeFlower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:background="@drawable/bg_bold_stroke"
-            android:drawableStart="@drawable/ic_love_chinese"
-            android:paddingHorizontal="15dp"
+            android:background="@drawable/button_selector"
+            android:enabled="false"
+            android:paddingHorizontal="40dp"
             android:text="@string/recommend_flower"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

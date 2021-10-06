@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/mind_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="200dp"
+            android:gravity="left"
+            android:text="@string/third_landing_mind"
+            android:textColor="@color/dark_green"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/send_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:gravity="left"
+            android:text="@string/third_landing_send"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@+id/mind_method"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/most"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:gravity="left"
+            android:text="@string/third_landing_most"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/mind_method" />
+
+        <TextView
+            android:id="@+id/perfume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="left"
+            android:text="@string/third_landing_perfume"
+            android:textColor="@color/dark_green"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@+id/most"
+            app:layout_constraintTop_toBottomOf="@+id/send_method" />
+
+        <TextView
+            android:id="@+id/method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:gravity="left"
+            android:text="@string/third_landing_method"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            app:layout_constraintStart_toEndOf="@+id/perfume"
+            app:layout_constraintTop_toBottomOf="@+id/send_method" />
+
+        <TextView
+            android:id="@+id/third_landing_damhwa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="55dp"
+            android:layout_marginBottom="150dp"
+            android:gravity="left"
+            android:text="@string/third_landing_damhwa"
+            android:textColor="@color/black"
+            android:textSize="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/perfume" />
+
+
+        <ImageButton
+            android:id="@+id/kakao_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="70dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/kakao_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:id="@+id/third_landing_flower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="150dp"
+            android:src="@drawable/third_landing_flower"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/third_landing_damhwa"
+            app:layout_constraintTop_toBottomOf="@+id/method" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/kakao_login_backgroud"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/black_layout_landing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

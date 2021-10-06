@@ -7,14 +7,17 @@
 
 import SwiftUI
 import Alamofire
+import KakaoSDKAuth
+import KakaoSDKUser
+import KakaoSDKLink
 
 struct Sm: Encodable {
     let state: String
+    let userno: Int
     
 }
 
 struct Flower3: Codable {
-    let flower:[String:String]
     let fno:Int
     let fname_KR:String
     let fname_EN:String
@@ -26,12 +29,18 @@ struct Flower3: Codable {
     let fgrow:String
     let img1:String
     let watercolor_img:String
+    let emotionResult:String
 }
 
 struct FeelingRecommend: View {
     
     @State var feeling = ""
     @State private var shouldTransit: Bool = false
+    @State var fname = 0
+    @State var femotion = ""
+    @State private var isLoading = false
+    @State var userNo:Int64 = 0
+    
     
     var body: some View {
         HStack {
@@ -62,15 +71,44 @@ struct FeelingRecommend: View {
                             .font(.custom("SangSangRockOTF", size: 20))
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                         Spacer()
-                        NavigationLink(destination: ContentView(msg:"\(feeling)").navigationBarHidden(true), isActive: $shouldTransit){
+                        NavigationLink(destination: EmotionDetail(name: fname,femotion:"\(femotion)",fmsg: feeling).navigationBarHidden(true), isActive: $shouldTransit){
                             Image("feelRecommButton").resizable().frame(width:120, height:40)
                                 .onTapGesture {
+                                    isLoading = true
                                     post()
-                                }
-                        }
+                                }.opacity(feeling.isEmpty ? 0.5 : 1.0)
+                        }.disabled(feeling.isEmpty)
                         
                         Spacer()
                     }
+                    
+                    if isLoading{
+                        ZStack{
+                            Color(.black)
+                                .opacity(0.5)
+                                .ignoresSafeArea()
+                            VStack{
+                                Spacer()
+                                Text("텍스트를 변환하고 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 25))
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Text("입력하신 데이터에 따라서\n결과물이 정확하지 않을 수 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 15))
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
+                            
+                            LottieView(filename: "simpleflower")
+                                .frame(width: 200, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            
+                            //                            ProgressView()
+                            //                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                            //                                .scaleEffect(3)
+                        }
+                        
+                    }
+                    
                 }.navigationBarTitle("감정쓰기",displayMode: .inline)
                 .navigationBarHidden(true)
                 .background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
@@ -83,29 +121,40 @@ struct FeelingRecommend: View {
         
     }
     func post(){
-        let mm = Sm(state: "\(feeling)")
+        
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                userNo = (user?.id!)!
+                print(userNo)
+            }
+        }
+        
+        let mm = Sm(state: "\(feeling)", userno: Int(userNo))
         
         AF.request("http://j5a503.p.ssafy.io:8080/api/recomm/state",
                    method: .post,
                    parameters: mm,
                    encoder: JSONParameterEncoder.default).response { response in
                     guard let data = String(bytes: response.value!!, encoding: .utf8)else{return}
-                    print(data)
                     let data2 = Data(data.utf8)
-                    print(data2)
                     
                     do {
                         let f = try JSONDecoder().decode(Flower3.self, from: data2)
                         print(f)
+                        fname = f.fno
+                        femotion = f.emotionResult
                         self.shouldTransit = true
-                        
+                        isLoading = false
                     } catch {
                         print(error)
                     }
                     
                    }
         
-        print("ddd")
     }
 }
 

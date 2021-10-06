@@ -11,13 +11,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import db_settings
 from pathlib import Path
+import pymysql  
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -31,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'kobertmodel',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -47,14 +51,14 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny',
     ]
 }
 
 # CORS 관련 추가
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
-												,'http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8080','http://localhost:8080','http://j5a503.p.ssafy.io:8080','http://3.38.108.66:8080']
 CORS_ALLOW_CREDENTIALS = True
 
 

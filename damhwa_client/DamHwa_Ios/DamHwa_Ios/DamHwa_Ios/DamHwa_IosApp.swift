@@ -14,19 +14,18 @@ struct DamHwa_IosApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     init() {
             // Kakao SDK 초기화
-            KakaoSDKCommon.initSDK(appKey: "d589009de9e8118fb0628a19a05180d8")
+            KakaoSDKCommon.initSDK(appKey: "5d4ceabed4218c89d458e28bfdd4ed60")
         }
     
     @StateObject var authentication = Authentication()
     var body: some Scene {
         WindowGroup {
             if !authentication.isValidated {
-                TextRecommend()
+                LoginView()
                     .environmentObject(authentication)
             }else {
                 Home()
                     .environmentObject(authentication)
-
             }
         }
     }

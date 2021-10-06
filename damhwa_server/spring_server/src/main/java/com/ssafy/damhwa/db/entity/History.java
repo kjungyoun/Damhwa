@@ -1,5 +1,6 @@
 package com.ssafy.damhwa.db.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,25 +12,25 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@Entity
 public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long hno;
-    @Column
-    Long fno;
-    @Column
+    int fno;
     Long userno;
-    @Column
     Boolean htype;
-    @Column
     String contents;
-    @Column
-    String to;
-    @Column
+    String receiver;
+    @Builder.Default
     Date regdate = Calendar.getInstance().getTime(); // 현재 시간 Default
 
 //    @ManyToOne
 //    @JoinColumn(name = "userno",referencedColumnName = "userno",insertable = false, updatable = false)
 //    User user;
+
+    @OneToOne
+    @JoinColumn(name= "fno", referencedColumnName = "fno", insertable = false, updatable = false)
+    Flower flower;
 }

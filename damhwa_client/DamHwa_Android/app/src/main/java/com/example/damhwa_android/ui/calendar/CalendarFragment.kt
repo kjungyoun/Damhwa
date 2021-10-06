@@ -1,11 +1,37 @@
 package com.example.damhwa_android.ui.calendar
 
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.os.Handler
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentCalendarBinding
 
-class CalendarFragment: BaseFragment<FragmentCalendarBinding>(
+
+@SuppressLint("SetJavaScriptEnabled")
+class CalendarFragment : BaseFragment<FragmentCalendarBinding>(
     R.layout.fragment_calendar
 ) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Handler().postDelayed({
+            sendUserNo()
+        }, 1000)
+        super.onCreate(savedInstanceState)
+    }
 
+    override fun init() {
+        super.init()
+        binding.calendar.settings.javaScriptEnabled = true
+        binding.calendar.settings.domStorageEnabled = true
+        binding.calendar.loadUrl("http://192.168.35.195:8080/")
+    }
+
+    private fun sendUserNo() {
+        val userno = DamhwaSharedPreferencesImpl.getUserNo()
+        binding.calendar.evaluateJavascript(
+            "sendUserNo($userno)",
+            null
+        )
+    }
 }
