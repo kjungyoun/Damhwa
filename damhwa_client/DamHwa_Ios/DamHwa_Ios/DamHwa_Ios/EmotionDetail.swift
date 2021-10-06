@@ -89,6 +89,20 @@ struct EmotionDetail: View {
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+            
+//            let mm = Fm(fno: fno, userno:Int(kakaoId), msg:"\(fmsg)", receiver:"", htype:false)
+//
+//            AF.request("http://j5a503.p.ssafy.io:8080/history/save",
+//                       method: .post,
+//                       parameters: mm,
+//                       encoder: JSONParameterEncoder.default).response { response in
+//                        print(response)
+//                       }
+            print("ddd")
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+//                showAlert = false
+//            }
+            
         }
     }
     func Link(){
@@ -101,7 +115,7 @@ struct EmotionDetail: View {
                   "objectType": "feed",
                   "content": {
                       "title": "\(fname)",
-                      "description": "꽃말:\(flang) 메세지:\(fmsg)",
+                      "description": "메세지:\(fmsg)",
                       "imageUrl": "\(fimg)",
                       "link": {
                           "mobile_web_url": "https://developers.kakao.com",
@@ -133,16 +147,7 @@ struct EmotionDetail: View {
                         }
                     }
                     
-                    let mm = Fm(fno: fno, userno:Int(kakaoId), msg:"\(fmsg)", receiver:"", htype:false)
                     
-                    AF.request("http://j5a503.p.ssafy.io:8080/history/save",
-                               method: .post,
-                               parameters: mm,
-                               encoder: JSONParameterEncoder.default).response { response in
-                                print(response)
-                               }
-                    
-                    print("ddd")
                     
                     // userapi.shared.me 카카오 유저넘버 필요
                     // history 저장하는 과정 필요

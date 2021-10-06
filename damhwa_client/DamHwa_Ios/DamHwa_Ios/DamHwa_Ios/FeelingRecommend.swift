@@ -7,9 +7,13 @@
 
 import SwiftUI
 import Alamofire
+import KakaoSDKAuth
+import KakaoSDKUser
+import KakaoSDKLink
 
 struct Sm: Encodable {
     let state: String
+    let userno: Int
     
 }
 
@@ -35,7 +39,8 @@ struct FeelingRecommend: View {
     @State var fname = 0
     @State var femotion = ""
     @State private var isLoading = false
-
+    @State var userNo:Int64 = 0
+    
     
     var body: some View {
         HStack {
@@ -79,14 +84,27 @@ struct FeelingRecommend: View {
                     
                     if isLoading{
                         ZStack{
-                            Color(.systemBackground)
+                            Color(.black)
+                                .opacity(0.5)
                                 .ignoresSafeArea()
-                            LottieView(filename: "simpleflower")
-                                .ignoresSafeArea()
+                            VStack{
+                                Spacer()
+                                Text("텍스트를 변환하고 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 25))
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Text("입력하신 데이터에 따라서\n결과물이 정확하지 않을 수 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 15))
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
                             
-//                            ProgressView()
-//                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
-//                                .scaleEffect(3)
+                            LottieView(filename: "simpleflower")
+                                .frame(width: 200, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            
+                            //                            ProgressView()
+                            //                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                            //                                .scaleEffect(3)
                         }
                         
                     }
@@ -103,7 +121,19 @@ struct FeelingRecommend: View {
         
     }
     func post(){
-        let mm = Sm(state: "\(feeling)")
+        
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                userNo = (user?.id!)!
+                print(userNo)
+            }
+        }
+        
+        let mm = Sm(state: "\(feeling)", userno: Int(userNo))
         
         AF.request("http://j5a503.p.ssafy.io:8080/api/recomm/state",
                    method: .post,

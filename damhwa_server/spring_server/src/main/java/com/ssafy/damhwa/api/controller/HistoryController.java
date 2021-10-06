@@ -9,6 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/history")
@@ -17,6 +22,7 @@ public class HistoryController {
     @Autowired
     HistoryService historyService;
 
+    // 서신 History 저장 Controller
     @PostMapping("/save")
     public ResponseEntity<? extends BaseResponse> saveMsgRecommHistory (@RequestBody SaveHistoryReq historyReq){
         long userno = historyReq.getUserno();
@@ -24,11 +30,7 @@ public class HistoryController {
         String receiver = historyReq.getReceiver();
         int fno = historyReq.getFno();
         boolean htype = historyReq.isHtype();
-
-        if(htype)
-            historyService.createMsgHistoryList(fno,userno, msg, receiver);
-        else
-            historyService.createStateHistory(fno, userno, msg);
+        historyService.createHistoryList(fno,userno, msg, receiver, htype);
 
         return ResponseEntity.status(200).body(BaseResponse.of(200,"Save History Success"));
     }
@@ -39,4 +41,17 @@ public class HistoryController {
 
         return new ResponseEntity<History>(history, HttpStatus.OK);
     }
+
+    // Timezone 오류 수정
+//    @GetMapping("/test")
+//    public ResponseEntity<Date> returnNow(){
+//        Calendar calendar = Calendar.getInstance();
+//        Date date = new Date();
+//        calendar.setTime(date);
+//        calendar.add(Calendar.HOUR,9);
+//        System.out.println(calendar.getTime());
+//        System.out.println(Calendar.getInstance().getTime());
+//        return new ResponseEntity<Date>(calendar.getTime(),HttpStatus.OK);
+//    }
+
 }

@@ -36,20 +36,37 @@ struct AppleUser: Codable {
     }
 }
 
-struct TextRecommend: View {
+struct LoginView: View {
     @EnvironmentObject var authentication: Authentication
     @Environment(\.colorScheme) var colorScheme
     @State var name : String =  "before login"
+    @State var alog : Bool = false
+    @State private var isLoading = true
     
     var body: some View {
+        ZStack{
+            VStack{
+                GeometryReader{geometry in
+                    Image("img4").resizable().frame(width: geometry.size.width + 100, height: geometry.size.height, alignment: .center).opacity(0.4)
+                }
+            }
         VStack{
+            Spacer().frame(height:200)
+            Text("마음을 전하는\n가장 향기로운 방법")
+                .padding()
+                .font(.custom("SangSangRockOTF", size: 35))
+                .frame(width: 400, alignment: .leading)
+            Spacer()
+            Text("담화")
+                .padding()
+                .font(.custom("SangSangRockOTF", size: 65))
             Spacer()
             SignInWithAppleButton(.signIn, onRequest: configure, onCompletion: handle)
                 .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-                .frame(height: 45)
+                .frame(width:300, height: 45)
                 .padding()
             
-            Spacer()
+            Spacer().frame(height:10)
             Button(action : {
                 //카카오톡이 깔려있는지 확인하는 함수
                 if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -111,8 +128,7 @@ struct TextRecommend: View {
                 
             }){
                 
-                Text("카카오 로그인")
-                Text(name)
+                Image("kakao_login")
             }
             //ios가 버전이 올라감에 따라 sceneDelegate를 더이상 사용하지 않게되었다
             //그래서 로그인을 한후 리턴값을 인식을 하여야하는데 해당 코드를 적어주지않으면 리턴값을 인식되지않는다
@@ -123,8 +139,15 @@ struct TextRecommend: View {
                 }
                 
             })
-            Spacer()
-        }.onAppear{
+            Button(action: {
+                authentication.updateValidation(success: true)
+            }){
+                Text("로그인없이 사용하기")
+            }.padding()
+            
+            Spacer().frame(height:100)
+        }
+        .onAppear{
             if (AuthApi.hasToken()) {
                 UserApi.shared.accessTokenInfo { (_, error) in
                     if let error = error {
@@ -141,7 +164,32 @@ struct TextRecommend: View {
             else {
                 //로그인 필요
             }
+            if (alog){
+                authentication.updateValidation(success: true)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0){
+                isLoading = false
+            }
+            
         }
+            if isLoading{
+                ZStack{
+                    Color(.black)
+                        .opacity(1.0)
+                        .ignoresSafeArea()
+                    LottieView(filename: "simpleflower")
+                        .frame(width: 200, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    
+                    //                            ProgressView()
+                    //                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                    //                                .scaleEffect(3)
+                }
+                
+            }
+        
+        }.background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
+        .ignoresSafeArea()
+        
     }
     
     func configure(_ request: ASAuthorizationAppleIDRequest){
@@ -158,7 +206,7 @@ struct TextRecommend: View {
                 if let appleUser = AppleUser(credentials: appleIdCredentials),
                    let appleUserData = try? JSONEncoder().encode(appleUser){
                     UserDefaults.standard.setValue(appleUserData, forKey: appleUser.userId)
-                    
+                    alog = true
                     print("saved apple user", appleUser)
                 } else {
                     print("missing some fields", appleIdCredentials.email,
@@ -184,7 +232,7 @@ struct TextRecommend: View {
 
 struct TextRecommend_Previews: PreviewProvider {
     static var previews: some View {
-        TextRecommend()
+        LoginView()
         
     }
 }

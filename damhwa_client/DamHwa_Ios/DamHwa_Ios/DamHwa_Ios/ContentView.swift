@@ -29,6 +29,7 @@ struct ContentView: View {
     @State var msg: String
     @State var fArray = [Int]()
     @State var fImgArray = [String]()
+    @State var fNameArray = [String]()
     @State var indexArray: [Int] = [0]
     @State var check = 0
     @State var receiver: String
@@ -46,7 +47,7 @@ struct ContentView: View {
                 Text("\(currentIndex + 1)/\(fArray.count)")
                 Spacer().frame(height: 40)
                 NavigationLink(
-                    destination: DetailFlower(index: currentIndex + 1, name: fArray[currentIndex], fmsg: msg,freceiver: "\(receiver)"),
+                    destination: StoryDetail(index: currentIndex + 1, name: fArray[currentIndex], fmsg: msg,freceiver: "\(receiver)"),
                     label: {
                         ACarousel(indexArray,
                                   id: \.self,
@@ -62,7 +63,11 @@ struct ContentView: View {
                                 .cornerRadius(60)
                         }
                         .frame(height: 500)
+                        
                     })
+                Text("\(fNameArray[currentIndex])")
+                    .padding()
+                    .font(.custom("SangSangRockOTF", size: 30))
                 Spacer()
             }
             .background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/))
@@ -86,7 +91,7 @@ struct ContentView: View {
 
 
 
-// swipe back 
+// swipe back
 extension UINavigationController: UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +109,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(msg:"",fArray:[],fImgArray:[],receiver:"")
     }
 }
-
-
 
 

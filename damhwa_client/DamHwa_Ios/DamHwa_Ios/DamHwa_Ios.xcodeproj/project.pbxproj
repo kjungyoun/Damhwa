@@ -7,60 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3816A29D270E065C001564E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3816A29C270E065C001564E4 /* ContentView.swift */; };
 		385F894726FD6429008D404A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F894626FD6429008D404A /* Home.swift */; };
 		385F894A26FDB53A008D404A /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 385F894926FDB53A008D404A /* ACarousel */; };
-		385F894C26FDB582008D404A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F894B26FDB582008D404A /* ContentView.swift */; };
 		385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */; };
-		385F895226FDFD41008D404A /* StoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F895126FDFD41008D404A /* StoryText.swift */; };
 		387225C9270C4903002F0F94 /* EmotionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225C8270C4903002F0F94 /* EmotionDetail.swift */; };
 		387225CC270C9D9E002F0F94 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 387225CB270C9D9E002F0F94 /* Lottie */; };
 		387225CE270C9DB1002F0F94 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225CD270C9DB1002F0F94 /* LottieView.swift */; };
 		387225D0270C9E63002F0F94 /* simpleflower.json in Resources */ = {isa = PBXBuildFile; fileRef = 387225CF270C9E63002F0F94 /* simpleflower.json */; };
 		387225D4270CB66E002F0F94 /* Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225D3270CB66E002F0F94 /* Webview.swift */; };
 		3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880BA832702E8E400EBD59E /* AppDelegate.swift */; };
-		38D54C6E27055589006469F2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D54C6D27055589006469F2 /* Test.swift */; };
-		38D791D12706E98E003EC06B /* DetailFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D791D02706E98E003EC06B /* DetailFlower.swift */; };
-		38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA19F42704B23D009D06FC /* KakaoLink.swift */; };
+		38D791D12706E98E003EC06B /* StoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D791D02706E98E003EC06B /* StoryDetail.swift */; };
 		38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */; };
 		38E1321326FC46090089F6FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321226FC46090089F6FF /* Assets.xcassets */; };
 		38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E1321526FC46090089F6FF /* Preview Assets.xcassets */; };
-		38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */; };
-		38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321F26FC60BF0089F6FF /* FeelingView.swift */; };
+		38E1321E26FC5CBD0089F6FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1321D26FC5CBD0089F6FF /* LoginView.swift */; };
 		38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */; };
 		38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322326FC61200089F6FF /* FlowerCalendar.swift */; };
 		38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322526FC659C0089F6FF /* StoryTextView.swift */; };
 		38FE01932709BFED00B11B42 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE01922709BFED00B11B42 /* Authentication.swift */; };
-		38FE01952709D99C00B11B42 /* AlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE01942709D99C00B11B42 /* AlamofireTest.swift */; };
 		B79476A3DCE9F0578AE080F9 /* Pods_DamHwa_Ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03E5DE32E6913849C4AB96E0 /* Pods-DamHwa_Ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DamHwa_Ios.debug.xcconfig"; path = "Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios.debug.xcconfig"; sourceTree = "<group>"; };
+		3816A29C270E065C001564E4 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		385F894626FD6429008D404A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		385F894B26FDB582008D404A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSRockRegular_otf.otf; sourceTree = "<group>"; };
-		385F895126FDFD41008D404A /* StoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryText.swift; sourceTree = "<group>"; };
 		387225C8270C4903002F0F94 /* EmotionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionDetail.swift; sourceTree = "<group>"; };
 		387225CD270C9DB1002F0F94 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		387225CF270C9E63002F0F94 /* simpleflower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = simpleflower.json; path = ../../../../../Downloads/simpleflower.json; sourceTree = "<group>"; };
 		387225D3270CB66E002F0F94 /* Webview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webview.swift; sourceTree = "<group>"; };
 		3880BA832702E8E400EBD59E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D54420270185190029BC47 /* DamHwa_Ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DamHwa_Ios.entitlements; sourceTree = "<group>"; };
-		38D54C6D27055589006469F2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		38D791D02706E98E003EC06B /* DetailFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFlower.swift; sourceTree = "<group>"; };
-		38DA19F42704B23D009D06FC /* KakaoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLink.swift; sourceTree = "<group>"; };
+		38D791D02706E98E003EC06B /* StoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetail.swift; sourceTree = "<group>"; };
 		38E1320B26FC46060089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamHwa_IosApp.swift; sourceTree = "<group>"; };
 		38E1321226FC46090089F6FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38E1321526FC46090089F6FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38E1321726FC46090089F6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecommend.swift; sourceTree = "<group>"; };
-		38E1321F26FC60BF0089F6FF /* FeelingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingView.swift; sourceTree = "<group>"; };
+		38E1321D26FC5CBD0089F6FF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingRecommend.swift; sourceTree = "<group>"; };
 		38E1322326FC61200089F6FF /* FlowerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerCalendar.swift; sourceTree = "<group>"; };
 		38E1322526FC659C0089F6FF /* StoryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTextView.swift; sourceTree = "<group>"; };
 		38FE01922709BFED00B11B42 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		38FE01942709D99C00B11B42 /* AlamofireTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireTest.swift; sourceTree = "<group>"; };
 		59E7C9AD4EED338FE391E973 /* Pods-DamHwa_Ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DamHwa_Ios.release.xcconfig"; path = "Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios.release.xcconfig"; sourceTree = "<group>"; };
 		FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DamHwa_Ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -120,23 +110,18 @@
 			children = (
 				38D54420270185190029BC47 /* DamHwa_Ios.entitlements */,
 				38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */,
-				38E1321F26FC60BF0089F6FF /* FeelingView.swift */,
 				387225CD270C9DB1002F0F94 /* LottieView.swift */,
 				38E1322526FC659C0089F6FF /* StoryTextView.swift */,
-				385F895126FDFD41008D404A /* StoryText.swift */,
 				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
+				3816A29C270E065C001564E4 /* ContentView.swift */,
 				387225CF270C9E63002F0F94 /* simpleflower.json */,
 				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
 				387225D3270CB66E002F0F94 /* Webview.swift */,
-				38FE01942709D99C00B11B42 /* AlamofireTest.swift */,
-				38D54C6D27055589006469F2 /* Test.swift */,
 				385F894626FD6429008D404A /* Home.swift */,
-				385F894B26FDB582008D404A /* ContentView.swift */,
-				38D791D02706E98E003EC06B /* DetailFlower.swift */,
+				38D791D02706E98E003EC06B /* StoryDetail.swift */,
 				387225C8270C4903002F0F94 /* EmotionDetail.swift */,
-				38E1321D26FC5CBD0089F6FF /* TextRecommend.swift */,
+				38E1321D26FC5CBD0089F6FF /* LoginView.swift */,
 				38FE01922709BFED00B11B42 /* Authentication.swift */,
-				38DA19F42704B23D009D06FC /* KakaoLink.swift */,
 				3880BA832702E8E400EBD59E /* AppDelegate.swift */,
 				38E1321226FC46090089F6FF /* Assets.xcassets */,
 				38E1321726FC46090089F6FF /* Info.plist */,
@@ -285,22 +270,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
-				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
-				385F894C26FDB582008D404A /* ContentView.swift in Sources */,
 				387225D4270CB66E002F0F94 /* Webview.swift in Sources */,
+				3816A29D270E065C001564E4 /* ContentView.swift in Sources */,
 				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
-				38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */,
-				38D54C6E27055589006469F2 /* Test.swift in Sources */,
 				387225C9270C4903002F0F94 /* EmotionDetail.swift in Sources */,
-				38D791D12706E98E003EC06B /* DetailFlower.swift in Sources */,
+				38D791D12706E98E003EC06B /* StoryDetail.swift in Sources */,
 				38FE01932709BFED00B11B42 /* Authentication.swift in Sources */,
 				38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */,
 				387225CE270C9DB1002F0F94 /* LottieView.swift in Sources */,
-				385F895226FDFD41008D404A /* StoryText.swift in Sources */,
 				38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */,
-				38E1321E26FC5CBD0089F6FF /* TextRecommend.swift in Sources */,
+				38E1321E26FC5CBD0089F6FF /* LoginView.swift in Sources */,
 				3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */,
-				38FE01952709D99C00B11B42 /* AlamofireTest.swift in Sources */,
 				385F894726FD6429008D404A /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

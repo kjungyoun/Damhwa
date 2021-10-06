@@ -176,6 +176,10 @@ export default {
     },
   },
   beforeMount() {
+<<<<<<< HEAD
+=======
+    // this.sendUserNo(1927960578)
+>>>>>>> 6d0cab8ff4ad167eb652d40b4e2f88d93baa811e
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),

@@ -2,7 +2,6 @@ package com.ssafy.damhwa.api.controller;
 
 import com.ssafy.damhwa.api.request.MsgRecommReq;
 import com.ssafy.damhwa.api.request.StateRecommReq;
-import com.ssafy.damhwa.api.response.FlowerNEmotionRes;
 import com.ssafy.damhwa.api.service.DjangoService;
 import com.ssafy.damhwa.db.entity.Flower;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,9 @@ public class DjangoController {
     @PostMapping("/state")
     public ResponseEntity<Flower> stateRecomm (@RequestBody StateRecommReq stateRecommReq){
         String state = stateRecommReq.getState();
+        long userno = stateRecommReq.getUserno();
         System.out.println(state);
-        Flower response = djangoService.getStateRecommendFlower(state);
+        Flower response = djangoService.getStateRecommendFlower(state, userno);
 
         return new ResponseEntity<Flower>(response, HttpStatus.OK);
     }
