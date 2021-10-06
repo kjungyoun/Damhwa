@@ -16,10 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.data.FeelingFlower
-import com.example.damhwa_android.data.History
-import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
