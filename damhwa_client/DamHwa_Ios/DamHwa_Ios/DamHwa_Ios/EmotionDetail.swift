@@ -115,7 +115,7 @@ struct EmotionDetail: View {
                   "objectType": "feed",
                   "content": {
                       "title": "\(fname)",
-                      "description": "꽃말:\(flang) 메세지:\(fmsg)",
+                      "description": "메세지:\(fmsg)",
                       "imageUrl": "\(fimg)",
                       "link": {
                           "mobile_web_url": "https://developers.kakao.com",
