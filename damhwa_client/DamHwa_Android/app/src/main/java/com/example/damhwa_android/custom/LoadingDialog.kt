@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import com.example.damhwa_android.R
 
-class LoadingDialog constructor(context: Context): Dialog(context) {
+class LoadingDialog constructor(context: Context) : Dialog(context) {
 
     init {
         setCanceledOnTouchOutside(false)

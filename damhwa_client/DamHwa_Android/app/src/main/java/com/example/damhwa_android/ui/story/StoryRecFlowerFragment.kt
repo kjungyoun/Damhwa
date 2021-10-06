@@ -41,7 +41,7 @@ class StoryRecFlowerFragment : BaseFragment<FragmentStoryRecFlowerBinding>(
 
         storyViewModel.recommendedFlowerListFromStory
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ flowers ->
+            .subscribe({ flowers ->
                 adapter.flowers = flowers
                 adapter.notifyDataSetChanged()
                 storyViewModel.clearData()

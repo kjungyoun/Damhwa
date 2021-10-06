@@ -53,9 +53,7 @@ class StoryFragmentViewModel(
     fun clearData() {
         _letterInputSubject.onNext(Letter())
         _isCompletedChangedToFlowerSubject.onNext(false)
-        letterHistory = letterText.value ?: ""
         letterText = MutableLiveData("")
-        receiverHistory = receiverText.value ?: ""
         receiverText = MutableLiveData("")
     }
 
@@ -79,17 +77,22 @@ class StoryFragmentViewModel(
             .doOnError { _isChangingToFlowerSubject.onNext(false) }
             .subscribe({ response ->
                 if (response != null) {
+                    saveHistoryInfo()
                     _recommendedFlowerFromStorySubject.onNext(
                         response
                     )
                 }
-                Log.d("로그", response.toString())
                 navigateToFlowerDetail()
             }, {
                 _errorLogger.onNext("데이터를 변환하는 서버에 문제가 발생했어요. \n 조금 이따 다시 시도해 주세요!")
                 Log.e("ErrorLogger - StoryFragmentViewModel - changeFlower", it.message.toString())
             })
             .addToDisposable()
+    }
+
+    private fun saveHistoryInfo() {
+        receiverHistory = receiverText.value ?: ""
+        letterHistory = letterText.value ?: ""
     }
 
     fun saveHistory(history: History) {

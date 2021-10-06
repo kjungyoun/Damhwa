@@ -2,7 +2,6 @@ package com.example.damhwa_android.ui.story
 
 import android.content.ActivityNotFoundException
 import android.content.ContentValues
-import android.content.Intent
 import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
@@ -11,18 +10,15 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseFragment
-import com.example.damhwa_android.custom.DamwhaToast
 import com.example.damhwa_android.data.Flower
 import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentStoryFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
-import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
 import com.kakao.sdk.link.rx
-import com.kakao.sdk.template.model.Button
 import com.kakao.sdk.template.model.Content
 import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
@@ -56,11 +52,6 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         }
     }
 
-    private fun startFindFlowerWebView() {
-        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun getFlowerData() {
         arguments?.let {
             flower = it.getSerializable("flower") as Flower
@@ -92,21 +83,15 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         checkKakaoTalkExist(defaultFeed)
     }
 
-    fun showToast(msg: String) {
-        DamwhaToast.createToast(requireContext(), msg)?.show()
-    }
-
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
         if (LinkClient.instance.isKakaoLinkAvailable(requireContext())) {
             LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ linkResult ->
-                    showToast("서신 전달 성공!")
                     Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
-
                     Log.w(ContentValues.TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(ContentValues.TAG, "Argument Msg: ${linkResult.argumentMsg}")
                 }, { error ->
