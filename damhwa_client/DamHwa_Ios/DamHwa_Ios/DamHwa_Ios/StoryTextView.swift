@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import KakaoSDKAuth
+//import KakaoSDKAuth
 import Alamofire
 
 extension View {
@@ -15,6 +15,27 @@ extension View {
     }
 }
 
+struct Mm: Encodable {
+    let msg: String
+}
+
+struct Flower: Codable {
+    let fno:Int
+    let fname_KR:String
+    let fname_EN:String
+    let fmonth:Int
+    let fday:Int
+    let flang:String
+    let fcontents:String
+    let fgrow:String
+    let img1:String
+    let watercolor_img:String
+
+    
+}
+
+
+
 struct StoryTextView: View {
     
     @State var story = ""
@@ -22,6 +43,7 @@ struct StoryTextView: View {
     @State private var shouldTransit: Bool = false
     @State var fnoArr = [Int]()
     @State var fimgArr = [String]()
+    @State var fnameArr = [String]()
     @State private var isLoading = false
     
     var body: some View {
@@ -61,7 +83,7 @@ struct StoryTextView: View {
                             .font(.custom("SangSangRockOTF", size: 20))
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
                         Spacer()
-                        NavigationLink(destination: ContentView(msg:"\(story)",fArray:fnoArr,fImgArray:fimgArr,receiver:"\(receiver)").navigationBarHidden(true), isActive: $shouldTransit){
+                        NavigationLink(destination: ContentView(msg:"\(story)",fArray:fnoArr,fImgArray:fimgArr,fNameArray:fnameArr, receiver:"\(receiver)").navigationBarHidden(true), isActive: $shouldTransit){
                             Image("recommButton").resizable().frame(width:120, height:40)
                                 .onTapGesture {
                                     isLoading = true
@@ -72,14 +94,27 @@ struct StoryTextView: View {
                     }
                     if isLoading{
                         ZStack{
-                            Color(.systemBackground)
+                            Color(.black)
+                                .opacity(0.5)
                                 .ignoresSafeArea()
+                            VStack{
+                                Spacer()
+                                Text("텍스트를 변환하고 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 25))
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Text("입력하신 데이터에 따라서\n결과물이 정확하지 않을 수 있습니다.")
+                                    .font(.custom("SangSangRockOTF", size: 15))
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
+                            
                             LottieView(filename: "simpleflower")
-                                .ignoresSafeArea()
-//                            
-//                            ProgressView()
-//                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
-//                                .scaleEffect(3)
+                                .frame(width: 200, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            
+                            //                            ProgressView()
+                            //                                .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                            //                                .scaleEffect(3)
                         }
                         
                     }
@@ -109,6 +144,7 @@ struct StoryTextView: View {
                         for i in f{
                             fnoArr.append(i.fno)
                             fimgArr.append(i.watercolor_img)
+                            fnameArr.append(i.fname_KR)
                         }
                         print(fnoArr)
                         print(fimgArr)

@@ -49,7 +49,7 @@ extension String{
     
 }
 
-struct DetailFlower: View {
+struct StoryDetail: View {
     var index: Int
     @State var name: Int
     @State var fname: String = ""
@@ -74,7 +74,7 @@ struct DetailFlower: View {
                     .frame(width:2000)
                 Image(uiImage: "\(fimg)".load())
                     .resizable()
-                    .frame(width: 350, height: 400)
+                    .frame(width: 300, height: 350)
                     .cornerRadius(60)
                     .padding()
                 
@@ -85,7 +85,8 @@ struct DetailFlower: View {
                     .font(.custom("SangSangRockOTF", size: 15))
                 
                 Button(action: Link, label: {
-                    Text("공유하기")
+                    Image("shareButton").resizable().frame(width:120, height:100)
+                        .padding()
                 })
                 Spacer()
             }.background(Color(red: 242 / 255, green: 238 / 255, blue: 229 / 255)
@@ -132,11 +133,6 @@ struct DetailFlower: View {
                           "mobile_web_url": "https://developers.kakao.com",
                           "web_url": "https://developers.kakao.com"
                       }
-                  },
-                  "social": {
-                      "comment_count": 45,
-                      "like_count": 286,
-                      "shared_count": 845
                   }
               }
               """.data(using: .utf8)!
@@ -182,6 +178,6 @@ struct DetailFlower: View {
 
 struct DetailFlower_Previews: PreviewProvider {
     static var previews: some View {
-        DetailFlower(index:5, name:0)
+        StoryDetail(index:5, name:0)
     }
 }

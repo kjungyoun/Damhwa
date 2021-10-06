@@ -158,7 +158,7 @@ export default {
     },
   },
   beforeMount() {
-    this.sendUserNo(1927960578)
+    // this.sendUserNo(1927960578)
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),

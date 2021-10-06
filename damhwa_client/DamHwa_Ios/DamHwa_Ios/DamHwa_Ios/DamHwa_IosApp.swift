@@ -21,7 +21,7 @@ struct DamHwa_IosApp: App {
     var body: some Scene {
         WindowGroup {
             if !authentication.isValidated {
-                TextRecommend()
+                LoginView()
                     .environmentObject(authentication)
             }else {
                 Home()

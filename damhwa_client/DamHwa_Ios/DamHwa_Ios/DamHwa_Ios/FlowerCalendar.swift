@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FlowerCalendar: View {
     var body: some View{
-        Webview(url: "http://192.168.55.65:8081/")
+        Webview(url: "http://j5a503.p.ssafy.io:5000/").ignoresSafeArea()
     }
 }
 
