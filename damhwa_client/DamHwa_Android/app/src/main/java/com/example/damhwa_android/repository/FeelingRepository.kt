@@ -22,6 +22,7 @@ class FeelingRepository(
 
     fun Feeling.toRequestBody(): RequestBody =
         JsonObject().apply {
+            addProperty("userno", userNo)
             addProperty("state", feelingText)
         }
             .toString()
