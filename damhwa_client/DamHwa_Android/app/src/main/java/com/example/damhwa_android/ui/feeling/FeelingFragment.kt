@@ -30,6 +30,7 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
             }
         }
     }
+
     // editText 밖 터치시 키보드 내리기
     private fun hideKeyboard() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -68,7 +69,10 @@ class FeelingFragment : BaseFragment<FragmentFeelingBinding>(
                     routeToFlowerFeelingDetail()
                 }
             }, {
-                Log.e("ErrorLogger - FeelingFragment - feelingViewModel.completeTrigger", it.toString())
+                Log.e(
+                    "ErrorLogger - FeelingFragment - feelingViewModel.completeTrigger",
+                    it.toString()
+                )
             })
             .addToDisposable()
 

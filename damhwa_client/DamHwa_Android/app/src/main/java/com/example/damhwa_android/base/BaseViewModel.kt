@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
     private val disposables by lazy { CompositeDisposable() }
 
     fun Disposable.addToDisposable(): Disposable = addTo(disposables)

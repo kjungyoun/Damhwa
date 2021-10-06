@@ -30,4 +30,4 @@ data class Flower(
     val img3: String,
     @SerializedName("watercolor_img")
     val watercolor_img: String
-): Serializable
+) : Serializable

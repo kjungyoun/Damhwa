@@ -8,27 +8,30 @@ import com.example.damhwa_android.databinding.ItemRecommendedFlowerBinding
 
 class RecommendedFlowerAdapter(
     private val navigate: (Flower) -> Unit
-):
+) :
     RecyclerView.Adapter<RecommendedFlowerAdapter.RecommendedFlowerViewHolder>() {
     var flowers = emptyList<Flower>()
 
-    inner class RecommendedFlowerViewHolder(val binding: ItemRecommendedFlowerBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class RecommendedFlowerViewHolder(val binding: ItemRecommendedFlowerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position < flowers.size) {
-                     val flower = flowers[position]
+                    val flower = flowers[position]
                     navigate(flower)
                 }
             }
         }
+
         fun bind(flower: Flower) {
             binding.flower = flower
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedFlowerViewHolder {
-        val binding = ItemRecommendedFlowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRecommendedFlowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecommendedFlowerViewHolder(binding)
     }
 

@@ -4,7 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
+    FragmentStateAdapter(fragmentActivity) {
 
     companion object {
         // 페이지 개수를 정적 변수로 선언
@@ -16,11 +17,11 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
     }
 
     override fun createFragment(position: Int): Fragment {
-        if(position == 0) {
+        if (position == 0) {
             return FirstFragmentLanding()
-        }else if(position == 1) {
+        } else if (position == 1) {
             return SecondFragmentLanding()
-        }else {
+        } else {
             return ThirdFragmentLanding()
         }
     }

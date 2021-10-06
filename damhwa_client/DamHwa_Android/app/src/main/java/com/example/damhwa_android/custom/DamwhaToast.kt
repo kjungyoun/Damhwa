@@ -19,7 +19,7 @@ object DamwhaToast {
         binding.toastMsg.text = message
 
         return Toast(context).apply {
-            setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, 16.toPx())
+            setGravity(Gravity.TOP or Gravity.CENTER, 0, 16.toPx())
             duration = Toast.LENGTH_LONG
             view = binding.root
         }

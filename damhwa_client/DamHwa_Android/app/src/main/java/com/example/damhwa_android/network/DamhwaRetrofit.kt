@@ -1,6 +1,5 @@
 package com.example.damhwa_android.network
 
-import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
