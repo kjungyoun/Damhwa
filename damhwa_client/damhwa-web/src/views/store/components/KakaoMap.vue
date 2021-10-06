@@ -52,7 +52,7 @@ export default {
         map: this.map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-      console.log(marker);
+      // console.log(marker);
 
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, 'click', function() {
@@ -112,7 +112,8 @@ export default {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         this.map.setBounds(bounds);
-        console.log(pagination);
+        // console.log(pagination);
+        pagination
         this.$emit("stores", data)
       }
     },
