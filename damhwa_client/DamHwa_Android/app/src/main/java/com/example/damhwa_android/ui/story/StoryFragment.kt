@@ -44,7 +44,7 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
 
         storyViewModel.completeTrigger
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ complete ->
+            .subscribe({ complete ->
                 if (complete) {
                     routeToStoryRecFragment()
                 }
@@ -69,7 +69,7 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(
 
         storyViewModel.isChanging
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ status ->
+            .subscribe({ status ->
                 checkLoading(status)
             }, {
                 Log.e("ErrorLogger - StoryFragment - storyViewModel.isChanging", it.toString())

@@ -1,6 +1,5 @@
 package com.example.damhwa_android.ui.story
 
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide

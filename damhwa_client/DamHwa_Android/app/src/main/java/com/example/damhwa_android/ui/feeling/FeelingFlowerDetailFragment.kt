@@ -2,7 +2,6 @@ package com.example.damhwa_android.ui.feeling
 
 import android.content.ActivityNotFoundException
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -10,7 +9,6 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -24,12 +22,13 @@ import com.example.damhwa_android.data.History
 import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.databinding.FragmentFeelingFlowerDetailBinding
 import com.example.damhwa_android.network.DamhwaInjection
-import com.example.damhwa_android.ui.flowerstore.FlowerStoreActivity
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
 import com.kakao.sdk.link.rx
-import com.kakao.sdk.template.model.*
+import com.kakao.sdk.template.model.Content
+import com.kakao.sdk.template.model.FeedTemplate
+import com.kakao.sdk.template.model.Link
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -59,7 +58,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         }
         feelingViewModel.recommendedFlowerFromFeeling
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ result ->
+            .subscribe({ result ->
                 recommFlower = result
                 makeFeelingFlowerGuideText()
                 setInformation(result)
@@ -68,11 +67,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 Log.e("ErrorLogger - FeelingDetail - recommended", it.message.toString())
             })
             .addToDisposable()
-    }
-
-    private fun startFindFlowerWebView() {
-        val intent = Intent(requireActivity(), FlowerStoreActivity::class.java)
-        startActivity(intent)
     }
 
     private fun setInformation(feelingFlower: FeelingFlower) {
@@ -106,10 +100,10 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ linkResult ->
-                    showToast("담화 공유 성공!")
                     Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
+                    showToast("담화 공유 성공!")
                     Log.w(TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(TAG, "Argument Msg: ${linkResult.argumentMsg}")
                 }, { error ->
@@ -120,8 +114,7 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             val sharerUrl = WebSharerClient.instance.defaultTemplateUri(defaultFeed)
             try {
                 KakaoCustomTabsClient.openWithDefault(requireContext(), sharerUrl)
-                saveHistory()
-            } catch(e: UnsupportedOperationException) {
+            } catch (e: UnsupportedOperationException) {
             }
 
             try {
@@ -132,6 +125,8 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
     }
 
     private fun saveHistory() {
+
+        Log.d("로그", feelingViewModel.feelingHistory)
         feelingViewModel.saveHistory(
             History(
                 userNo = DamhwaSharedPreferencesImpl.getUserNo(),

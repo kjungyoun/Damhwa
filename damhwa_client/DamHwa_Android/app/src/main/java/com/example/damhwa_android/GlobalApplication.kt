@@ -6,7 +6,7 @@ import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferences
 import com.kakao.sdk.common.KakaoSdk
 
 
-class GlobalApplication: Application() {
+class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeKakaoSDK()

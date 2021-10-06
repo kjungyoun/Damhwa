@@ -83,7 +83,6 @@ class StoryFragmentViewModel(
                         response
                     )
                 }
-                Log.d("로그", response.toString())
                 navigateToFlowerDetail()
             }, {
                 _errorLogger.onNext("데이터를 변환하는 서버에 문제가 발생했어요. \n 조금 이따 다시 시도해 주세요!")

@@ -9,7 +9,8 @@ import com.example.damhwa_android.databinding.FragmentFirstLandingBinding
 import com.example.damhwa_android.ui.MainActivity
 import com.kakao.sdk.user.UserApiClient
 
-class FirstFragmentLanding : BaseFragment<FragmentFirstLandingBinding>(R.layout.fragment_first_landing) {
+class FirstFragmentLanding :
+    BaseFragment<FragmentFirstLandingBinding>(R.layout.fragment_first_landing) {
     override fun init() {
         super.init()
 

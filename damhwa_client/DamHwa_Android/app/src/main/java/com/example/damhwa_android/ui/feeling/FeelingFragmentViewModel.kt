@@ -58,7 +58,7 @@ class FeelingFragmentViewModel(
             }
             .doOnSuccess { _isChangingSubject.onNext(false) }
             .doOnError { _isChangingSubject.onNext(false) }
-            .subscribe ({ response ->
+            .subscribe({ response ->
                 if (response != null) {
                     _recommFlowerSubject.onNext(
                         response
@@ -67,12 +67,16 @@ class FeelingFragmentViewModel(
                 navigateToFlowerDetail()
             }, {
                 _errorLogger.onNext("데이터를 변환하는 서버에 문제가 발생했어요. \n 조금 이따 다시 시도해 주세요!")
-                Log.e("ErrorLogger - FeelingFragmentViewModel - changeFlower", it.message.toString())
+                Log.e(
+                    "ErrorLogger - FeelingFragmentViewModel - changeFlower",
+                    it.message.toString()
+                )
             })
             .addToDisposable()
     }
 
     fun saveHistory(history: History) {
+        Log.d("history", history.toString())
         repository.saveHistory(history)
             .subscribeOn(Schedulers.io())
             .subscribe({ respone ->
