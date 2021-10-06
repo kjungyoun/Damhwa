@@ -127,7 +127,7 @@ struct StoryDetail: View {
                   "objectType": "feed",
                   "content": {
                       "title": "\(fname)",
-                      "description": "\(flang)",
+                      "description": "메세지:\(fmsg)",
                       "imageUrl": "\(fimg)",
                       "link": {
                           "mobile_web_url": "https://developers.kakao.com",
