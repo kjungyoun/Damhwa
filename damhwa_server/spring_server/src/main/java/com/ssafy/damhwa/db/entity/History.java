@@ -24,7 +24,7 @@ public class History {
     String contents;
     String receiver;
     @Builder.Default
-    Date regdate = Calendar.getInstance().getTime(); // 현재 시간 Default
+    Date regdate=Calendar.getInstance().getTime();
 
 //    @ManyToOne
 //    @JoinColumn(name = "userno",referencedColumnName = "userno",insertable = false, updatable = false)
