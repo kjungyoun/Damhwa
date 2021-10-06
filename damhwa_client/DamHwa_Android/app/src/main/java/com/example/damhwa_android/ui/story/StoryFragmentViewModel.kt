@@ -53,9 +53,7 @@ class StoryFragmentViewModel(
     fun clearData() {
         _letterInputSubject.onNext(Letter())
         _isCompletedChangedToFlowerSubject.onNext(false)
-        letterHistory = letterText.value ?: ""
         letterText = MutableLiveData("")
-        receiverHistory = receiverText.value ?: ""
         receiverText = MutableLiveData("")
     }
 
@@ -79,6 +77,7 @@ class StoryFragmentViewModel(
             .doOnError { _isChangingToFlowerSubject.onNext(false) }
             .subscribe({ response ->
                 if (response != null) {
+                    saveHistoryInfo()
                     _recommendedFlowerFromStorySubject.onNext(
                         response
                     )
@@ -89,6 +88,11 @@ class StoryFragmentViewModel(
                 Log.e("ErrorLogger - StoryFragmentViewModel - changeFlower", it.message.toString())
             })
             .addToDisposable()
+    }
+
+    private fun saveHistoryInfo() {
+        receiverHistory = receiverText.value ?: ""
+        letterHistory = letterText.value ?: ""
     }
 
     fun saveHistory(history: History) {

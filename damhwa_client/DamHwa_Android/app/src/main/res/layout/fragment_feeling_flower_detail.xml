@@ -64,18 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="독립의 뜻을 가지고 있습니다. 테스트 입니다.  테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트 입니다. 테스트입니다." />
 
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="@string/kakao_caution"
-            android:textColor="@color/grey"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/flowerDescription"
-            app:layout_constraintTop_toBottomOf="@+id/flowerDescription"
-            app:layout_constraintRight_toRightOf="@+id/flowerDescription"/>
-
         <ImageView
             android:id="@+id/shareKakao"
             android:layout_width="90dp"

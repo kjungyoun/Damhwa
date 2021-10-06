@@ -90,10 +90,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
         checkKakaoTalkExist(defaultFeed)
     }
 
-    fun showToast(msg: String) {
-        DamwhaToast.createToast(requireContext(), msg)?.show()
-    }
-
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
         if (LinkClient.instance.isKakaoLinkAvailable(requireContext())) {
             LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
@@ -102,8 +98,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 .subscribe({ linkResult ->
                     Log.d(TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
-                    saveHistory()
-                    showToast("담화 공유 성공!")
                     Log.w(TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(TAG, "Argument Msg: ${linkResult.argumentMsg}")
                 }, { error ->
@@ -122,20 +116,6 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
             } catch (e: ActivityNotFoundException) {
             }
         }
-    }
-
-    private fun saveHistory() {
-
-        Log.d("로그", feelingViewModel.feelingHistory)
-        feelingViewModel.saveHistory(
-            History(
-                userNo = DamhwaSharedPreferencesImpl.getUserNo(),
-                fNo = recommFlower.fno,
-                receiver = "",
-                msg = feelingViewModel.feelingHistory,
-                htype = false
-            )
-        )
     }
 
     private fun Disposable.addToDisposable(): Disposable = addTo(disposables)

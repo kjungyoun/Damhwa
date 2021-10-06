@@ -13,9 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DamHwa_Android">
-        <activity
-            android:name=".ui.flowerstore.FlowerStoreActivity"
-            android:exported="true" />
+
         <activity
             android:name=".ui.landing.LandingActivity"
             android:exported="true">

@@ -6,6 +6,7 @@ import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.FeelingFlower
 import com.example.damhwa_android.data.History
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.repository.FeelingRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -60,6 +61,7 @@ class FeelingFragmentViewModel(
             .doOnError { _isChangingSubject.onNext(false) }
             .subscribe({ response ->
                 if (response != null) {
+                    saveHistoryInfo()
                     _recommFlowerSubject.onNext(
                         response
                     )
@@ -75,19 +77,8 @@ class FeelingFragmentViewModel(
             .addToDisposable()
     }
 
-    fun saveHistory(history: History) {
-        Log.d("history", history.toString())
-        repository.saveHistory(history)
-            .subscribeOn(Schedulers.io())
-            .subscribe({ respone ->
-                if (respone.statusCode != 200) {
-                    _errorLogger.onNext("감정 내역을 캘린더에 저장하던 도중 문제가 발생했어요. \n 다시 시도해주세요!")
-                    Log.e("ErrorLogger - FeelingFragmentViewModel - saveHistory", "Error in saving")
-                }
-            }, {
-                Log.e("ErrorLogger - FeelingFragmentViewModel - saveHistory", it.message.toString())
-            })
-            .addToDisposable()
+    private fun saveHistoryInfo() {
+        feelingHistory = feelingText.value ?: ""
     }
 
     fun navigateToFlowerDetail() {
@@ -97,7 +88,6 @@ class FeelingFragmentViewModel(
     fun clearData() {
         _feelingInputSubject.onNext(Feeling())
         _isCompletedSubject.onNext(false)
-        feelingHistory = feelingText.value ?: ""
         feelingText = MutableLiveData("")
     }
 

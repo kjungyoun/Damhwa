@@ -84,10 +84,6 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
         checkKakaoTalkExist(defaultFeed)
     }
 
-    fun showToast(msg: String) {
-        DamwhaToast.createToast(requireContext(), msg)?.show()
-    }
-
     private fun checkKakaoTalkExist(defaultFeed: FeedTemplate) {
         if (LinkClient.instance.isKakaoLinkAvailable(requireContext())) {
             LinkClient.rx.defaultTemplate(requireContext(), defaultFeed)
@@ -97,7 +93,6 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                     Log.d(ContentValues.TAG, "카카오링크 보내기 성공 ${linkResult.intent}")
                     startActivity(linkResult.intent)
                     saveHistory()
-                    showToast("서신 전달 성공!")
                     Log.w(ContentValues.TAG, "Warning Msg: ${linkResult.warningMsg}")
                     Log.w(ContentValues.TAG, "Argument Msg: ${linkResult.argumentMsg}")
                 }, { error ->
