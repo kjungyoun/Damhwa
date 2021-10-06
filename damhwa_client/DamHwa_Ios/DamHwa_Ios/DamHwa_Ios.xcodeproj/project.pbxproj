@@ -16,9 +16,9 @@
 		387225CC270C9D9E002F0F94 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 387225CB270C9D9E002F0F94 /* Lottie */; };
 		387225CE270C9DB1002F0F94 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225CD270C9DB1002F0F94 /* LottieView.swift */; };
 		387225D0270C9E63002F0F94 /* simpleflower.json in Resources */ = {isa = PBXBuildFile; fileRef = 387225CF270C9E63002F0F94 /* simpleflower.json */; };
+		387225D4270CB66E002F0F94 /* Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225D3270CB66E002F0F94 /* Webview.swift */; };
 		3880BA842702E8E400EBD59E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880BA832702E8E400EBD59E /* AppDelegate.swift */; };
 		38D54C6E27055589006469F2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D54C6D27055589006469F2 /* Test.swift */; };
-		38D54C702705A9B6006469F2 /* WebViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D54C6F2705A9B5006469F2 /* WebViewPage.swift */; };
 		38D791D12706E98E003EC06B /* DetailFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D791D02706E98E003EC06B /* DetailFlower.swift */; };
 		38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA19F42704B23D009D06FC /* KakaoLink.swift */; };
 		38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1320E26FC46060089F6FF /* DamHwa_IosApp.swift */; };
@@ -43,10 +43,10 @@
 		387225C8270C4903002F0F94 /* EmotionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionDetail.swift; sourceTree = "<group>"; };
 		387225CD270C9DB1002F0F94 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		387225CF270C9E63002F0F94 /* simpleflower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = simpleflower.json; path = ../../../../../Downloads/simpleflower.json; sourceTree = "<group>"; };
+		387225D3270CB66E002F0F94 /* Webview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webview.swift; sourceTree = "<group>"; };
 		3880BA832702E8E400EBD59E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D54420270185190029BC47 /* DamHwa_Ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DamHwa_Ios.entitlements; sourceTree = "<group>"; };
 		38D54C6D27055589006469F2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		38D54C6F2705A9B5006469F2 /* WebViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPage.swift; sourceTree = "<group>"; };
 		38D791D02706E98E003EC06B /* DetailFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFlower.swift; sourceTree = "<group>"; };
 		38DA19F42704B23D009D06FC /* KakaoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLink.swift; sourceTree = "<group>"; };
 		38E1320B26FC46060089F6FF /* DamHwa_Ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DamHwa_Ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +127,7 @@
 				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
 				387225CF270C9E63002F0F94 /* simpleflower.json */,
 				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
+				387225D3270CB66E002F0F94 /* Webview.swift */,
 				38FE01942709D99C00B11B42 /* AlamofireTest.swift */,
 				38D54C6D27055589006469F2 /* Test.swift */,
 				385F894626FD6429008D404A /* Home.swift */,
@@ -139,7 +140,6 @@
 				3880BA832702E8E400EBD59E /* AppDelegate.swift */,
 				38E1321226FC46090089F6FF /* Assets.xcassets */,
 				38E1321726FC46090089F6FF /* Info.plist */,
-				38D54C6F2705A9B5006469F2 /* WebViewPage.swift */,
 				38E1321426FC46090089F6FF /* Preview Content */,
 			);
 			path = DamHwa_Ios;
@@ -285,9 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */,
-				38D54C702705A9B6006469F2 /* WebViewPage.swift in Sources */,
 				38E1322026FC60BF0089F6FF /* FeelingView.swift in Sources */,
 				385F894C26FDB582008D404A /* ContentView.swift in Sources */,
+				387225D4270CB66E002F0F94 /* Webview.swift in Sources */,
 				38E1320F26FC46060089F6FF /* DamHwa_IosApp.swift in Sources */,
 				38DA19F52704B23D009D06FC /* KakaoLink.swift in Sources */,
 				38D54C6E27055589006469F2 /* Test.swift in Sources */,
