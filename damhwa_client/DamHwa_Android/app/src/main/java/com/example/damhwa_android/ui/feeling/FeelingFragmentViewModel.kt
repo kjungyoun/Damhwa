@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.damhwa_android.R
 import com.example.damhwa_android.base.BaseViewModel
 import com.example.damhwa_android.data.FeelingFlower
+import com.example.damhwa_android.data.sharedpreferences.DamhwaSharedPreferencesImpl
 import com.example.damhwa_android.repository.FeelingRepository
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -97,6 +98,7 @@ class FeelingFragmentViewModel(
     }
 
     data class Feeling(
+        val userNo: Long = DamhwaSharedPreferencesImpl.getUserNo(),
         val feelingText: String? = null
     )
 
