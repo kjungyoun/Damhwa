@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:892618485342:android:0d1b56010836d1da468ecf",
         "android_client_info": {
-          "package_name": "com.example.damhwa_android"
+          "package_name": "com.f5.damhwa_android"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "892618485342-lm6nm6qtmt9s11tuqbi109n08hs2osi5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.damhwa_android",
+            "package_name": "com.f5.damhwa_android",
             "certificate_hash": "ac4cc8517826eec691c1378e9d402ffde28838ac"
           }
         },

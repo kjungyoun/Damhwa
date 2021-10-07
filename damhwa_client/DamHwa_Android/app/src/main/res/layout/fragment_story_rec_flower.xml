@@ -5,7 +5,7 @@
     <data>
         <variable
             name="storyFragmentViewModel"
-            type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
+            type="com.f5.damhwa_android.ui.story.StoryFragmentViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

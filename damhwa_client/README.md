@@ -74,6 +74,26 @@ Modern Android Development(MAD)는 더 나은 애플리케이션을 구축하는
 
 ## iOS
 
+### ✔Swift5 with Xcode12
+
+
+### 🛠 Teck Stack
+
+- Swift Packeges
+  - ACarousel
+  - Lottie
+- Firebase 
+- KakaoSDK
+- Alamofire
+
+### 구현 내용
+
+- SwiftUI를 통한 UI 구현을 진행하였습니다.
+- 소셜 로그인 기능구현 (Kakao, Apple), 로그인없이 사용가능 (배포 심사) 
+- WebView 연동 및 네이티브에서 JS 함수 호출
+- API 통신을 위하여 Alamofire 사용
+- KakaoSDK 사용하여 메세지 공유기능 구현
+
 
 
 ## Web
