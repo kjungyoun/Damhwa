@@ -6,7 +6,7 @@
     <data>
         <variable
             name="flower"
-            type="com.example.damhwa_android.data.Flower" />
+            type="com.f5.damhwa_android.data.Flower" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

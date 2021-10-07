@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.example.damhwa_android.ui.calendar.CalendarFragment"
+        android:name="com.f5.damhwa_android.ui.calendar.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/feelingFragment"
-        android:name="com.example.damhwa_android.ui.feeling.FeelingFragment"
+        android:name="com.f5.damhwa_android.ui.feeling.FeelingFragment"
         android:label="fragment_feeling"
         tools:layout="@layout/fragment_feeling" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.example.damhwa_android.ui.story.StoryFragment"
+        android:name="com.f5.damhwa_android.ui.story.StoryFragment"
         android:label="fragment_story"
         tools:layout="@layout/fragment_story" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/feelingFlowerDetailFragment"
-        android:name="com.example.damhwa_android.ui.feeling.FeelingFlowerDetailFragment"
+        android:name="com.f5.damhwa_android.ui.feeling.FeelingFlowerDetailFragment"
         android:label="FeelingFlowerDetailFragment" >
         <action
             android:id="@+id/action_feelingFlowerDetailFragment_to_feelingFragment"
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/storyFlowerDetailFragment"
-        android:name="com.example.damhwa_android.ui.story.StoryFlowerDetailFragment"
+        android:name="com.f5.damhwa_android.ui.story.StoryFlowerDetailFragment"
         app:restoreState="true"
         android:label="StoryFlowerDetailFragment" >
         <action
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/storyRecFlowerFragment"
-        android:name="com.example.damhwa_android.ui.story.StoryRecFlowerFragment"
+        android:name="com.f5.damhwa_android.ui.story.StoryRecFlowerFragment"
         android:label="StoryRecFlowerFragment" >
         <action
             android:id="@+id/action_storyRecFlowerFragment_to_storyFlowerDetailFragment"

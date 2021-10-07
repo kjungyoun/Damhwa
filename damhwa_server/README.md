@@ -69,7 +69,7 @@
 
 [Deep Dream Generator](https://deepdreamgenerator.com)
 
-- 공공데이터에 저장된 이미지를 수채화 필터링 적용 후 DB에 추가적으로 저장
+- 공공데이터에 저장된 이미지를 수채화 필터링 적용 후 AWS S3에 업로드 후 사용
 
 ## 📖 Architecture
 - Spring과 Django 두 가지 서버를 구현하여 RestTemplate을 이용한 서버 간 HTTP 통신 구축

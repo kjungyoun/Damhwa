@@ -7,7 +7,7 @@
 
         <variable
             name="storyViewModel"
-            type="com.example.damhwa_android.ui.story.StoryFragmentViewModel" />
+            type="com.f5.damhwa_android.ui.story.StoryFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

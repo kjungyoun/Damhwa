@@ -7,7 +7,7 @@
 
         <variable
             name="feelingViewModel"
-            type="com.example.damhwa_android.ui.feeling.FeelingFragmentViewModel" />
+            type="com.f5.damhwa_android.ui.feeling.FeelingFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

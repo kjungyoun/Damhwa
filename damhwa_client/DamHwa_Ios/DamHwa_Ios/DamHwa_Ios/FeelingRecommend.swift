@@ -64,7 +64,7 @@ struct FeelingRecommend: View {
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                             .frame(width:400, alignment:.topLeading)
                             .font(.custom("SangSangRockOTF", size: 15))
-                        TextEditor(text: $feeling)
+                        TextField("기분을 입력해주세요",text: $feeling)
                             .keyboardType(.webSearch)
                             .frame(width: 360, height: 400, alignment: .topLeading)
                             .background(Color.white.opacity(0.5))

@@ -11,6 +11,7 @@
 		385F894726FD6429008D404A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F894626FD6429008D404A /* Home.swift */; };
 		385F894A26FDB53A008D404A /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 385F894926FDB53A008D404A /* ACarousel */; };
 		385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */; };
+		387063C5270ED69F0060012D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 387063C4270ED69F0060012D /* Launch Screen.storyboard */; };
 		387225C9270C4903002F0F94 /* EmotionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225C8270C4903002F0F94 /* EmotionDetail.swift */; };
 		387225CC270C9D9E002F0F94 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 387225CB270C9D9E002F0F94 /* Lottie */; };
 		387225CE270C9DB1002F0F94 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387225CD270C9DB1002F0F94 /* LottieView.swift */; };
@@ -35,6 +36,7 @@
 		3816A29C270E065C001564E4 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		385F894626FD6429008D404A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		385F894F26FDBA97008D404A /* SSRockRegular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSRockRegular_otf.otf; sourceTree = "<group>"; };
+		387063C4270ED69F0060012D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		387225C8270C4903002F0F94 /* EmotionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionDetail.swift; sourceTree = "<group>"; };
 		387225CD270C9DB1002F0F94 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		387225CF270C9E63002F0F94 /* simpleflower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = simpleflower.json; path = ../../../../../Downloads/simpleflower.json; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		38E1320226FC46060089F6FF = {
 			isa = PBXGroup;
 			children = (
+				387063C4270ED69F0060012D /* Launch Screen.storyboard */,
 				385F894E26FDBA7C008D404A /* fonts */,
 				38E1320D26FC46060089F6FF /* DamHwa_Ios */,
 				38E1320C26FC46060089F6FF /* Products */,
@@ -228,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				387063C5270ED69F0060012D /* Launch Screen.storyboard in Resources */,
 				38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */,
 				38E1321326FC46090089F6FF /* Assets.xcassets in Resources */,
 				38F9A794270E448B00AE98E6 /* GoogleService-Info.plist in Resources */,
@@ -445,7 +449,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DamHwa_Ios/DamHwa_Ios.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"DamHwa_Ios/Preview Content\"";
 				DEVELOPMENT_TEAM = LAJYRN9PB3;
@@ -459,6 +464,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.f5.DamHwa-Ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = damhwa_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,7 +477,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DamHwa_Ios/DamHwa_Ios.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"DamHwa_Ios/Preview Content\"";
 				DEVELOPMENT_TEAM = LAJYRN9PB3;
 				ENABLE_PREVIEWS = YES;
@@ -485,6 +492,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.f5.DamHwa-Ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = damhwa_dist_app;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
