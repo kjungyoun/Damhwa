@@ -3,6 +3,9 @@
 pod 'KakaoSDK'
 pod 'Alamofire', '~> 5.2'
 
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Analytics'
+
 target 'DamHwa_Ios' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!

@@ -130,8 +130,8 @@ struct StoryDetail: View {
                       "description": "메세지:\(fmsg)",
                       "imageUrl": "\(fimg)",
                       "link": {
-                          "mobile_web_url": "https://developers.kakao.com",
-                          "web_url": "https://developers.kakao.com"
+                          "mobile_web_url": "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c",
+                          "web_url": "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c"
                       }
                   }
               }

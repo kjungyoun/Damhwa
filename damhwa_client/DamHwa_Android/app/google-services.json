@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "892618485342",
+    "project_id": "damhwa-b3543",
+    "storage_bucket": "damhwa-b3543.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892618485342:android:0d1b56010836d1da468ecf",
+        "android_client_info": {
+          "package_name": "com.example.damhwa_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892618485342-lm6nm6qtmt9s11tuqbi109n08hs2osi5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.damhwa_android",
+            "certificate_hash": "ac4cc8517826eec691c1378e9d402ffde28838ac"
+          }
+        },
+        {
+          "client_id": "892618485342-f5lbi3hhnhvltd8l8espvc6ng611l85f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD64O8826opIlLRlANQJPQXfGivLSiv1Kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892618485342-f5lbi3hhnhvltd8l8espvc6ng611l85f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "892618485342-jrkm784olh45trkibdgl1f1j57rgqto9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.f5.DamHwa-Ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

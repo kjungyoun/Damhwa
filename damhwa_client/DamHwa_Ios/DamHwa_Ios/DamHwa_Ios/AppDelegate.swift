@@ -8,7 +8,7 @@
 import SwiftUI
 import KakaoSDKCommon
 import KakaoSDKAuth
-
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate{
     
@@ -16,6 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         KakaoSDKCommon.initSDK(appKey: "5d4ceabed4218c89d458e28bfdd4ed60", loggingEnable:false)
+        FirebaseApp.configure()
 
         return true
     }
