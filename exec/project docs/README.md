@@ -618,7 +618,7 @@ def predict(predict_sentence):
 
 이제 위 코드를 django 서버에 반영하면 된다.
 
-특히 학습한 모델을 django에 로드할 때 필요한 클래스인 `BERTDataset`와 `BERTClassifier`은 manage.py에 세팅한 뒤에 모델을 Apps.py에서 불러오자.
+특히 학습한 모델을 django에 로드할 때 필요한 클래스인 `BERTDataset`와 `BERTClassifier`은 `manage.py`에 세팅한 뒤에 모델을 `Apps.py`에서 로드하자.
 
 ## 📌 KNN 추천 알고리즘
 
