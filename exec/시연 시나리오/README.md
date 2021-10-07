@@ -13,11 +13,11 @@
 
 - 서신을 작성한다.
 
-![](https://i.imgur.com/i3g7RRC.png)
+![story2](/uploads/35b98913bb10bcd0ae44d9ef7dcb55e4/story2.jpg)
    
 - 작성한 서신을 바탕으로 5개의 꽃을 추천받는다.
 
-![](https://i.imgur.com/1hJeQQA.png)
+![story3](/uploads/6a752da8c2a88f43876bf42e30bb09e5/story3.jpg)
 
 - 선택한 꽃에 대한 정보가 출력되며 카카오톡 공유하기(지인에게 알려주오)를 통해 서신을 보낼 수 있다.
 
