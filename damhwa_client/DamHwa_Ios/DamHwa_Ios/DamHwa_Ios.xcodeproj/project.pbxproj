@@ -25,6 +25,7 @@
 		38E1322226FC60EC0089F6FF /* FeelingRecommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */; };
 		38E1322426FC61200089F6FF /* FlowerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322326FC61200089F6FF /* FlowerCalendar.swift */; };
 		38E1322626FC659C0089F6FF /* StoryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E1322526FC659C0089F6FF /* StoryTextView.swift */; };
+		38F9A794270E448B00AE98E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F9A793270E448B00AE98E6 /* GoogleService-Info.plist */; };
 		38FE01932709BFED00B11B42 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE01922709BFED00B11B42 /* Authentication.swift */; };
 		B79476A3DCE9F0578AE080F9 /* Pods_DamHwa_Ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingRecommend.swift; sourceTree = "<group>"; };
 		38E1322326FC61200089F6FF /* FlowerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerCalendar.swift; sourceTree = "<group>"; };
 		38E1322526FC659C0089F6FF /* StoryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTextView.swift; sourceTree = "<group>"; };
+		38F9A793270E448B00AE98E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38FE01922709BFED00B11B42 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		59E7C9AD4EED338FE391E973 /* Pods-DamHwa_Ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DamHwa_Ios.release.xcconfig"; path = "Target Support Files/Pods-DamHwa_Ios/Pods-DamHwa_Ios.release.xcconfig"; sourceTree = "<group>"; };
 		FE96153A7A15077AA4FB23C0 /* Pods_DamHwa_Ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DamHwa_Ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				38E1322126FC60EC0089F6FF /* FeelingRecommend.swift */,
 				3816A29C270E065C001564E4 /* ContentView.swift */,
 				387225CF270C9E63002F0F94 /* simpleflower.json */,
+				38F9A793270E448B00AE98E6 /* GoogleService-Info.plist */,
 				38E1322326FC61200089F6FF /* FlowerCalendar.swift */,
 				387225D3270CB66E002F0F94 /* Webview.swift */,
 				385F894626FD6429008D404A /* Home.swift */,
@@ -148,16 +151,28 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3816A2A1270E3D1A001564E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		38E1320A26FC46060089F6FF /* DamHwa_Ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38E1321A26FC46090089F6FF /* Build configuration list for PBXNativeTarget "DamHwa_Ios" */;
 			buildPhases = (
 				69C95B0285DD08BE6A6EE35A /* [CP] Check Pods Manifest.lock */,
+				3816A2A1270E3D1A001564E4 /* Headers */,
 				38E1320726FC46060089F6FF /* Sources */,
 				38E1320826FC46060089F6FF /* Frameworks */,
 				38E1320926FC46060089F6FF /* Resources */,
 				782F1867FA660B6C47F11886 /* [CP] Embed Pods Frameworks */,
+				38F9A78E270E3D7D00AE98E6 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -215,6 +230,7 @@
 			files = (
 				38E1321626FC46090089F6FF /* Preview Assets.xcassets in Resources */,
 				38E1321326FC46090089F6FF /* Assets.xcassets in Resources */,
+				38F9A794270E448B00AE98E6 /* GoogleService-Info.plist in Resources */,
 				387225D0270C9E63002F0F94 /* simpleflower.json in Resources */,
 				385F895026FDBA97008D404A /* SSRockRegular_otf.otf in Resources */,
 			);
@@ -223,6 +239,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		38F9A78E270E3D7D00AE98E6 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\nfi\n";
+		};
 		69C95B0285DD08BE6A6EE35A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +446,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DamHwa_Ios/DamHwa_Ios.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"DamHwa_Ios/Preview Content\"";
 				DEVELOPMENT_TEAM = LAJYRN9PB3;
 				ENABLE_PREVIEWS = YES;
