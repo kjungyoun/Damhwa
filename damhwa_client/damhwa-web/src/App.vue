@@ -40,10 +40,10 @@ body {
 .button {
   border: 3px solid black;
   background-color: white;
-  padding: 5px 20px;
+  padding: 4px 20px;
   border-radius: 20px;
   font-size: 15px;
-  margin-top: 0px;
+  margin-top: 10px;
   color: black;
   font-family: 'SangSangRock';
 }

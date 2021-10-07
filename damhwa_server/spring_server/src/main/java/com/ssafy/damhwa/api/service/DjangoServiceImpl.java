@@ -1,7 +1,6 @@
 package com.ssafy.damhwa.api.service;
 
 
-import com.ssafy.damhwa.api.response.FlowerNEmotionRes;
 import com.ssafy.damhwa.api.response.StateRes;
 import com.ssafy.damhwa.db.entity.Flower;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class DjangoServiceImpl implements DjangoService {
     }
 
     @Override
-    public Flower getStateRecommendFlower(String state) {
+    public Flower getStateRecommendFlower(String state, long userno) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://j5a503.p.ssafy.io:8000/api/recomm/state";
@@ -84,6 +83,8 @@ public class DjangoServiceImpl implements DjangoService {
 
         int fno = response.getBody().getFno();
         String emotionResult = response.getBody().getState();
+
+        historyService.createHistoryList(fno, userno, state, null, false);
 
         // Flower DB 조회
         Flower flower = flowerService.getFlowerByfno(fno);

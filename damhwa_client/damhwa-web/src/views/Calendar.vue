@@ -10,19 +10,21 @@
         color="yellow"
         is-expanded
       />
-      <p class="title"> 날짜를 누르시오 </p>
+      <p class="title">날짜를 누르시오</p>
     </div>
     <div>
       <div class="d-flex m-4 justify-content-start">
-        <h2 class="title">{{ date.getMonth() + 1 }}월 {{ date.getDate() }}일</h2>
+        <h2 class="title">
+          {{ date.getMonth() + 1 }}월 {{ date.getDate() }}일
+        </h2>
       </div>
       <div v-for="(data, idx) in this.filteredHistories" :key="idx">
         <div class="list">
           <div class="image-style">
             <img
-              style="border-radius: 250px;"
+              style="border-radius: 250px"
               class="image-style"
-              :src=data.flower.watercolor_img
+              :src="data.flower.watercolor_img"
             />
           </div>
           <div>
@@ -35,12 +37,26 @@
                   src="~@/assets/pink.png"
                   alt=""
                 />
-                
-                <img v-else class="separater" src="~@/assets/green.png" alt="" />
+
+                <img
+                  v-else
+                  class="separater"
+                  src="~@/assets/green.png"
+                  alt=""
+                />
               </span>
             </div>
-            <button class="button d-flex justify-content-start" @click="this.routeToHistoryDetail(data)">
+            <button v-if="data.htype"
+              class="button d-flex justify-content-start"
+              @click="this.routeToHistoryDetail(data)"
+            >
               서신보기
+            </button>
+            <button v-else
+              class="button d-flex justify-content-start"
+              @click="this.routeToHistoryDetail(data)"
+            >
+              감정보기
             </button>
           </div>
         </div>
@@ -61,9 +77,10 @@ export default {
       hFeelingDates: [],
       hLetterDates: [],
       date: new Date(),
-      day: "",
+      day: null,
       attributes: [],
       filteredHistories: [],
+      localUserNo: null,
     };
   },
   methods: {
@@ -76,12 +93,13 @@ export default {
       } else {
         this.$router.push({
           name: "FeelingDetail",
-          params: { historyId: history.hno},
+          params: { historyId: history.hno },
         });
       }
     },
     sendUserNo(userNo) {
       this.getHistoryData(userNo);
+      localStorage.setItem("userNo", userNo);
     },
     isMatched(selectedDate, date) {
       return (
@@ -91,7 +109,6 @@ export default {
       );
     },
     getHistoryData(userNo) {
-      console.log(userNo);
       axios
         .get(constants.BASE_URL, {
           params: {
@@ -99,8 +116,9 @@ export default {
           },
         })
         .then((res) => {
-          this.histories = res.data
-          this.filterInTwoType(res.data)
+          this.histories = res.data;
+          this.filterInTwoType(res.data);
+          this.checkDateAndFiltering();
         });
     },
     filterInTwoType(histories) {
@@ -121,30 +139,30 @@ export default {
           return new Date(
             tmpDateObj.getFullYear(),
             tmpDateObj.getMonth(),
-            tmpDateObj.getDate()
+            tmpDateObj.getDate() 
           );
         });
-        this.setDatesInCalendar()
+      this.setDatesInCalendar();
     },
     setDatesInCalendar() {
-      this.attributes.push(
-      {
-        dot: {
-          style: {
-            "background-color": "#7C947D",
+      this.attributes = [
+        {
+          dot: {
+            style: {
+              "background-color": "#7C947D",
+            },
           },
+          dates: this.hLetterDates,
         },
-        dates: this.hLetterDates,
-      },
-      {
-        dot: {
-          style: {
-            "background-color": "#F4AFA9",
+        {
+          dot: {
+            style: {
+              "background-color": "#F4AFA9",
+            },
           },
-        },
-        dates: this.hFeelingDates,
-      }
-    );
+          dates: this.hFeelingDates,
+        }
+      ];
     },
     checkDateAndFiltering() {
       this.filteredHistories = this.histories.filter((history) => {
@@ -158,20 +176,27 @@ export default {
     },
   },
   beforeMount() {
-    // this.sendUserNo(1927960578)
     window["Calendar"] = {
       components: this,
       sendUserNo: (userNo) => this.sendUserNo(userNo),
     };
+    if (localStorage.getItem("userNo") !== null) {
+      this.localUserNo = localStorage.getItem("userNo");
+      this.getHistoryData(Number(this.localUserNo));
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("day") !== null) {
+      const backDate = localStorage.getItem("day");
+      this.date = new Date(backDate);
+    }
   },
   watch: {
-    date: function() {
+    date: function () {
       this.checkDateAndFiltering();
+      localStorage.setItem("day", this.date);
     },
   },
-  mounted: function () {
-    this.checkDateAndFiltering();
-  }
 };
 </script>
 
@@ -203,7 +228,7 @@ export default {
 
 .flower-name {
   color: black;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .separater {
