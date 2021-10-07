@@ -17,38 +17,34 @@ For development, the latest version of Android Studio is required.
 ### 🛠 Teck Stack
 
 - Foundation 
-
   - AppCompat
   - Android KTX
   - Jetpack Navigation
   - Fragment
   - ViewPager2
-
 - Architecture
-
   - Data Binding
   - Lifecycles
   - ViewModel
-
 - Third party and miscellaneous libraries
-
   - Glide
-
   - Retrofit
-
   - OkHttp
-
   - Firebase
-
   - RxJava, RxAndroid, RxKotlin
-
   - CarouselRecyclerView
-
   - Kakao SDK
-
   - Lottie
 
-    
+### MAD Scorecard
+
+Modern Android Development(MAD)는 더 나은 애플리케이션을 구축하는데 도움을 주는 Blueprint입니다. 현재 저희 팀의 Android 프로젝트가 얼마나 최신 Android 플랫폼, 라이브러리, 기술을 사용하는지 확인합니다.
+
+![jetpack](README.assets/summary.png)
+
+![jetpack](README.assets/jetpack-3600462.png)
+
+
 
 ### 🪜 Architecture
 
