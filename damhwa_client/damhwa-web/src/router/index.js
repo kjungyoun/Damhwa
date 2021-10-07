@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Calendar from '../views/Calendar.vue'
 import FeelingDetail from '../views/FeelingDetail.vue'
 import LetterDetail from '../views/LetterDetail.vue'
-import StoreInfo from "@/views/store/StoreInfo.vue";
 
 const routes = [
   {
@@ -21,11 +20,6 @@ const routes = [
     name: 'LetterDetail',
     props: true,
     component: LetterDetail
-  },
-  {
-    path: '/StoreInfo/',
-    name: 'StoreInfo',
-    component: StoreInfo
   }
 ]
 
