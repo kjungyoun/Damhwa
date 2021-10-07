@@ -19,7 +19,7 @@
    def kakaoLoginVersion = "2.8.1"
    implementation "com.kakao.sdk:v2-user:$kakaoLoginVersion" // 카카오 로그인
    implementation "com.kakao.sdk:v2-user-rx:$kakaoLoginVersion"
-   implementation "com.kakao.sdk:v2-link:$kakaoLoginVersion" // 카카오 링크
+   implementation "com.kakao.sdk:v2-link:$kakaoLoginVersion" // 카카오 링크 / 아래 카카오 링크를 위한 디펜던시
    implementation "com.kakao.sdk:v2-link-rx:$kakaoLoginVersion"
    ```
 
@@ -141,7 +141,99 @@
 
 ### 📌 카카오톡 공유
 
-- 
+- 기본 템플릿으로 카카오 링크를 카카오톡으로 보냅니다.
+- 이때 메세지는 json형식의 파일로 보내지게 됩니다.
+- 카카오톡을 통해 메시지 공유가 가능한지 확인하기 위해 먼저 `isKakaoLinkAvailable`를 호출하여 사용자 기기에 카카오톡이 설치되어 있는지 확인합니다.
+- 카카오톡이 설치되어 있는 경우 `defaultTemplate`를 호출하여 카카오톡으로 메시지를 공유할 수 있도록 합니다.
+- 카카오톡이 설치되어 있지 않다면 `WebSharerClient`의 `defaultTemplateUri`를 통해 공유용 URL을 선언한 후, 기본 브라우저나 웹뷰로 해당 URL을 열 수 있도록 구현합니다.
+
+##### 🌵 안드로이드 카카오 링크 공유하기 구현
+
+```kotlin
+package com.kakao.sdk.common.util
+
+import android.content.*
+import android.content.pm.PackageManager
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsClient
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsService
+import androidx.browser.customtabs.CustomTabsServiceConnection
+
+/**
+ * 간편한 CustomTabs 실행 기능을 제공합니다.
+ */
+object KakaoCustomTabsClient {
+
+    @Throws(UnsupportedOperationException::class)
+    fun openWithDefault(context: Context, uri: Uri): ServiceConnection? {
+        val packageName = resolveCustomTabsPackage(
+            context,
+            uri
+        ) ?: throw UnsupportedOperationException()
+        SdkLog.d("Choosing $packageName as custom tabs browser")
+        val connection = object : CustomTabsServiceConnection() {
+            override fun onCustomTabsServiceConnected(name: ComponentName?, client: CustomTabsClient?) {
+                val builder = CustomTabsIntent.Builder()
+                        .enableUrlBarHiding().setShowTitle(true)
+                val customTabsIntent = builder.build()
+                customTabsIntent.intent.data = uri
+                customTabsIntent.intent.setPackage(packageName)
+                context.startActivity(customTabsIntent.intent)
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                SdkLog.d("onServiceDisconnected: $name")
+            }
+        }
+        val bound = CustomTabsClient.bindCustomTabsService(context, packageName, connection)
+        return if (bound) connection else null
+    }
+
+    @Throws(ActivityNotFoundException::class)
+    fun open(context: Context, uri: Uri) {
+        CustomTabsIntent.Builder().enableUrlBarHiding().setShowTitle(true).build()
+                .launchUrl(context, uri)
+    }
+
+    private fun resolveCustomTabsPackage(context: Context, uri: Uri): String? {
+        var packageName: String? = null
+        var chromePackage: String? = null
+        // get ResolveInfo for default browser
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        val resolveInfo = context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        val serviceIntent = Intent().setAction(CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION)
+        val serviceInfos = context.packageManager.queryIntentServices(serviceIntent, 0)
+        for (info in serviceInfos) {
+            // check if chrome is available on this device
+            if (chromePackage == null && isPackageNameChrome(
+                    info.serviceInfo.packageName
+                )
+            ) {
+                chromePackage = info.serviceInfo.packageName
+            }
+            // check if the browser being looped is the default browser
+            if (info.serviceInfo.packageName == resolveInfo?.activityInfo?.packageName) {
+                packageName = resolveInfo?.activityInfo?.packageName
+                break
+            }
+        }
+        if (packageName == null && chromePackage != null) {
+            packageName = chromePackage
+        }
+        return packageName
+    }
+
+    private fun isPackageNameChrome(packageName: String): Boolean {
+        return chromePackageNames.contains(packageName)
+    }
+
+    private val chromePackageNames = arrayOf(
+            "com.android.chrome",
+            "com.chrome.beta",
+            "com.chrome.dev")
+}
+```
 
 
 
