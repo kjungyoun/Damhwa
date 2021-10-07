@@ -75,7 +75,8 @@ class StoryFlowerDetailFragment : BaseFragment<FragmentStoryFlowerDetailBinding>
                 description = storyViewModel.letterHistory,
                 imageUrl = flower.watercolor_img,
                 link = Link(
-                    mobileWebUrl = "https://developers.kakao.com"
+                    mobileWebUrl = "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c",
+                    webUrl = "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c"
                 )
             ),
         )

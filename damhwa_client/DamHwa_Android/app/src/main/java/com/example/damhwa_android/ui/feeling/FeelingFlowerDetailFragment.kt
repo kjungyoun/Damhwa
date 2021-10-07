@@ -23,6 +23,7 @@ import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
 import com.kakao.sdk.link.rx
+import com.kakao.sdk.template.model.Button
 import com.kakao.sdk.template.model.Content
 import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
@@ -80,7 +81,8 @@ class FeelingFlowerDetailFragment : BaseFragment<FragmentFeelingFlowerDetailBind
                 description = feelingViewModel.feelingHistory,
                 imageUrl = recommFlower.watercolor_img,
                 link = Link(
-                    mobileWebUrl = "https://developers.kakao.com"
+                    mobileWebUrl = "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c",
+                    webUrl = "https://remarkable-nemophila-1b1.notion.site/3b83351d65d840158de5a5e9001d4a6c"
                 )
             ),
         )
