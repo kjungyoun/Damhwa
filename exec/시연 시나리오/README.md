@@ -2,7 +2,7 @@
 
 ## 🚀 Landing page(Login)
 
-![](https://i.imgur.com/SpZ88JO.png)
+![landing_1](/uploads/9604d0d8682fa757c8b4bb5b4bfc0bf4/landing_1.png)
     
 - 실행 시 보여지는 화면이다.
 - 카카오 소셜 로그인을 통해 사용할 수 있다.
