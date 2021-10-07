@@ -22,12 +22,11 @@
 
 ## 😊 기분(기분을 작성하는 페이지)
 
-
 1. 현재 본인의 기분을 작성한다.
 
 ![](https://i.imgur.com/pNrONHV.png)
 
-2. 선택한 꽃에 대한 정보가 출력되며 카카오톡 공유하기(지인에게 알려주오)를 통해 본인의 기분을 공유할 수 있다.
+2. 기분에 적합한 꽃에 대한 정보가 출력되며 카카오톡 공유하기(지인에게 알려주오)를 통해 본인의 기분을 공유할 수 있다.
 
 ![felling1](/uploads/4c622c23a284654eee63608461be0e3f/felling1.jpg)
 
@@ -35,12 +34,14 @@
 
 1. 달력에 일자별로 사용했던 기록들이 표시되고, 서신보기 버튼을 클릭하면 상세내역을 확인할 수 있다.
 
-![](https://i.imgur.com/AsW3ivr.png)
+![cal](/uploads/bac6f83f3895d3beeffa17a27b02d4a1/cal.jpg)
 
 2. 과거 적었던 기분에 대한 내용과 추천받은 꽃을 확인할 수 있다.
 
-![](https://i.imgur.com/tOimCbY.png)
+![historyfeeling](/uploads/7ac313c64e2a0c7ebf6b25a9e15fc559/historyfeeling.jpg)
 
 3. 과거 보냈던 서신을 확인할 수 있다.
 
-![](https://i.imgur.com/TcZH2M6.png)
+![historystory](/uploads/cfc75604b22efb6830a211c2e94ee7e3/historystory.jpg)
+
+---
