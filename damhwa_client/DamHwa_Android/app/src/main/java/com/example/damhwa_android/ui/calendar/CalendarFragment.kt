@@ -24,7 +24,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding>(
         super.init()
         binding.calendar.settings.javaScriptEnabled = true
         binding.calendar.settings.domStorageEnabled = true
-        binding.calendar.loadUrl("http://192.168.35.195:8080/")
+        binding.calendar.loadUrl("http://j5a503.p.ssafy.io:5000")
     }
 
     private fun sendUserNo() {
