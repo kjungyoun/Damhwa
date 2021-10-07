@@ -36,7 +36,8 @@ public class AuthServiceImpl implements AuthService{
     UserService userService;
 
     public final static String kakaoRestApiKey = "6bd2a7e8dba6b9e9ab76edcda34eec65";
-    public final static String redirectUri = "http://localhost:8080/auth/kakao/login";
+    public final static String redirectUri = "http://j5a503.p.ssafy.io:8080/auth/kakao/login";
+//    public final static String redirectUri = "http://localhost:8080/auth/kakao/login";
 
     @Override
     // AccessToken 요청
