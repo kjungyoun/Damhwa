@@ -9,7 +9,6 @@ plugins {
 android {
     compileSdk 31
     buildToolsVersion "31.0.0"
-
     defaultConfig {
         applicationId "com.f5.damhwa_android"
         minSdk 24

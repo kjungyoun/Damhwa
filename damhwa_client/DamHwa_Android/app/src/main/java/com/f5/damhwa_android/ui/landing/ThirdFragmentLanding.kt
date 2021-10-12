@@ -3,6 +3,7 @@ package com.f5.damhwa_android.ui.landing
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -60,10 +61,11 @@ class ThirdFragmentLanding :
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ token ->
+                Log.i("로그", "로그인 성공 ${token.accessToken}")
                 getUserInfo()
-                Log.i(TAG, "로그인 성공 ${token.accessToken}")
             }, { error ->
-                Log.e(TAG, "로그인 실패", error)
+                Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT).show()
+                Log.e("로그", "로그인 실패", error)
             })
             .addToDisposable()
     }
@@ -79,7 +81,9 @@ class ThirdFragmentLanding :
                     email = user.kakaoAccount?.email,
                     profile = user.kakaoAccount?.profile?.thumbnailImageUrl
                 )
+                Log.i("로그", "로그인 성공 ${user.id}")
             }, { error ->
+                Toast.makeText(requireContext(), error.localizedMessage, Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "사용자 정보 요청 실패", error)
             })
             .addToDisposable()
