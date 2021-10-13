@@ -19,18 +19,6 @@ class SecondFragmentLanding : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_second_landing, container, false)
-        checkKakaoToken()
         return view
-    }
-
-    private fun checkKakaoToken() {
-        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-            if (error != null) {
-                Log.d("ERROR:", error.toString())
-            } else if (tokenInfo != null) {
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-            }
-        }
     }
 }
